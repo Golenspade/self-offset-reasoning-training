@@ -10,11 +10,13 @@ import os
 import numpy as np
 import time
 import json
+import logging
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Optional
 import random
 import pickle
 from collections import deque
+from datetime import datetime
 
 # 添加src目录到Python路径
 project_root = Path(__file__).parent
@@ -109,6 +111,7 @@ class BreakthroughTrainingSystem:
             patience=config.get('lr_patience', 3),
             factor=config.get('lr_decay_factor', 0.7)
         )
+        self.current_lr = config.get('initial_lr', 0.001)  # 初始化当前学习率
 
         # 第二阶段：累积学习 - 记忆宫殿
         memory_capacity = config.get('memory_capacity', 10000)
@@ -513,6 +516,240 @@ class BreakthroughTrainingSystem:
             json.dump(detailed_report, f, indent=2)
 
         print(f"📄 详细报告已保存: {report_path}")
+
+    # ==================== 远程训练支持方法 ====================
+
+    def run_remote_training(self, remote_config):
+        """
+        远程训练入口方法
+
+        Args:
+            remote_config: RemoteTrainingConfig实例
+        """
+        logger = logging.getLogger(__name__)
+        logger.info("🚀 开始远程突破性训练")
+
+        try:
+            # 从远程路径加载数据
+            train_data = self.load_remote_data(remote_config.get_full_paths()['train_data'])
+            val_data = self.load_remote_data(remote_config.get_full_paths()['val_data'])
+
+            logger.info(f"📊 加载数据: 训练集 {len(train_data)} 样本, 验证集 {len(val_data)} 样本")
+
+            # 设置远程输出路径
+            self.remote_output_dir = remote_config.remote_output_path
+            self.remote_checkpoint_dir = remote_config.remote_checkpoint_path
+
+            # 创建输出目录
+            os.makedirs(self.remote_output_dir, exist_ok=True)
+            os.makedirs(self.remote_checkpoint_dir, exist_ok=True)
+
+            # 执行远程训练
+            results = self._execute_remote_training(train_data, val_data, remote_config, logger)
+
+            # 保存最终结果
+            self._save_remote_results(results, remote_config)
+
+            logger.info("🎉 远程训练完成")
+            return results
+
+        except Exception as e:
+            logger.error(f"❌ 远程训练失败: {e}")
+            raise
+
+    def load_remote_data(self, data_path: str) -> List[Dict]:
+        """从远程路径加载数据"""
+        try:
+            if data_path.endswith('.json'):
+                with open(data_path, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+            elif data_path.endswith('.jsonl'):
+                data = []
+                with open(data_path, 'r', encoding='utf-8') as f:
+                    for line in f:
+                        if line.strip():
+                            data.append(json.loads(line))
+            else:
+                raise ValueError(f"不支持的数据格式: {data_path}")
+
+            return data
+
+        except Exception as e:
+            print(f"❌ 加载远程数据失败: {e}")
+            return []
+
+    def _execute_remote_training(self, train_data: List[Dict], val_data: List[Dict],
+                                remote_config, logger) -> Dict:
+        """执行远程训练的核心逻辑"""
+
+        # 初始化训练历史
+        remote_history = {
+            'epochs': [],
+            'train_loss': [],
+            'val_loss': [],
+            'accuracy': [],
+            'stability_score': [],
+            'checkpoints': []
+        }
+
+        best_val_loss = float('inf')
+        patience_counter = 0
+
+        logger.info(f"🎯 开始 {remote_config.epochs} 轮远程训练")
+
+        for epoch in range(remote_config.epochs):
+            epoch_start_time = time.time()
+
+            # 执行一轮突破性训练
+            metrics = self.train_epoch_breakthrough(train_data, val_data, epoch)
+
+            # 记录指标
+            remote_history['epochs'].append(epoch + 1)
+            remote_history['train_loss'].append(metrics.get('train_loss', 0))
+            remote_history['val_loss'].append(metrics.get('val_loss', 0))
+            remote_history['accuracy'].append(metrics.get('accuracy', 0))
+            remote_history['stability_score'].append(metrics.get('stability_score', 0))
+
+            epoch_time = time.time() - epoch_start_time
+
+            # 远程日志记录
+            logger.info(f"Epoch {epoch+1}/{remote_config.epochs} - "
+                       f"Loss: {metrics.get('train_loss', 0):.4f}, "
+                       f"Val Loss: {metrics.get('val_loss', 0):.4f}, "
+                       f"Accuracy: {metrics.get('accuracy', 0):.4f}, "
+                       f"Time: {epoch_time:.2f}s")
+
+            # 早停检查
+            current_val_loss = metrics.get('val_loss', float('inf'))
+            if current_val_loss < best_val_loss:
+                best_val_loss = current_val_loss
+                patience_counter = 0
+
+                # 保存最佳模型
+                if remote_config.save_best_only:
+                    self.save_remote_checkpoint(epoch, remote_config, is_best=True)
+            else:
+                patience_counter += 1
+
+            # 定期保存检查点
+            if (epoch + 1) % remote_config.checkpoint_frequency == 0:
+                checkpoint_info = self.save_remote_checkpoint(epoch, remote_config)
+                remote_history['checkpoints'].append(checkpoint_info)
+                logger.info(f"💾 检查点已保存: {checkpoint_info['path']}")
+
+            # 早停
+            if patience_counter >= remote_config.early_stopping_patience:
+                logger.info(f"🛑 早停触发 (patience: {patience_counter})")
+                break
+
+            # 监控系统集成
+            if remote_config.enable_wandb:
+                try:
+                    import wandb
+                    wandb.log({
+                        'epoch': epoch + 1,
+                        'train_loss': metrics.get('train_loss', 0),
+                        'val_loss': metrics.get('val_loss', 0),
+                        'accuracy': metrics.get('accuracy', 0),
+                        'stability_score': metrics.get('stability_score', 0),
+                        'learning_rate': self.current_lr,
+                        'epoch_time': epoch_time
+                    })
+                except Exception as e:
+                    logger.warning(f"⚠️ Wandb日志记录失败: {e}")
+
+        # 返回训练结果
+        return {
+            'training_history': remote_history,
+            'best_val_loss': best_val_loss,
+            'total_epochs': len(remote_history['epochs']),
+            'final_metrics': {
+                'train_loss': remote_history['train_loss'][-1] if remote_history['train_loss'] else 0,
+                'val_loss': remote_history['val_loss'][-1] if remote_history['val_loss'] else 0,
+                'accuracy': remote_history['accuracy'][-1] if remote_history['accuracy'] else 0
+            }
+        }
+
+    def save_remote_checkpoint(self, epoch: int, remote_config, is_best: bool = False) -> Dict:
+        """保存检查点到远程存储"""
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+        if is_best:
+            checkpoint_name = f"best_model_epoch_{epoch+1}_{timestamp}.npz"
+        else:
+            checkpoint_name = f"checkpoint_epoch_{epoch+1}_{timestamp}.npz"
+
+        checkpoint_path = os.path.join(remote_config.remote_checkpoint_path, checkpoint_name)
+
+        # 保存模型权重
+        self.model.save_model(checkpoint_path)
+
+        # 保存训练状态
+        state_dict = {
+            'epoch': epoch + 1,
+            'model_state': checkpoint_path,
+            'optimizer_state': {
+                'learning_rate': self.current_lr,
+                'lr_adjustments': self.lr_scheduler.adjustments if hasattr(self, 'lr_scheduler') else 0
+            },
+            'training_history': self.training_history,
+            'config': self.config,
+            'timestamp': timestamp
+        }
+
+        state_path = checkpoint_path.replace('.npz', '_state.json')
+        with open(state_path, 'w', encoding='utf-8') as f:
+            json.dump(state_dict, f, indent=2, ensure_ascii=False)
+
+        return {
+            'epoch': epoch + 1,
+            'path': checkpoint_path,
+            'state_path': state_path,
+            'is_best': is_best,
+            'timestamp': timestamp
+        }
+
+    def _save_remote_results(self, results: Dict, remote_config):
+        """保存远程训练结果"""
+        # 保存训练历史
+        history_path = os.path.join(remote_config.remote_output_path, 'training_history.json')
+        with open(history_path, 'w', encoding='utf-8') as f:
+            json.dump(results, f, indent=2, ensure_ascii=False)
+
+        # 生成详细报告
+        report_path = os.path.join(remote_config.remote_output_path, 'detailed_report.json')
+        self.generate_detailed_report(report_path)
+
+        # 保存配置
+        config_path = os.path.join(remote_config.remote_output_path, 'training_config.json')
+        remote_config.save_config(config_path)
+
+        print(f"📊 远程训练结果已保存:")
+        print(f"  - 训练历史: {history_path}")
+        print(f"  - 详细报告: {report_path}")
+        print(f"  - 训练配置: {config_path}")
+
+    def load_remote_checkpoint(self, checkpoint_path: str, state_path: str = None):
+        """从远程存储加载检查点"""
+        try:
+            # 加载模型权重
+            self.model.load_model(checkpoint_path)
+
+            # 加载训练状态
+            if state_path and os.path.exists(state_path):
+                with open(state_path, 'r', encoding='utf-8') as f:
+                    state_dict = json.load(f)
+
+                # 恢复训练状态
+                self.current_lr = state_dict.get('optimizer_state', {}).get('learning_rate', self.config['initial_lr'])
+                self.training_history = state_dict.get('training_history', {})
+
+                print(f"✅ 检查点加载成功: {checkpoint_path}")
+                return state_dict
+
+        except Exception as e:
+            print(f"❌ 检查点加载失败: {e}")
+            return None
 
 
 def create_breakthrough_config() -> Dict:

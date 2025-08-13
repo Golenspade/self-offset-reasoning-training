@@ -1,0 +1,285 @@
+# 文件名: k8s-training-job.yaml
+# Kubernetes训练任务配置 - 自偏移推理训练项目
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: logic-training
+  labels:
+    name: logic-training
+    purpose: ai-training
+
+---
+# 配置映射 - 训练配置
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: training-config
+  namespace: logic-training
+data:
+  # 训练参数
+  EPOCHS: "100"
+  BATCH_SIZE: "64"
+  LEARNING_RATE: "0.001"
+  WEIGHT_DECAY: "1e-5"
+  
+  # 模型配置
+  MODEL_TYPE: "breakthrough"
+  HIDDEN_SIZE: "256"
+  NUM_LAYERS: "4"
+  DROPOUT_RATE: "0.1"
+  
+  # 检查点配置
+  CHECKPOINT_FREQ: "10"
+  SAVE_BEST_ONLY: "true"
+  EARLY_STOPPING_PATIENCE: "20"
+  
+  # 路径配置
+  REMOTE_DATA_PATH: "/data/logic_training"
+  REMOTE_MODEL_PATH: "/models/logic_models"
+  REMOTE_OUTPUT_PATH: "/outputs/training_results"
+  REMOTE_CHECKPOINT_PATH: "/checkpoints"
+  
+  # 监控配置
+  ENABLE_WANDB: "false"
+  DEBUG_MODE: "false"
+
+---
+# 持久化存储声明 - 训练数据
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: training-data-pvc
+  namespace: logic-training
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: fast-ssd  # 根据云平台调整
+
+---
+# 持久化存储声明 - 模型存储
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: model-storage-pvc
+  namespace: logic-training
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+  storageClassName: fast-ssd
+
+---
+# 持久化存储声明 - 输出存储
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: output-storage-pvc
+  namespace: logic-training
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: fast-ssd
+
+---
+# 持久化存储声明 - 检查点存储
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: checkpoint-storage-pvc
+  namespace: logic-training
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+  storageClassName: fast-ssd
+
+---
+# 训练任务
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: logic-training-job
+  namespace: logic-training
+  labels:
+    app: logic-training
+    version: v1
+spec:
+  # 任务配置
+  backoffLimit: 3  # 最大重试次数
+  ttlSecondsAfterFinished: 86400  # 24小时后清理
+  
+  template:
+    metadata:
+      labels:
+        app: logic-training
+        job: training
+    spec:
+      restartPolicy: Never
+      
+      # 容器配置
+      containers:
+      - name: training
+        image: IMAGE_PLACEHOLDER  # 将被部署脚本替换
+        imagePullPolicy: Always
+        
+        # 环境变量 - 从ConfigMap加载
+        envFrom:
+        - configMapRef:
+            name: training-config
+        
+        # 额外环境变量
+        env:
+        - name: PYTHONPATH
+          value: "/app/src:/app"
+        - name: PYTHONUNBUFFERED
+          value: "1"
+        - name: CUDA_VISIBLE_DEVICES
+          value: "0"  # 使用第一个GPU
+        
+        # 资源限制
+        resources:
+          requests:
+            memory: "8Gi"
+            cpu: "4"
+            nvidia.com/gpu: "1"  # 请求1个GPU
+          limits:
+            memory: "16Gi"
+            cpu: "8"
+            nvidia.com/gpu: "1"  # 限制1个GPU
+        
+        # 存储挂载
+        volumeMounts:
+        - name: data-volume
+          mountPath: /data
+        - name: model-volume
+          mountPath: /models
+        - name: output-volume
+          mountPath: /outputs
+        - name: checkpoint-volume
+          mountPath: /checkpoints
+        
+        # 健康检查
+        livenessProbe:
+          exec:
+            command:
+            - python
+            - -c
+            - "import sys; sys.exit(0)"
+          initialDelaySeconds: 60
+          periodSeconds: 300
+          timeoutSeconds: 10
+          failureThreshold: 3
+        
+        # 就绪检查
+        readinessProbe:
+          exec:
+            command:
+            - python
+            - -c
+            - "import os; sys.exit(0 if os.path.exists('/app/remote_training_main.py') else 1)"
+          initialDelaySeconds: 10
+          periodSeconds: 30
+          timeoutSeconds: 5
+        
+        # 工作目录
+        workingDir: /app
+        
+        # 启动命令
+        command: ["python"]
+        args: ["remote_training_main.py"]
+      
+      # 存储卷
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: training-data-pvc
+      - name: model-volume
+        persistentVolumeClaim:
+          claimName: model-storage-pvc
+      - name: output-volume
+        persistentVolumeClaim:
+          claimName: output-storage-pvc
+      - name: checkpoint-volume
+        persistentVolumeClaim:
+          claimName: checkpoint-storage-pvc
+      
+      # 节点选择器 - 选择有GPU的节点
+      nodeSelector:
+        accelerator: nvidia-tesla-v100  # 根据实际GPU类型调整
+      
+      # 容忍度 - 允许调度到GPU节点
+      tolerations:
+      - key: nvidia.com/gpu
+        operator: Exists
+        effect: NoSchedule
+
+---
+# 服务 - 用于监控和调试
+apiVersion: v1
+kind: Service
+metadata:
+  name: training-service
+  namespace: logic-training
+spec:
+  selector:
+    app: logic-training
+  ports:
+  - name: monitoring
+    port: 8080
+    targetPort: 8080
+  type: ClusterIP
+
+---
+# 网络策略 - 安全配置
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: training-network-policy
+  namespace: logic-training
+spec:
+  podSelector:
+    matchLabels:
+      app: logic-training
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: monitoring
+    ports:
+    - protocol: TCP
+      port: 8080
+  egress:
+  - {}  # 允许所有出站流量
+
+---
+# 资源配额 - 限制命名空间资源使用
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: training-quota
+  namespace: logic-training
+spec:
+  hard:
+    requests.cpu: "16"
+    requests.memory: 32Gi
+    requests.nvidia.com/gpu: "2"
+    limits.cpu: "32"
+    limits.memory: 64Gi
+    limits.nvidia.com/gpu: "2"
+    persistentvolumeclaims: "10"
+    pods: "5"
+    jobs.batch: "3"

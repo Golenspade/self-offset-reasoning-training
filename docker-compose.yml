@@ -1,0 +1,226 @@
+# 文件名: docker-compose.yml
+# Docker Compose配置 - 本地测试远程训练系统
+
+version: '3.8'
+
+services:
+  # 主训练服务
+  logic-training:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: logic-training-main
+    
+    # 环境变量
+    environment:
+      # 训练参数
+      - EPOCHS=20
+      - BATCH_SIZE=16
+      - LEARNING_RATE=0.001
+      - MODEL_TYPE=breakthrough
+      
+      # 路径配置
+      - REMOTE_DATA_PATH=/data/logic_training
+      - REMOTE_MODEL_PATH=/models/logic_models
+      - REMOTE_OUTPUT_PATH=/outputs/training_results
+      - REMOTE_CHECKPOINT_PATH=/checkpoints
+      
+      # 调试配置
+      - DEBUG_MODE=true
+      - DRY_RUN=false
+      
+      # 云存储配置（本地测试）
+      - CLOUD_PROVIDER=local
+      
+      # Python配置
+      - PYTHONPATH=/app/src:/app
+      - PYTHONUNBUFFERED=1
+    
+    # 存储卷
+    volumes:
+      - ./data:/data/logic_training:ro  # 只读数据
+      - training_models:/models
+      - training_outputs:/outputs
+      - training_checkpoints:/checkpoints
+      - ./logs:/app/logs
+    
+    # 网络
+    networks:
+      - training-network
+    
+    # 资源限制
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2.0'
+        reservations:
+          memory: 2G
+          cpus: '1.0'
+    
+    # 健康检查
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    
+    # 重启策略
+    restart: unless-stopped
+    
+    # 依赖服务
+    depends_on:
+      - monitoring
+      - storage-init
+
+  # 监控服务
+  monitoring:
+    image: prom/prometheus:latest
+    container_name: logic-training-monitoring
+    
+    ports:
+      - "9090:9090"
+    
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    
+    networks:
+      - training-network
+    
+    restart: unless-stopped
+
+  # 存储初始化服务
+  storage-init:
+    image: busybox:latest
+    container_name: logic-training-storage-init
+    
+    volumes:
+      - training_models:/models
+      - training_outputs:/outputs
+      - training_checkpoints:/checkpoints
+    
+    command: >
+      sh -c "
+        mkdir -p /models/logic_models &&
+        mkdir -p /outputs/training_results &&
+        mkdir -p /checkpoints &&
+        chmod -R 777 /models /outputs /checkpoints &&
+        echo 'Storage initialized'
+      "
+    
+    networks:
+      - training-network
+
+  # 日志聚合服务
+  log-aggregator:
+    image: fluent/fluent-bit:latest
+    container_name: logic-training-logs
+    
+    volumes:
+      - ./logs:/var/log/training:ro
+      - ./monitoring/fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf:ro
+    
+    ports:
+      - "24224:24224"
+    
+    networks:
+      - training-network
+    
+    restart: unless-stopped
+
+  # 数据同步服务
+  data-sync:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: logic-training-data-sync
+    
+    environment:
+      - CLOUD_PROVIDER=local
+      - PYTHONPATH=/app/src:/app
+    
+    volumes:
+      - ./data:/app/data:ro
+      - training_models:/models
+      - training_outputs:/outputs
+    
+    command: ["python", "sync_data_to_remote.py", "--action", "upload"]
+    
+    networks:
+      - training-network
+    
+    depends_on:
+      - storage-init
+
+  # Web界面服务（可选）
+  web-ui:
+    image: nginx:alpine
+    container_name: logic-training-web
+    
+    ports:
+      - "8080:80"
+    
+    volumes:
+      - ./web:/usr/share/nginx/html:ro
+      - training_outputs:/usr/share/nginx/html/outputs:ro
+    
+    networks:
+      - training-network
+    
+    restart: unless-stopped
+
+# 网络配置
+networks:
+  training-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+# 存储卷
+volumes:
+  training_models:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./volumes/models
+  
+  training_outputs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./volumes/outputs
+  
+  training_checkpoints:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./volumes/checkpoints
+  
+  prometheus_data:
+    driver: local
+
+# 扩展配置
+x-common-variables: &common-variables
+  PYTHONPATH: /app/src:/app
+  PYTHONUNBUFFERED: 1
+  TZ: Asia/Shanghai
+
+x-resource-limits: &resource-limits
+  deploy:
+    resources:
+      limits:
+        memory: 2G
+        cpus: '1.0'

@@ -1,0 +1,105 @@
+# 文件名: Dockerfile.cuda
+# CUDA加速训练容器配置
+
+# 使用NVIDIA官方CUDA基础镜像
+FROM nvidia/cuda:11.8-devel-ubuntu20.04
+
+# 设置环境变量
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app/src:/app
+ENV CUDA_VISIBLE_DEVICES=0
+
+# 设置工作目录
+WORKDIR /app
+
+# 安装系统依赖
+RUN apt-get update && apt-get install -y \
+    python3.9 \
+    python3.9-dev \
+    python3-pip \
+    python3.9-distutils \
+    build-essential \
+    cmake \
+    git \
+    curl \
+    wget \
+    vim \
+    htop \
+    nvtop \
+    && rm -rf /var/lib/apt/lists/*
+
+# 创建python3软链接
+RUN ln -sf /usr/bin/python3.9 /usr/bin/python3 && \
+    ln -sf /usr/bin/python3.9 /usr/bin/python
+
+# 升级pip
+RUN python3 -m pip install --upgrade pip setuptools wheel
+
+# 复制依赖文件
+COPY requirements.txt .
+COPY requirements_cuda.txt .
+
+# 安装Python依赖
+# 首先安装基础依赖
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# 安装CUDA版本的PyTorch (根据CUDA版本调整)
+RUN pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# 安装其他CUDA相关依赖
+RUN pip3 install --no-cache-dir \
+    nvidia-ml-py3 \
+    GPUtil \
+    psutil \
+    tensorboard \
+    wandb \
+    accelerate \
+    transformers \
+    optimum \
+    datasets
+
+# 可选：安装NVIDIA Apex (混合精度训练优化)
+# RUN git clone https://github.com/NVIDIA/apex && \
+#     cd apex && \
+#     pip install -v --disable-pip-version-check --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
+
+# 复制项目代码
+COPY src/ ./src/
+COPY analysis/ ./analysis/
+COPY configs/ ./configs/
+COPY *.py ./
+
+# 复制CUDA训练相关文件
+COPY cuda_utils.py .
+COPY cuda_training_system.py .
+COPY train_cuda.py .
+
+# 创建必要目录
+RUN mkdir -p /app/data /app/outputs /app/logs /app/checkpoints
+
+# 设置权限
+RUN chmod +x *.py
+
+# 验证CUDA安装
+RUN python3 -c "import torch; print(f'PyTorch版本: {torch.__version__}'); print(f'CUDA可用: {torch.cuda.is_available()}'); print(f'CUDA版本: {torch.version.cuda}'); print(f'GPU数量: {torch.cuda.device_count()}')"
+
+# 健康检查
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD python3 -c "import torch; assert torch.cuda.is_available()" || exit 1
+
+# 暴露端口（用于TensorBoard等）
+EXPOSE 6006 8888
+
+# 设置默认命令
+CMD ["python3", "train_cuda.py", "--help"]
+
+# 构建说明:
+# docker build -f Dockerfile.cuda -t logic-training-cuda:latest .
+# 
+# 运行说明:
+# docker run --gpus all -it --rm \
+#   -v $(pwd)/data:/app/data:ro \
+#   -v $(pwd)/outputs:/app/outputs \
+#   logic-training-cuda:latest \
+#   python3 train_cuda.py --epochs 50 --batch-size 32

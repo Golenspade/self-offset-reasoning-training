@@ -1,0 +1,80 @@
+# 文件名: requirements_cuda.txt
+# CUDA加速训练依赖
+
+# PyTorch CUDA版本 (根据CUDA版本选择)
+torch>=2.0.0+cu118
+torchvision>=0.15.0+cu118
+torchaudio>=2.0.0+cu118
+
+# 基础科学计算
+numpy>=1.21.0
+scipy>=1.9.0
+
+# 可视化和进度条
+matplotlib>=3.5.0
+seaborn>=0.11.0
+tqdm>=4.64.0
+
+# GPU监控和管理
+nvidia-ml-py3>=7.352.0
+GPUtil>=1.4.0
+psutil>=5.9.0
+
+# 深度学习工具
+tensorboard>=2.11.0
+wandb>=0.13.0
+
+# 数据处理
+pandas>=1.5.0
+scikit-learn>=1.1.0
+
+# 配置和工具
+pyyaml>=6.0
+python-dotenv>=0.21.0
+click>=8.0.0
+
+# 性能分析
+py-spy>=0.3.14
+memory-profiler>=0.60.0
+line-profiler>=4.0.0
+
+# 分布式训练支持
+accelerate>=0.20.0
+
+# 模型优化
+transformers>=4.21.0
+optimum>=1.8.0
+
+# 数据加载优化
+datasets>=2.0.0
+
+# 混合精度训练
+apex  # NVIDIA Apex (可选，需要从源码安装)
+
+# 模型压缩和量化
+bitsandbytes>=0.39.0
+
+# 高性能计算
+numba>=0.56.0
+cupy-cuda11x>=11.0.0  # CuPy for CUDA 11.x
+
+# 内存映射和缓存
+lmdb>=1.4.0
+h5py>=3.7.0
+
+# 异步IO
+aiofiles>=22.1.0
+
+# 日志和监控
+loguru>=0.6.0
+rich>=12.0.0
+
+# 测试工具
+pytest>=7.0.0
+pytest-benchmark>=4.0.0
+pytest-xdist>=2.5.0
+
+# 代码质量
+black>=22.0.0
+flake8>=5.0.0
+mypy>=0.991

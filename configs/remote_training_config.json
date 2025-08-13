@@ -1,0 +1,13 @@
+{
+  "batch_size": 32,
+  "epochs": 50,
+  "learning_rate": 0.001,
+  "model_type": "breakthrough",
+  "hidden_size": 256,
+  "num_layers": 4,
+  "checkpoint_frequency": 10,
+  "early_stopping_patience": 20,
+  "cloud_provider": "local",
+  "enable_wandb": false,
+  "debug_mode": false
+}

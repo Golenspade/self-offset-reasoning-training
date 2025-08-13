@@ -2,12 +2,17 @@
 文件名: model.py
 Transformer Seq2Seq模型定义
 用于学习从噪声命题到逆否命题的转换
+支持CUDA加速和混合精度训练
 """
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import math
+import logging
+from typing import Optional, Tuple
+
+logger = logging.getLogger(__name__)
 
 
 class PositionalEncoding(nn.Module):
@@ -216,13 +221,210 @@ def inference(model, src_tokens, tokenizer, device='cpu', max_length=50):
         return tgt_tokens[1:]  # 去掉START_TOKEN
 
 
+def create_cuda_model(vocab_size: int, device: str = 'auto',
+                     use_mixed_precision: bool = True, **kwargs) -> Tuple[LogicTransformer, torch.device]:
+    """
+    创建CUDA优化的模型
+
+    Args:
+        vocab_size: 词汇表大小
+        device: 设备选择 ('auto', 'cpu', 'cuda', 'cuda:0'等)
+        use_mixed_precision: 是否使用混合精度
+        **kwargs: 模型参数
+
+    Returns:
+        (model, device): 模型和设备
+    """
+    try:
+        from cuda_utils import CUDAManager
+
+        # 自动选择最佳设备
+        if device == 'auto':
+            cuda_manager = CUDAManager()
+            device = cuda_manager.device
+            cuda_manager.optimize_cuda_settings()
+        else:
+            device = torch.device(device)
+
+        # 创建模型
+        model = LogicTransformer(
+            vocab_size=vocab_size,
+            d_model=kwargs.get('d_model', 128),
+            nhead=kwargs.get('nhead', 8),
+            num_encoder_layers=kwargs.get('num_encoder_layers', 3),
+            num_decoder_layers=kwargs.get('num_decoder_layers', 3),
+            dim_feedforward=kwargs.get('dim_feedforward', 512),
+            max_len=kwargs.get('max_len', 100)
+        )
+
+        # 移动到指定设备
+        model = model.to(device)
+
+        # 混合精度优化
+        if use_mixed_precision and device.type == 'cuda':
+            # 检查是否支持混合精度
+            props = torch.cuda.get_device_properties(device)
+            if props.major >= 7:  # Volta架构及以上
+                # 将模型转换为半精度（在需要时）
+                # 注意：实际的混合精度训练通过GradScaler实现
+                logger.info("✅ 模型支持混合精度训练")
+            else:
+                logger.warning(f"⚠️ GPU计算能力{props.major}.{props.minor}不支持高效混合精度")
+                use_mixed_precision = False
+
+        # 编译模型（PyTorch 2.0+）
+        if hasattr(torch, 'compile') and device.type == 'cuda':
+            try:
+                model = torch.compile(model, mode='default')
+                logger.info("🚀 模型编译优化已启用")
+            except Exception as e:
+                logger.warning(f"模型编译失败: {e}")
+
+        # 统计参数
+        total_params = sum(p.numel() for p in model.parameters())
+        trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+
+        logger.info(f"🚀 CUDA模型创建成功!")
+        logger.info(f"📍 设备: {device}")
+        logger.info(f"📊 总参数: {total_params:,}")
+        logger.info(f"🎯 可训练参数: {trainable_params:,}")
+        logger.info(f"🔥 混合精度: {'启用' if use_mixed_precision else '禁用'}")
+
+        # 估算模型内存使用
+        model_size_mb = total_params * 4 / (1024 * 1024)  # 假设float32
+        logger.info(f"💾 估算模型大小: {model_size_mb:.1f}MB")
+
+        return model, device
+
+    except ImportError:
+        logger.warning("CUDA工具不可用，回退到CPU模式")
+        device = torch.device('cpu')
+        model = LogicTransformer(vocab_size=vocab_size, **kwargs)
+        return model, device
+
+
+def optimize_model_for_inference(model: LogicTransformer, device: torch.device) -> LogicTransformer:
+    """
+    为推理优化模型
+
+    Args:
+        model: 训练好的模型
+        device: 目标设备
+
+    Returns:
+        优化后的模型
+    """
+    model.eval()
+
+    # 如果是CUDA设备，进行额外优化
+    if device.type == 'cuda':
+        # 启用cudnn基准模式
+        torch.backends.cudnn.benchmark = True
+
+        # 尝试使用TorchScript优化
+        try:
+            # 创建示例输入
+            vocab_size = model.vocab_size
+            sample_src = torch.randint(0, vocab_size, (10, 1), device=device)
+            sample_tgt = torch.randint(0, vocab_size, (10, 1), device=device)
+
+            # 转换为TorchScript
+            traced_model = torch.jit.trace(model, (sample_src, sample_tgt))
+            traced_model = torch.jit.optimize_for_inference(traced_model)
+
+            logger.info("✅ TorchScript优化完成")
+            return traced_model
+
+        except Exception as e:
+            logger.warning(f"TorchScript优化失败: {e}")
+
+    return model
+
+
+def get_model_memory_usage(model: LogicTransformer, device: torch.device) -> Dict[str, float]:
+    """
+    获取模型内存使用情况
+
+    Args:
+        model: 模型
+        device: 设备
+
+    Returns:
+        内存使用信息字典
+    """
+    if device.type != 'cuda':
+        return {'error': 'Only available for CUDA devices'}
+
+    # 计算模型参数内存
+    param_memory = sum(p.numel() * p.element_size() for p in model.parameters())
+
+    # 计算缓冲区内存
+    buffer_memory = sum(b.numel() * b.element_size() for b in model.buffers())
+
+    # 获取GPU内存信息
+    allocated = torch.cuda.memory_allocated(device)
+    reserved = torch.cuda.memory_reserved(device)
+
+    return {
+        'param_memory_mb': param_memory / (1024 * 1024),
+        'buffer_memory_mb': buffer_memory / (1024 * 1024),
+        'total_model_memory_mb': (param_memory + buffer_memory) / (1024 * 1024),
+        'gpu_allocated_mb': allocated / (1024 * 1024),
+        'gpu_reserved_mb': reserved / (1024 * 1024)
+    }
+
+
+# 保持向后兼容
+def create_model(vocab_size: int, **kwargs) -> LogicTransformer:
+    """创建标准模型（向后兼容）"""
+    return LogicTransformer(vocab_size=vocab_size, **kwargs)
+
+
 if __name__ == "__main__":
-    # 测试模型创建
+    # 测试CUDA模型创建
     from logic_utils import Tokenizer
-    
+
+    print("🧪 测试CUDA模型创建")
+    print("=" * 50)
+
     tokenizer = Tokenizer()
-    model = create_model(tokenizer.vocab_size)
-    
-    print(f"词汇表大小: {tokenizer.vocab_size}")
-    print("模型结构:")
-    print(model)
+
+    # 测试CUDA模型
+    try:
+        model, device = create_cuda_model(
+            vocab_size=tokenizer.vocab_size,
+            device='auto',
+            d_model=128,
+            nhead=8
+        )
+
+        print(f"\n📊 模型信息:")
+        print(f"设备: {device}")
+        print(f"词汇表大小: {tokenizer.vocab_size}")
+
+        # 获取内存使用情况
+        if device.type == 'cuda':
+            memory_info = get_model_memory_usage(model, device)
+            print(f"模型内存: {memory_info['total_model_memory_mb']:.1f}MB")
+            print(f"GPU已分配: {memory_info['gpu_allocated_mb']:.1f}MB")
+
+        # 测试前向传播
+        print("\n🔍 测试前向传播...")
+        batch_size = 2
+        seq_len = 10
+
+        src = torch.randint(0, tokenizer.vocab_size, (seq_len, batch_size), device=device)
+        tgt = torch.randint(0, tokenizer.vocab_size, (seq_len, batch_size), device=device)
+
+        with torch.no_grad():
+            output = model(src, tgt[:-1])
+            print(f"输出形状: {output.shape}")
+            print("✅ 前向传播测试成功")
+
+    except Exception as e:
+        print(f"❌ CUDA模型测试失败: {e}")
+
+        # 回退到CPU模型
+        print("🔄 回退到CPU模型...")
+        model = create_model(tokenizer.vocab_size)
+        print("✅ CPU模型创建成功")
