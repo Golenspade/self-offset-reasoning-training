@@ -172,3 +172,4 @@ python3 test_rules.py
 
 **项目状态**: 概念验证完成 ✅  
 **下一步**: 扩展到更复杂的逻辑系统和更大的模型架构
+# self-offset-reasoning-training
