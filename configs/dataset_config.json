@@ -1,0 +1,97 @@
+{
+  "datasets": {
+    "train_L1_simple": {
+      "description": "Level 1: 简单命题，单一噪声",
+      "num_samples": 10000,
+      "generator_func": "generate_simple_proposition",
+      "noise_applications": 1,
+      "noise_types": ["type1"],
+      "output_file": "data/train_L1_simple.json"
+    },
+    "val_L1_simple": {
+      "description": "Level 1: 验证集",
+      "num_samples": 2000,
+      "generator_func": "generate_simple_proposition",
+      "noise_applications": 1,
+      "noise_types": ["type1"],
+      "output_file": "data/val_L1_simple.json"
+    },
+    "train_L2_multi_noise": {
+      "description": "Level 2: 简单命题，多种噪声组合",
+      "num_samples": 8000,
+      "generator_func": "generate_simple_proposition",
+      "noise_applications": 2,
+      "noise_types": ["type1", "type2"],
+      "output_file": "data/train_L2_multi_noise.json"
+    },
+    "val_L2_multi_noise": {
+      "description": "Level 2: 验证集",
+      "num_samples": 1500,
+      "generator_func": "generate_simple_proposition",
+      "noise_applications": 2,
+      "noise_types": ["type1", "type2"],
+      "output_file": "data/val_L2_multi_noise.json"
+    },
+    "train_L3_complex": {
+      "description": "Level 3: 复杂嵌套命题，单一噪声",
+      "num_samples": 6000,
+      "generator_func": "generate_recursive_proposition",
+      "max_depth": 3,
+      "noise_applications": 1,
+      "noise_types": ["type1"],
+      "output_file": "data/train_L3_complex.json"
+    },
+    "val_L3_complex": {
+      "description": "Level 3: 验证集",
+      "num_samples": 1200,
+      "generator_func": "generate_recursive_proposition",
+      "max_depth": 3,
+      "noise_applications": 1,
+      "noise_types": ["type1"],
+      "output_file": "data/val_L3_complex.json"
+    },
+    "train_L4_expert": {
+      "description": "Level 4: 复杂嵌套命题，多种噪声组合",
+      "num_samples": 5000,
+      "generator_func": "generate_recursive_proposition",
+      "max_depth": 4,
+      "noise_applications": 3,
+      "noise_types": ["type1", "type2", "type3"],
+      "output_file": "data/train_L4_expert.json"
+    },
+    "val_L4_expert": {
+      "description": "Level 4: 验证集",
+      "num_samples": 1000,
+      "generator_func": "generate_recursive_proposition",
+      "max_depth": 4,
+      "noise_applications": 3,
+      "noise_types": ["type1", "type2", "type3"],
+      "output_file": "data/val_L4_expert.json"
+    }
+  },
+  "curriculum_learning": {
+    "enabled": true,
+    "stages": [
+      {
+        "name": "入门阶段",
+        "datasets": ["train_L1_simple", "val_L1_simple"],
+        "epochs": 10
+      },
+      {
+        "name": "进阶阶段", 
+        "datasets": ["train_L2_multi_noise", "val_L2_multi_noise"],
+        "epochs": 8
+      },
+      {
+        "name": "困难阶段",
+        "datasets": ["train_L3_complex", "val_L3_complex"],
+        "epochs": 6
+      },
+      {
+        "name": "专家阶段",
+        "datasets": ["train_L4_expert", "val_L4_expert"],
+        "epochs": 5
+      }
+    ]
+  }
+}
