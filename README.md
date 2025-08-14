@@ -52,7 +52,7 @@
 
 我们的简化模型在这个概念验证中取得了令人鼓舞的结果：
 
-- **逻辑等价准确率**: 81% 
+- **逻辑等价准确率**: 81%
 - **精确匹配准确率**: 0%
 - **特定模式测试**: 60%
 
@@ -125,7 +125,75 @@ cd tests
 python3 test_rules.py
 ```
 
+
+## 标准工作流（推荐）
+
+1) 环境体检与修复（可选，首次或异常时执行）
+```bash
+python health_check.py          # 一键体检，输出健康评分与报告
+python quick_fix.py             # 常见问题一键修复
+```
+
+2) 生成数据（鲁棒版，多层级复杂度）
+```bash
+python generate_robust_dataset.py
+```
+
+3) 执行训练（CPU/GPU 二选一）
+```bash
+# CPU（默认）
+python breakthrough_training_system_refactored.py --epochs 20
+
+# GPU（建议开启自动批大小与混合精度）
+python train_cuda.py --auto-batch-size --use-mixed-precision
+```
+
+4) 评估与报告
+```bash
+python clean_evaluation_system.py
+```
+
+5) 结果分析与可视化
+```bash
+python analysis/complete_experiment_summary_refactored.py
+# 或
+python analysis/investigate_l3_patterns_improved.py
+```
+
+6) 常见问题手动排查（按需）
+```bash
+python core_files_checker.py    # 核心文件完整性检查
+python fix_data_format.py       # JSONL→JSON数组批量修复
+```
+
+> 产出物默认写入 outputs/（reports/、figures/、trained_models/ 等）。
+
 ### 数据样本示例
+
+## 未来发展方向（Roadmap）
+
+### 近期（1-2周）
+- 提升精确匹配率：引入更强的后处理与约束解码（符号平衡、括号闭合、操作符约束）
+- 训练稳定性：加入学习率余弦退火、梯度裁剪与早停，完善训练曲线与诊断
+- 数据增强：扩展噪声类型（结合/分配律、双重否定、蕴含消除、多步变换）
+- 评估完善：区分逻辑等价/语法等价/可读性三类指标，统一报告格式
+- 工程化：完善单元测试和CI（lint/type/test），保障核心模块稳定
+
+### 中期（1-2月）
+- 模型升级：切换至标准Transformer/混合神经符号模型，支持更长序列
+- 复杂逻辑：扩展到一阶逻辑/模态逻辑的子集，定义可训练/可评估的语法子集
+- 端到端：加入端到端样例生成→训练→评估→分析的自动化pipeline（Make/Invoke/Tox）
+- 分布式训练：完善远程训练与多卡GPU训练（DDP/FSDP），加入断点续训
+- 可视化与追踪：集成Weights & Biases/MLflow，管理实验与对比
+
+### 远期（3-6月）
+- 自然语言迁移：从符号逻辑过渡到NLI（自然语言推理）的小规模数据集
+- 多步推理：实现可控的链式推理与验证器，支持反例自动生成
+- 自我修复：在训练失败/偏移时自动回退并搜索超参，形成闭环优化
+- 开源发布：准备教程、Docker镜像和小型Benchmark，形成可复现的发布版
+
+> 所有规划将以“先验证、后推广”为原则推进：小范围ablation验证—>收敛—>模块化推广进入主干。
+
 
 ```json
 {
@@ -160,7 +228,7 @@ python3 test_rules.py
 这个Demo验证了"自偏移推理训练"的核心假设：
 
 - ✅ 模型可以学会识别逻辑等价的不同表达形式
-- ✅ 通过噪声训练可以提高推理的鲁棒性  
+- ✅ 通过噪声训练可以提高推理的鲁棒性
 - ✅ 符号逻辑提供了可控的测试环境
 - ⚠️ 精确的符号操作仍需要进一步改进
 
@@ -170,6 +238,6 @@ python3 test_rules.py
 
 ---
 
-**项目状态**: 概念验证完成 ✅  
+**项目状态**: 概念验证完成 ✅
 **下一步**: 扩展到更复杂的逻辑系统和更大的模型架构
 # self-offset-reasoning-training
