@@ -1,400 +1,2802 @@
-{"original_prop": "(~r -> (~r | ~p)) -> ((~q -> r) -> (t -> r))", "noisy_prop": "(~r -> (~r | ~~~p)) -> ((~q -> r) -> (t -> r))", "target_contrapositive": "~((~q -> r) -> (t -> r)) -> ~(~r -> (~r | ~p))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~r -> s", "noisy_prop": "~r -> s", "target_contrapositive": "~s -> r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "p -> s", "noisy_prop": "(p) -> s", "target_contrapositive": "~s -> ~p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "(t | (s -> t)) -> s", "noisy_prop": "((t | (s -> t)) -> s & (t | ~t))", "target_contrapositive": "~s -> ~(t | (s -> t))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "s -> p", "noisy_prop": "s -> p", "target_contrapositive": "~p -> ~s", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~s -> r", "noisy_prop": "~((s)) -> r", "target_contrapositive": "~r -> s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "s -> ~p", "noisy_prop": "(~s | ~p)", "target_contrapositive": "p -> ~s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "q -> r", "noisy_prop": "q -> r", "target_contrapositive": "~r -> ~q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "s -> ~t", "noisy_prop": "s -> ~(t)", "target_contrapositive": "t -> ~s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "s -> p", "noisy_prop": "~~~~s -> ~~~~p", "target_contrapositive": "~p -> ~s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "r -> s", "noisy_prop": "r -> ((s))", "target_contrapositive": "~s -> ~r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~r -> q", "noisy_prop": "~((((r)))) -> q", "target_contrapositive": "~q -> r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "p -> r", "noisy_prop": "(~p | r)", "target_contrapositive": "~r -> ~p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "q -> p", "noisy_prop": "(~q | p)", "target_contrapositive": "~p -> ~q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> ((~s | r) & q)", "noisy_prop": "(~r | ((~s | r) & q))", "target_contrapositive": "~((~s | r) & q) -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> ((p & ~q) | (~q | r))", "noisy_prop": "(~r | ((p & ~q) | (~q | r)))", "target_contrapositive": "~((p & ~q) | (~q | r)) -> ~r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "s -> ~p", "noisy_prop": "(s -> ~p & (s | ~s))", "target_contrapositive": "p -> ~s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((r | q) | t) -> r", "noisy_prop": "((~(~r) | q) | ~(~t)) -> r", "target_contrapositive": "~r -> ~((r | q) | t)", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "s -> p", "noisy_prop": "(~(s | p & (p | ~p)))", "target_contrapositive": "~p -> ~s", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "(q -> ~s) -> (t -> (p & q))", "noisy_prop": "((~q  & ~~s) -> (((t)) -> (p & q)))", "target_contrapositive": "~(t -> (p & q)) -> ~(q -> ~s)", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~q -> s", "noisy_prop": "~~~~~q -> ~~~~s", "target_contrapositive": "~s -> q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~r -> p", "noisy_prop": "~((r)) -> ~(~p)", "target_contrapositive": "~p -> r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~p -> q", "noisy_prop": "~p -> q", "target_contrapositive": "~q -> p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "p -> s", "noisy_prop": "~~p -> s", "target_contrapositive": "~s -> ~p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "(t | (s | r)) -> ((q | ~s) & ~q)", "noisy_prop": "(t | (s | r)) -> ((q | ~s) & ~q)", "target_contrapositive": "~((q | ~s) & ~q) -> ~(t | (s | r))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "(~q -> (q & t)) -> ((p & ~r) & s)", "noisy_prop": "(~(~(~q | (q & t)) | (((p) & ~r) & s)))", "target_contrapositive": "~((p & ~r) & s) -> ~(~q -> (q & t))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~q -> p", "noisy_prop": "~~~q -> ((~~~~p))", "target_contrapositive": "~p -> q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "p -> q", "noisy_prop": "(~p | q)", "target_contrapositive": "~q -> ~p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> ~q", "noisy_prop": "(r) -> ~q", "target_contrapositive": "q -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~p -> s", "noisy_prop": "(~~(~~(~p)) -> s & (p | ~p))", "target_contrapositive": "~s -> p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "p -> ~q", "noisy_prop": "(p) -> ~q", "target_contrapositive": "q -> ~p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((s | s) -> (~t | s)) -> ((p & ~s) & (s & ~r))", "noisy_prop": "((~(~~(~s)) | s) -> (~t | s)) -> ((~s & p ) & (s & ~r))", "target_contrapositive": "~((p & ~s) & (s & ~r)) -> ~((s | s) -> (~t | s))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((p & ~r) -> p) -> ((r | ~p) | (~p & q))", "noisy_prop": "(~((p & ~r) | p) -> ((r | ~p) | (~p & ~~q)))", "target_contrapositive": "~((r | ~p) | (~p & q)) -> ~((p & ~r) -> p)", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "q -> r", "noisy_prop": "(~q | r)", "target_contrapositive": "~r -> ~q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "(~r & q) -> (p -> (s | ~p))", "noisy_prop": "(q & ~r ) -> (~~p -> (s | ~p))", "target_contrapositive": "~(p -> (s | ~p)) -> ~(~r & q)", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((q -> ~p) & (r | ~r)) -> ((t | t) & q)", "noisy_prop": "(~((q | ~p) & (r | ~r)) -> ((t | t) & q))", "target_contrapositive": "~((t | t) & q) -> ~((q -> ~p) & (r | ~r))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((r | t) -> (q | s)) -> ((s & ~s) -> s)", "noisy_prop": "((r | ((t))) -> (q | s)) -> ((s & ~s) -> s)", "target_contrapositive": "~((s & ~s) -> s) -> ~((r | t) -> (q | s))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~q -> r", "noisy_prop": "~~~q -> (r)", "target_contrapositive": "~r -> q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "r -> q", "noisy_prop": "(~~(~r) | ~~q)", "target_contrapositive": "~q -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~q -> p", "noisy_prop": "~q -> ((p))", "target_contrapositive": "~p -> q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "q -> p", "noisy_prop": "(~q | p)", "target_contrapositive": "~p -> ~q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "r -> s", "noisy_prop": "(~r | s)", "target_contrapositive": "~s -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~s -> p", "noisy_prop": "~~~s -> ~(~p)", "target_contrapositive": "~p -> s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~p -> t", "noisy_prop": "~~(~p) -> ~~t", "target_contrapositive": "~t -> p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "p -> s", "noisy_prop": "(~p | s)", "target_contrapositive": "~s -> ~p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~s -> ~r", "noisy_prop": "~s -> ~r", "target_contrapositive": "r -> s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((r -> s) | (s & ~r)) -> r", "noisy_prop": "((~~(r) -> s) | (~r & s )) -> r", "target_contrapositive": "~r -> ~((r -> s) | (s & ~r))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> ~p", "noisy_prop": "r -> ~p", "target_contrapositive": "p -> ~r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((q | p) -> (~q & ~t)) -> ((p -> r) | (~r | ~p))", "noisy_prop": "((q | p) -> (~q & ~t)) -> ((p -> r) | (~r | ~p))", "target_contrapositive": "~((p -> r) | (~r | ~p)) -> ~((q | p) -> (~q & ~t))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "s -> q", "noisy_prop": "s -> (q)", "target_contrapositive": "~q -> ~s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~r -> q", "noisy_prop": "(~r -> q | (r & ~r))", "target_contrapositive": "~q -> r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "(q -> t) -> ((r -> p) & (t -> t))", "noisy_prop": "(q -> t) -> ((r -> p) & (t -> t))", "target_contrapositive": "~((r -> p) & (t -> t)) -> ~(q -> t)", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "p -> q", "noisy_prop": "((p)) -> q", "target_contrapositive": "~q -> ~p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "s -> p", "noisy_prop": "(~~s -> ~(~p) | (p & ~p))", "target_contrapositive": "~p -> ~s", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> s", "noisy_prop": "~(~r) -> ~~s", "target_contrapositive": "~s -> ~r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((q | ~r) & (~q | p)) -> ((p -> p) & (t & s))", "noisy_prop": "((q | ~r) & (~q | p)) -> ((p -> p) & (t & ((s))))", "target_contrapositive": "~((p -> p) & (t & s)) -> ~((q | ~r) & (~q | p))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "q -> r", "noisy_prop": "q -> r", "target_contrapositive": "~r -> ~q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((q | s) | r) -> t", "noisy_prop": "((q | s) | r) -> t", "target_contrapositive": "~t -> ~((q | s) | r)", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "p -> r", "noisy_prop": "p -> r", "target_contrapositive": "~r -> ~p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~r -> p", "noisy_prop": "(~~~r -> ~(~p) | (p & ~p))", "target_contrapositive": "~p -> r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((q & ~s) -> q) -> ((r & s) & (p | ~s))", "noisy_prop": "(~(~(((q & ~s)) | q) | ((r & s) & (p | ~s))))", "target_contrapositive": "~((r & s) & (p | ~s)) -> ~((q & ~s) -> q)", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "(s | (s & p)) -> ~r", "noisy_prop": "((s | (p & s )) -> ~~(~r) | (r & ~r))", "target_contrapositive": "r -> ~(s | (s & p))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((q -> s) -> (r & ~t)) -> s", "noisy_prop": "((q -> s) -> ((r) & ~t)) -> s", "target_contrapositive": "~s -> ~((q -> s) -> (r & ~t))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "p -> ~s", "noisy_prop": "p -> ~s", "target_contrapositive": "s -> ~p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~p -> ~r", "noisy_prop": "~p -> ~r", "target_contrapositive": "r -> p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((r | ~q) -> r) -> ((p | s) & s)", "noisy_prop": "(~((((r | ~q)) | r) -> ((p | (s)) & s) | (s & ~s)))", "target_contrapositive": "~((p | s) & s) -> ~((r | ~q) -> r)", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~q -> ((r & p) -> ~p)", "noisy_prop": "(~~q | ((r & p) -> ~p))", "target_contrapositive": "~((r & p) -> ~p) -> q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "q -> s", "noisy_prop": "(~~(~q) | s)", "target_contrapositive": "~s -> ~q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~p -> ~r", "noisy_prop": "(~~~(~p) | ~~(~~(~~~r)))", "target_contrapositive": "r -> p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((s | t) & (p -> ~q)) -> ((~q & r) & s)", "noisy_prop": "((s | ~~t) & (p -> ~q)) -> ((r & ~q ) & s)", "target_contrapositive": "~((~q & r) & s) -> ~((s | t) & (p -> ~q))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~p -> ~r", "noisy_prop": "~p -> ~r", "target_contrapositive": "r -> p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> p", "noisy_prop": "(r -> p & (r | ~r))", "target_contrapositive": "~p -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~p -> ~s", "noisy_prop": "~p -> ~(s)", "target_contrapositive": "s -> p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~p -> s", "noisy_prop": "~p -> s", "target_contrapositive": "~s -> p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((p -> p) -> (~s -> q)) -> ((p -> q) & (s -> q))", "noisy_prop": "(((~(~p) -> p) -> (~s -> q)) -> ((p -> q) & (s -> q)) & (s | ~s))", "target_contrapositive": "~((p -> q) & (s -> q)) -> ~((p -> p) -> (~s -> q))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "(t -> ~p) -> q", "noisy_prop": "(t -> ~~~p) -> q", "target_contrapositive": "~q -> ~(t -> ~p)", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~q -> r", "noisy_prop": "~q -> ((r))", "target_contrapositive": "~r -> q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "p -> q", "noisy_prop": "p -> q", "target_contrapositive": "~q -> ~p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "q -> ((s | ~p) -> (~p | r))", "noisy_prop": "q -> ((~p | s ) -> (~p | r))", "target_contrapositive": "~((s | ~p) -> (~p | r)) -> ~q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((t & r) | (q -> p)) -> (t -> (p -> p))", "noisy_prop": "((t & r) | (q -> ~~~~p)) -> (t -> (p -> p))", "target_contrapositive": "~(t -> (p -> p)) -> ~((t & r) | (q -> p))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "p -> ~q", "noisy_prop": "(p -> ~q | (p & ~p))", "target_contrapositive": "q -> ~p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "q -> r", "noisy_prop": "(~(~~(~q)) -> r & (q | ~q))", "target_contrapositive": "~r -> ~q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~q -> s", "noisy_prop": "~q -> s", "target_contrapositive": "~s -> q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "(~r & (q & p)) -> ((q -> q) | (t | t))", "noisy_prop": "(~r & (q & ((p)))) -> ((q -> q) | (t | t))", "target_contrapositive": "~((q -> q) | (t | t)) -> ~(~r & (q & p))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((p -> p) & (t -> q)) -> ((~t & p) -> ~t)", "noisy_prop": "((p -> p) & (t -> q)) -> ((~t & p) -> ~t)", "target_contrapositive": "~((~t & p) -> ~t) -> ~((p -> p) & (t -> q))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "p -> ((s | s) & (s -> s))", "noisy_prop": "(~~(~p) | ((s | s ) & (s -> s)))", "target_contrapositive": "~((s | s) & (s -> s)) -> ~p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "s -> p", "noisy_prop": "(~~~s | ~~p)", "target_contrapositive": "~p -> ~s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "(q -> (r | ~p)) -> t", "noisy_prop": "((q -> (~p | r )) -> ((t)) & (t | ~t))", "target_contrapositive": "~t -> ~(q -> (r | ~p))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "r -> ~q", "noisy_prop": "(~r | ~(q))", "target_contrapositive": "q -> ~r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "q -> ~s", "noisy_prop": "((q -> ~(s) & (s | ~s)) & (s | ~s))", "target_contrapositive": "s -> ~q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((~p & r) | (p -> ~r)) -> (p | p)", "noisy_prop": "((r & ~~~p ) | (p -> ~r)) -> (p | p)", "target_contrapositive": "~(p | p) -> ~((~p & r) | (p -> ~r))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((s | r) -> (q -> ~s)) -> ((q -> q) & (q -> ~r))", "noisy_prop": "(((s | r) -> (q -> ~s)) -> ((q -> q) & (q -> ~r)) | (q  & ~q ))", "target_contrapositive": "~((q -> q) & (q -> ~r)) -> ~((s | r) -> (q -> ~s))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((t & ~r) | p) -> ((~s -> q) & r)", "noisy_prop": "((t & ~r) | p) -> ((~s -> q) & r)", "target_contrapositive": "~((~s -> q) & r) -> ~((t & ~r) | p)", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "q -> ~r", "noisy_prop": "q -> ~r", "target_contrapositive": "r -> ~q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "(r & (~s -> ~q)) -> ((~s -> t) & (q & ~r))", "noisy_prop": "(r & (~s -> ~q)) -> ((~s -> t) & (q & ~r))", "target_contrapositive": "~((~s -> t) & (q & ~r)) -> ~(r & (~s -> ~q))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "q -> p", "noisy_prop": "(~(q | p | (q & ~q)))", "target_contrapositive": "~p -> ~q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((~t -> ~p) & t) -> ((~t & ~p) & (r & s))", "noisy_prop": "(~((~t | ~p) & t) -> ((~t & ~p) & (r & s)))", "target_contrapositive": "~((~t & ~p) & (r & s)) -> ~((~t -> ~p) & t)", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> s", "noisy_prop": "(s | ~r )", "target_contrapositive": "~s -> ~r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "s -> r", "noisy_prop": "(~s | ((r)))", "target_contrapositive": "~r -> ~s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "r -> p", "noisy_prop": "r -> p", "target_contrapositive": "~p -> ~r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "t -> ((q | s) | (~r & ~s))", "noisy_prop": "t -> ((q | s) | (~r & ~s))", "target_contrapositive": "~((q | s) | (~r & ~s)) -> ~t", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "p -> q", "noisy_prop": "(~p | q)", "target_contrapositive": "~q -> ~p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "(r | (~s | s)) -> ((p & q) | (r & ~p))", "noisy_prop": "((r | (~s | s)) -> ((~(~p) & ~(~q)) | (r & ~p)) & (r | ~r))", "target_contrapositive": "~((p & q) | (r & ~p)) -> ~(r | (~s | s))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~p -> ~s", "noisy_prop": "(~p -> ~s | (~s & s ))", "target_contrapositive": "s -> p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((s -> ~r) | (t & ~r)) -> ((p & p) | (s -> s))", "noisy_prop": "(((s) -> ~r) | (t & ~r)) -> ((p & p) | (s -> s))", "target_contrapositive": "~((p & p) | (s -> s)) -> ~((s -> ~r) | (t & ~r))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "s -> ~t", "noisy_prop": "(~((s)) | ~t)", "target_contrapositive": "t -> ~s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((q & t) | (s | s)) -> p", "noisy_prop": "(~(((q & t) | (~~s | s))) | p)", "target_contrapositive": "~p -> ~((q & t) | (s | s))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((~s | ~s) | (~p -> t)) -> ~t", "noisy_prop": "((~~~~~s | ~s) | (~p -> (t))) -> ~t", "target_contrapositive": "t -> ~((~s | ~s) | (~p -> t))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((~s | t) | (q | p)) -> (p -> (t | p))", "noisy_prop": "((~s | ~(~t)) | (q | p)) -> (p -> (t | p))", "target_contrapositive": "~(p -> (t | p)) -> ~((~s | t) | (q | p))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "t -> ((t & ~r) | (~r -> s))", "noisy_prop": "t -> ((t  & ~r ) | (~r -> s))", "target_contrapositive": "~((t & ~r) | (~r -> s)) -> ~t", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((~t -> ~s) & (~p | t)) -> (p & (s & ~t))", "noisy_prop": "((~t -> ~s) & (~p | t)) -> (p & (~t & s ))", "target_contrapositive": "~(p & (s & ~t)) -> ~((~t -> ~s) & (~p | t))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "p -> ~q", "noisy_prop": "p -> ~~(~q)", "target_contrapositive": "q -> ~p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~q -> ~s", "noisy_prop": "(~~q | ~s)", "target_contrapositive": "s -> q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "(q | (r & r)) -> ((p | q) & (s -> q))", "noisy_prop": "(q | (((r)) & r)) -> ((p | q) & (s -> q))", "target_contrapositive": "~((p | q) & (s -> q)) -> ~(q | (r & r))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~s -> (~q | p)", "noisy_prop": "~s -> (~(q) | p)", "target_contrapositive": "~(~q | p) -> s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((t & r) | (p | t)) -> (s | (~p -> t))", "noisy_prop": "((t & r) | (p | t)) -> (s | (~p -> t))", "target_contrapositive": "~(s | (~p -> t)) -> ~((t & r) | (p | t))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "p -> q", "noisy_prop": "~~p -> ~(~q)", "target_contrapositive": "~q -> ~p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~p -> (p | (~p | t))", "noisy_prop": "~p -> (p | (~p | t))", "target_contrapositive": "~(p | (~p | t)) -> p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "p -> s", "noisy_prop": "~~p -> ~(~s)", "target_contrapositive": "~s -> ~p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((p & s) | (~p & ~q)) -> ((r -> ~q) -> (~s & q))", "noisy_prop": "(~(~((p & s) | (~p & ~q)) | ((r | ~q) -> (~s & q))))", "target_contrapositive": "~((r -> ~q) -> (~s & q)) -> ~((p & s) | (~p & ~q))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "(t & (q | r)) -> t", "noisy_prop": "(~(~(~t) & (q | ~~r)) | t)", "target_contrapositive": "~t -> ~(t & (q | r))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "q -> (r & (s | r))", "noisy_prop": "q -> (r & (((s)) | r))", "target_contrapositive": "~(r & (s | r)) -> ~q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((s | ~q) & (r | ~q)) -> ((~r | q) & (s -> q))", "noisy_prop": "((s | ~q) & (r | ~q)) -> ((~r | q) & (s -> q))", "target_contrapositive": "~((~r | q) & (s -> q)) -> ~((s | ~q) & (r | ~q))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "s -> ~r", "noisy_prop": "(~s | ~r)", "target_contrapositive": "r -> ~s", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "s -> s", "noisy_prop": "(~((s)) | s)", "target_contrapositive": "~s -> ~s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((~p | s) & r) -> ((q -> t) | (r -> p))", "noisy_prop": "((~p | s) & ((r))) -> ((q -> t) | (r -> p))", "target_contrapositive": "~((q -> t) | (r -> p)) -> ~((~p | s) & r)", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "s -> r", "noisy_prop": "(s -> r | (s & ~s))", "target_contrapositive": "~r -> ~s", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~s -> p", "noisy_prop": "(~~~~s | ~(~p))", "target_contrapositive": "~p -> s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "p -> s", "noisy_prop": "p -> (s)", "target_contrapositive": "~s -> ~p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "p -> q", "noisy_prop": "(~p | q)", "target_contrapositive": "~q -> ~p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~q -> s", "noisy_prop": "~q -> s", "target_contrapositive": "~s -> q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "q -> s", "noisy_prop": "q -> s", "target_contrapositive": "~s -> ~q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~s -> q", "noisy_prop": "~~(~s) -> q", "target_contrapositive": "~q -> s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "s -> s", "noisy_prop": "(~((s)) | s)", "target_contrapositive": "~s -> ~s", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((s | r) & (t & r)) -> ~p", "noisy_prop": "(~(((s | r) & (t & r))) | ~p)", "target_contrapositive": "p -> ~((s | r) & (t & r))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "(p & ~p) -> (r | (~q & s))", "noisy_prop": "(~p & p ) -> (r | (~q & s))", "target_contrapositive": "~(r | (~q & s)) -> ~(p & ~p)", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "s -> q", "noisy_prop": "(~s | q)", "target_contrapositive": "~q -> ~s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "r -> ~q", "noisy_prop": "~~~(~~(~r)) -> ~~~~(~q)", "target_contrapositive": "q -> ~r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((~q & p) | (~t -> r)) -> ~q", "noisy_prop": "(~((((~q & p) | (~t) | r)) -> ~q & (t | ~t)))", "target_contrapositive": "q -> ~((~q & p) | (~t -> r))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((t | r) -> t) -> ((s -> r) & t)", "noisy_prop": "((~(~t) | ~~r) -> t) -> ((s -> r) & t)", "target_contrapositive": "~((s -> r) & t) -> ~((t | r) -> t)", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "q -> p", "noisy_prop": "q -> p", "target_contrapositive": "~p -> ~q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((t -> q) & s) -> s", "noisy_prop": "(~(((t) | q) & s) -> s)", "target_contrapositive": "~s -> ~((t -> q) & s)", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "q -> p", "noisy_prop": "(~q | ~(~p))", "target_contrapositive": "~p -> ~q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~q -> ~s", "noisy_prop": "(~q -> ~~(~s) | (s & ~s))", "target_contrapositive": "s -> q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "(r & (~t -> ~r)) -> (~s & (s & p))", "noisy_prop": "(r & (~t -> ~r)) -> (~~(~s) & (s & ((p))))", "target_contrapositive": "~(~s & (s & p)) -> ~(r & (~t -> ~r))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "r -> p", "noisy_prop": "~~r -> ~~p", "target_contrapositive": "~p -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "(s & (~r | s)) -> q", "noisy_prop": "(~(~~(~s)) & (~r | s)) -> q", "target_contrapositive": "~q -> ~(s & (~r | s))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "s -> ~q", "noisy_prop": "(s -> ~q & (s | ~s))", "target_contrapositive": "q -> ~s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((t | p) & (p | t)) -> (q & (s | t))", "noisy_prop": "(~((t | p) & (p | t)) | (q & (s | t)))", "target_contrapositive": "~(q & (s | t)) -> ~((t | p) & (p | t))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "p -> ~s", "noisy_prop": "(~(p | ~s & (s | ~s)))", "target_contrapositive": "s -> ~p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "(q | (p | q)) -> ((q -> t) -> (~t | ~t))", "noisy_prop": "(~(((~~q)) | (p | q)) | ((q -> ~(~t)) -> (~t | ~t)))", "target_contrapositive": "~((q -> t) -> (~t | ~t)) -> ~(q | (p | q))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "(p | (~t & r)) -> ~p", "noisy_prop": "(~((p | (~t & r))) | ~p)", "target_contrapositive": "p -> ~(p | (~t & r))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "p -> r", "noisy_prop": "(~p | r)", "target_contrapositive": "~r -> ~p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> s", "noisy_prop": "(~r | s)", "target_contrapositive": "~s -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "p -> ~q", "noisy_prop": "(p -> ~q | (~q & q ))", "target_contrapositive": "q -> ~p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~p -> r", "noisy_prop": "~~~p -> ~~r", "target_contrapositive": "~r -> p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~r -> ~q", "noisy_prop": "~~(~r) -> ~q", "target_contrapositive": "q -> r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((t & q) | ~t) -> ((~q | r) & (r -> r))", "noisy_prop": "((q & t ) | ~t) -> ((~q | ~(~r)) & (r -> r))", "target_contrapositive": "~((~q | r) & (r -> r)) -> ~((t & q) | ~t)", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "s -> q", "noisy_prop": "s -> q", "target_contrapositive": "~q -> ~s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((~r & r) & (~s -> s)) -> ~r", "noisy_prop": "((~r & r) & (~s -> s)) -> ~r", "target_contrapositive": "r -> ~((~r & r) & (~s -> s))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "r -> q", "noisy_prop": "(r) -> ~(~q)", "target_contrapositive": "~q -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~p -> r", "noisy_prop": "~((p)) -> r", "target_contrapositive": "~r -> p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~r -> p", "noisy_prop": "~r -> p", "target_contrapositive": "~p -> r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> ((q & q) & ~s)", "noisy_prop": "(~~(~r) | ((~(~~~q) & q) & ~~(~s)))", "target_contrapositive": "~((q & q) & ~s) -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> ~q", "noisy_prop": "((r)) -> ~(q)", "target_contrapositive": "q -> ~r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~s -> ~q", "noisy_prop": "(~s -> ~q & (q | ~q))", "target_contrapositive": "q -> s", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((s & ~s) | q) -> t", "noisy_prop": "(~(((s & ~s) | q)) | t)", "target_contrapositive": "~t -> ~((s & ~s) | q)", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "(~q | (~q | t)) -> (t | (r -> ~q))", "noisy_prop": "(~~~q | (~q | t)) -> (t | (~~((r)) -> ~q))", "target_contrapositive": "~(t | (r -> ~q)) -> ~(~q | (~q | t))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "q -> s", "noisy_prop": "q -> s", "target_contrapositive": "~s -> ~q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "q -> p", "noisy_prop": "q -> ~~p", "target_contrapositive": "~p -> ~q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((p | ~p) & (r & q)) -> ((~r & q) -> (p | ~t))", "noisy_prop": "((~~~~~(~p) | ~p) & (r & q)) -> ((~r & q) -> (p | ~t))", "target_contrapositive": "~((~r & q) -> (p | ~t)) -> ~((p | ~p) & (r & q))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "r -> s", "noisy_prop": "~(~r) -> s", "target_contrapositive": "~s -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "s -> r", "noisy_prop": "((s)) -> r", "target_contrapositive": "~r -> ~s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "(q -> (~p | t)) -> q", "noisy_prop": "(~(q | (~p | t)) -> q)", "target_contrapositive": "~q -> ~(q -> (~p | t))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "q -> p", "noisy_prop": "((q)) -> p", "target_contrapositive": "~p -> ~q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((~p & s) & (p -> q)) -> ((p -> t) -> s)", "noisy_prop": "((~~~p & ~~s) & (p -> q)) -> ((p -> t) -> s)", "target_contrapositive": "~((p -> t) -> s) -> ~((~p & s) & (p -> q))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "(p | (s | s)) -> ((q & t) & q)", "noisy_prop": "(p | (s | s)) -> ((t & q ) & q)", "target_contrapositive": "~((q & t) & q) -> ~(p | (s | s))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((q & t) & (p & r)) -> ((p & t) | ~q)", "noisy_prop": "((q & t) & (((p)) & r)) -> ((p & t) | ~q)", "target_contrapositive": "~((p & t) | ~q) -> ~((q & t) & (p & r))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "(~s | (p -> ~p)) -> r", "noisy_prop": "(~((~s | ((p)) | ~p)) -> r)", "target_contrapositive": "~r -> ~(~s | (p -> ~p))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "p -> q", "noisy_prop": "(~~p -> q & (p | ~p))", "target_contrapositive": "~q -> ~p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((s -> p) -> p) -> ((t & ~r) -> (r & t))", "noisy_prop": "((s -> p) -> p) -> ((~r & t ) -> (r & t))", "target_contrapositive": "~((t & ~r) -> (r & t)) -> ~((s -> p) -> p)", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((r -> p) | (s -> s)) -> ((q | p) & (~q | r))", "noisy_prop": "((((r) -> p) | (s -> s)) -> ((((q)) | p) & (~q | r)) | (q & ~q))", "target_contrapositive": "~((q | p) & (~q | r)) -> ~((r -> p) | (s -> s))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((s | ~t) & (s -> ~s)) -> (t | (t | ~t))", "noisy_prop": "((s | ~~~t) & (s -> ~s)) -> (t | (t | ~t))", "target_contrapositive": "~(t | (t | ~t)) -> ~((s | ~t) & (s -> ~s))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "q -> ~s", "noisy_prop": "q -> ~s", "target_contrapositive": "s -> ~q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((r & ~t) -> ~p) -> ((~t | p) | t)", "noisy_prop": "((r & ~t) -> ~p) -> ((~t | p) | t)", "target_contrapositive": "~((~t | p) | t) -> ~((r & ~t) -> ~p)", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((s & p) -> (q -> ~p)) -> t", "noisy_prop": "((s & ~(~p)) -> (q -> ~p)) -> ~~t", "target_contrapositive": "~t -> ~((s & p) -> (q -> ~p))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((~s -> s) -> ~t) -> ~t", "noisy_prop": "(~((~s | s) -> ~t) -> ~t)", "target_contrapositive": "t -> ~((~s -> s) -> ~t)", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "t -> ((~r | q) & (r & q))", "noisy_prop": "t -> ((~r | q) & (r & q))", "target_contrapositive": "~((~r | q) & (r & q)) -> ~t", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~r -> s", "noisy_prop": "(~(~(r) | s | (s & ~s)))", "target_contrapositive": "~s -> r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((p | q) & ~s) -> ~r", "noisy_prop": "((p | q) & ~s) -> ~r", "target_contrapositive": "r -> ~((p | q) & ~s)", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "r -> s", "noisy_prop": "r -> s", "target_contrapositive": "~s -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> ~s", "noisy_prop": "((r -> ~(s) & (s | ~s)) & (r | ~r))", "target_contrapositive": "s -> ~r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((q & p) | (s | q)) -> ((~t | r) | (r & r))", "noisy_prop": "((q & p) | (((s)) | q)) -> ((~t | ~~r) | (r & r))", "target_contrapositive": "~((~t | r) | (r & r)) -> ~((q & p) | (s | q))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> ((s & q) -> (s -> r))", "noisy_prop": "r -> ((q & s ) -> (s -> r))", "target_contrapositive": "~((s & q) -> (s -> r)) -> ~r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((p -> q) | (r & r)) -> ((q & s) -> (t & ~s))", "noisy_prop": "((p -> q) | (r & r)) -> ((q & s) -> (t & ~s))", "target_contrapositive": "~((q & s) -> (t & ~s)) -> ~((p -> q) | (r & r))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "p -> r", "noisy_prop": "(~p | r)", "target_contrapositive": "~r -> ~p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((~q | s) -> ~q) -> t", "noisy_prop": "((s | ~q ) -> ~q) -> t", "target_contrapositive": "~t -> ~((~q | s) -> ~q)", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "p -> r", "noisy_prop": "p -> r", "target_contrapositive": "~r -> ~p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "s -> ((q -> p) & ~r)", "noisy_prop": "s -> ((q -> p) & ~r)", "target_contrapositive": "~((q -> p) & ~r) -> ~s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((p | ~q) -> (~p -> q)) -> ((~q | ~r) -> (~s | p))", "noisy_prop": "(~(((p | ~~~q)) | (~p -> q)) -> ((~q | ~~(~r)) -> (~s | p)))", "target_contrapositive": "~((~q | ~r) -> (~s | p)) -> ~((p | ~q) -> (~p -> q))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "s -> q", "noisy_prop": "s -> ((q))", "target_contrapositive": "~q -> ~s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((p | ~r) | (~t | p)) -> ((t & ~r) -> (~r -> ~t))", "noisy_prop": "(~(((p | ~r) | (~~(~t) | p))) | ((t & ~r) -> (~r -> ~t)))", "target_contrapositive": "~((t & ~r) -> (~r -> ~t)) -> ~((p | ~r) | (~t | p))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((~q -> q) -> (~q -> q)) -> ((~s -> p) | (t & ~r))", "noisy_prop": "((~~~q -> q) -> (~q -> q)) -> ((~~(~s) -> p) | (t & ~r))", "target_contrapositive": "~((~s -> p) | (t & ~r)) -> ~((~q -> q) -> (~q -> q))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((~s -> q) -> (q | r)) -> ((~t | q) -> (q | r))", "noisy_prop": "((((~s -> ~(~~~((q)))) -> (q | r)) -> ((~t | q) -> (q | r)) | (q & ~q)) | (s & ~s))", "target_contrapositive": "~((~t | q) -> (q | r)) -> ~((~s -> q) -> (q | r))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((r | q) | (p -> t)) -> (q -> (r | q))", "noisy_prop": "((r | q) | (p -> t)) -> (q -> (r | q))", "target_contrapositive": "~(q -> (r | q)) -> ~((r | q) | (p -> t))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "(t | (t | ~s)) -> ((~q & ~t) & ~q)", "noisy_prop": "(((t)) | (t | ~s)) -> ((~q & ~t) & ~q)", "target_contrapositive": "~((~q & ~t) & ~q) -> ~(t | (t | ~s))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~s -> r", "noisy_prop": "(~s -> r | (s & ~s))", "target_contrapositive": "~r -> s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "r -> ((~r -> p) | (r & s))", "noisy_prop": "~~r -> ((~r -> p) | (r & ~(~s)))", "target_contrapositive": "~((~r -> p) | (r & s)) -> ~r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~q -> ~s", "noisy_prop": "~q -> ~s", "target_contrapositive": "s -> q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((~t -> ~p) | (s & p)) -> q", "noisy_prop": "(~((~t | ~p) | (s & p)) -> q)", "target_contrapositive": "~q -> ~((~t -> ~p) | (s & p))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((q | ~t) | (p | r)) -> (~p | (r -> p))", "noisy_prop": "((q | ~((t))) | (p | r)) -> (~p | (r -> p))", "target_contrapositive": "~(~p | (r -> p)) -> ~((q | ~t) | (p | r))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((r & ~p) -> ~s) -> ((s | s) & (~p -> q))", "noisy_prop": "(~((~((r & ~p) | ~s)) | ((s | s) & (~p -> q))))", "target_contrapositive": "~((s | s) & (~p -> q)) -> ~((r & ~p) -> ~s)", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "r -> q", "noisy_prop": "r -> q", "target_contrapositive": "~q -> ~r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~r -> ~s", "noisy_prop": "(~r -> ~s & (r | ~r))", "target_contrapositive": "s -> r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "r -> (r | (~t | ~r))", "noisy_prop": "(~~(~r) | (r | (~~~t | ~r)))", "target_contrapositive": "~(r | (~t | ~r)) -> ~r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~r -> ~q", "noisy_prop": "~r -> ~q", "target_contrapositive": "q -> r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "t -> (~t -> q)", "noisy_prop": "t -> (~t -> q)", "target_contrapositive": "~(~t -> q) -> ~t", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "p -> r", "noisy_prop": "p -> r", "target_contrapositive": "~r -> ~p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> ~s", "noisy_prop": "r -> ~s", "target_contrapositive": "s -> ~r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "s -> q", "noisy_prop": "s -> (q)", "target_contrapositive": "~q -> ~s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "r -> (t | r)", "noisy_prop": "~~r -> (t | r)", "target_contrapositive": "~(t | r) -> ~r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "q -> p", "noisy_prop": "q -> p", "target_contrapositive": "~p -> ~q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "s -> q", "noisy_prop": "(~~(~s) | ~(~q))", "target_contrapositive": "~q -> ~s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "(~r & (s & p)) -> ((t -> t) & r)", "noisy_prop": "(~~~r & (s & p)) -> ((t -> t) & r)", "target_contrapositive": "~((t -> t) & r) -> ~(~r & (s & p))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~t -> ~q", "noisy_prop": "~t -> ~q", "target_contrapositive": "q -> t", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((p -> q) & (p | r)) -> ((~q -> s) & q)", "noisy_prop": "((p -> ((q))) & (p | r)) -> ((~q -> s) & q)", "target_contrapositive": "~((~q -> s) & q) -> ~((p -> q) & (p | r))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((~p & ~r) -> (q | ~p)) -> ~t", "noisy_prop": "((~r & ~p ) -> (((q)) | ~p)) -> ~t", "target_contrapositive": "t -> ~((~p & ~r) -> (q | ~p))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((p & q) | (r -> ~r)) -> (t -> (q -> q))", "noisy_prop": "((p & ~~q) | (r -> ~r)) -> (t -> (q -> q))", "target_contrapositive": "~(t -> (q -> q)) -> ~((p & q) | (r -> ~r))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "(t | (q -> ~t)) -> ((p | ~s) | (p -> t))", "noisy_prop": "(~((t) | (q | ~t)) -> ((p | ~s) | (p -> t)))", "target_contrapositive": "~((p | ~s) | (p -> t)) -> ~(t | (q -> ~t))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "q -> ((p -> t) -> (~t | ~q))", "noisy_prop": "q -> ((p -> (((t)))) -> (~t | ~q))", "target_contrapositive": "~((p -> t) -> (~t | ~q)) -> ~q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((r -> r) | (~q -> ~s)) -> (~p -> (t | r))", "noisy_prop": "((r -> r) | (~q -> ~s)) -> (~p -> (r | t ))", "target_contrapositive": "~(~p -> (t | r)) -> ~((r -> r) | (~q -> ~s))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "s -> q", "noisy_prop": "s -> q", "target_contrapositive": "~q -> ~s", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~s -> q", "noisy_prop": "~s -> ((q))", "target_contrapositive": "~q -> s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~q -> p", "noisy_prop": "~q -> p", "target_contrapositive": "~p -> q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((~p & t) | s) -> ((q | t) & (~s & p))", "noisy_prop": "(((~p & t) | s) -> ((q | t) & (~s & p)) | (s & ~s))", "target_contrapositive": "~((q | t) & (~s & p)) -> ~((~p & t) | s)", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> ((t | q) | r)", "noisy_prop": "r -> ((q | t ) | r)", "target_contrapositive": "~((t | q) | r) -> ~r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((t & s) & (q -> ~r)) -> ((~p | p) & ~q)", "noisy_prop": "(~((s & t ) & (q | ~r)) -> ((~p | p) & ~q))", "target_contrapositive": "~((~p | p) & ~q) -> ~((t & s) & (q -> ~r))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "(~p -> (~s & q)) -> ((t -> p) -> r)", "noisy_prop": "((~p -> (~(s) & q)) -> ((t -> p) -> r) | (s & ~s))", "target_contrapositive": "~((t -> p) -> r) -> ~(~p -> (~s & q))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "p -> ((~t | ~s) | (~q & ~p))", "noisy_prop": "p -> ((~~(~t) | ~~~s) | (~q & ~p))", "target_contrapositive": "~((~t | ~s) | (~q & ~p)) -> ~p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "p -> ~r", "noisy_prop": "p -> ~(r)", "target_contrapositive": "r -> ~p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "(~t | (~t -> q)) -> (~s -> ~q)", "noisy_prop": "(~t | (~t -> q)) -> (~s -> ~q)", "target_contrapositive": "~(~s -> ~q) -> ~(~t | (~t -> q))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~s -> ~q", "noisy_prop": "~s -> ~q", "target_contrapositive": "q -> s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "q -> ((~r & t) | (~t -> t))", "noisy_prop": "q -> ((~r & t) | (~t -> t))", "target_contrapositive": "~((~r & t) | (~t -> t)) -> ~q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> q", "noisy_prop": "r -> q", "target_contrapositive": "~q -> ~r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((s | t) & (~t | s)) -> ((s | q) | (q & s))", "noisy_prop": "(~(((s | t) & (~t | s))) | ((s | q) | (q & s)))", "target_contrapositive": "~((s | q) | (q & s)) -> ~((s | t) & (~t | s))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~p -> (s | ~q)", "noisy_prop": "(~p -> (s | ~q) | (q & ~q))", "target_contrapositive": "~(s | ~q) -> p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "p -> r", "noisy_prop": "(~p | r)", "target_contrapositive": "~r -> ~p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "(~p & (r & s)) -> (~s -> (s | ~t))", "noisy_prop": "(~p & (r & (s))) -> (~s -> (s | ~(t)))", "target_contrapositive": "~(~s -> (s | ~t)) -> ~(~p & (r & s))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "q -> (t -> q)", "noisy_prop": "q -> (t -> q)", "target_contrapositive": "~(t -> q) -> ~q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "p -> q", "noisy_prop": "((p -> q | (q & ~q)) & (q | ~q))", "target_contrapositive": "~q -> ~p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((s -> ~s) & (s -> ~p)) -> r", "noisy_prop": "(((~~~(~s) -> ~s) & (s -> ~~(~p))) -> r & (s | ~s))", "target_contrapositive": "~r -> ~((s -> ~s) & (s -> ~p))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "q -> r", "noisy_prop": "q -> ((r))", "target_contrapositive": "~r -> ~q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~s -> (s | (~s -> q))", "noisy_prop": "~s -> (s | (~s -> q))", "target_contrapositive": "~(s | (~s -> q)) -> s", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((~t | t) | (q & ~p)) -> (~s -> (t | t))", "noisy_prop": "((~t | t) | (q & ~(p))) -> (~s -> (t | t))", "target_contrapositive": "~(~s -> (t | t)) -> ~((~t | t) | (q & ~p))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "(r -> (~r & ~r)) -> ((t -> p) | (r -> ~s))", "noisy_prop": "(r -> (~r & ~r)) -> ((t -> p) | (r -> ~s))", "target_contrapositive": "~((t -> p) | (r -> ~s)) -> ~(r -> (~r & ~r))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((~q -> s) -> (r | ~t)) -> (s | (~p & p))", "noisy_prop": "(~((~q | s) -> (r | ~t)) -> (s | (~p & p)))", "target_contrapositive": "~(s | (~p & p)) -> ~((~q -> s) -> (r | ~t))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((~r | ~p) & ~r) -> t", "noisy_prop": "(~((~r | ~p) & ~r) | t)", "target_contrapositive": "~t -> ~((~r | ~p) & ~r)", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~q -> r", "noisy_prop": "~~(~q) -> ~~r", "target_contrapositive": "~r -> q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~p -> q", "noisy_prop": "(~~(p) | q)", "target_contrapositive": "~q -> p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "r -> ~q", "noisy_prop": "r -> ~q", "target_contrapositive": "q -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "s -> s", "noisy_prop": "s -> s", "target_contrapositive": "~s -> ~s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~p -> ~s", "noisy_prop": "(~~((p)) | ~s)", "target_contrapositive": "s -> p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "p -> s", "noisy_prop": "(p) -> s", "target_contrapositive": "~s -> ~p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "r -> (p | ~r)", "noisy_prop": "(~~~~~r | (p | ~r))", "target_contrapositive": "~(p | ~r) -> ~r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "r -> ~p", "noisy_prop": "(~r | ~p)", "target_contrapositive": "p -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((s -> r) & (t & q)) -> (r & (p | ~r))", "noisy_prop": "(((s -> r) & (t & q)) -> (r & (p | ~r)) & (t | ~t))", "target_contrapositive": "~(r & (p | ~r)) -> ~((s -> r) & (t & q))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "r -> (r | (~r | ~t))", "noisy_prop": "r -> (r | (~r | ~t))", "target_contrapositive": "~(r | (~r | ~t)) -> ~r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "q -> ~p", "noisy_prop": "(~q | ~p)", "target_contrapositive": "p -> ~q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "s -> ((t -> r) | r)", "noisy_prop": "s -> ((t -> (r)) | r)", "target_contrapositive": "~((t -> r) | r) -> ~s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "(r & (q | ~s)) -> ((p & r) | (t -> r))", "noisy_prop": "(~(~(r & (~~q | ~s)) | ((p & r) | (~~t | r))))", "target_contrapositive": "~((p & r) | (t -> r)) -> ~(r & (q | ~s))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((~s & s) | s) -> ~s", "noisy_prop": "(~((s & ~s ) | s) | ~s)", "target_contrapositive": "s -> ~((~s & s) | s)", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "(p & (s & q)) -> q", "noisy_prop": "(~((p) & (s & q)) | q)", "target_contrapositive": "~q -> ~(p & (s & q))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "(~r -> (p & q)) -> (p | (~s -> ~s))", "noisy_prop": "(~(~r | (p & q)) -> (p | (~s -> ~s)))", "target_contrapositive": "~(p | (~s -> ~s)) -> ~(~r -> (p & q))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "r -> ((s & s) -> (p -> q))", "noisy_prop": "(~r | ((~~s & s) -> (~(~p) -> q)))", "target_contrapositive": "~((s & s) -> (p -> q)) -> ~r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "(q -> (p | t)) -> ((p | ~q) | (~p -> p))", "noisy_prop": "(~(q | (t | p )) -> ((p | ~q) | (~p -> p)))", "target_contrapositive": "~((p | ~q) | (~p -> p)) -> ~(q -> (p | t))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((~s | ~q) | s) -> ((~s | r) | t)", "noisy_prop": "((~s | ~q) | s) -> ((~s | ~~r) | ((t)))", "target_contrapositive": "~((~s | r) | t) -> ~((~s | ~q) | s)", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~p -> ~r", "noisy_prop": "((~~p | ~~~r) | (r & ~r))", "target_contrapositive": "r -> p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((s | q) -> (t | s)) -> ~r", "noisy_prop": "((s | q) -> (t | s)) -> ~r", "target_contrapositive": "r -> ~((s | q) -> (t | s))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "p -> ~q", "noisy_prop": "p -> ~((q))", "target_contrapositive": "q -> ~p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> s", "noisy_prop": "(~~~r | ~~s)", "target_contrapositive": "~s -> ~r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "(t -> (p | p)) -> p", "noisy_prop": "(((t)) -> (p | p)) -> p", "target_contrapositive": "~p -> ~(t -> (p | p))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((t | r) -> p) -> p", "noisy_prop": "((t | r) -> p) -> p", "target_contrapositive": "~p -> ~((t | r) -> p)", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "t -> ((~r -> s) -> (q & q))", "noisy_prop": "t -> ((~r -> s) -> (q & q))", "target_contrapositive": "~((~r -> s) -> (q & q)) -> ~t", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "t -> ((q -> t) & (s -> q))", "noisy_prop": "t -> ((q -> t) & (s -> q))", "target_contrapositive": "~((q -> t) & (s -> q)) -> ~t", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "q -> p", "noisy_prop": "q -> p", "target_contrapositive": "~p -> ~q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "q -> s", "noisy_prop": "(~~(~q) | ((~(~s))))", "target_contrapositive": "~s -> ~q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> q", "noisy_prop": "r -> q", "target_contrapositive": "~q -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> p", "noisy_prop": "((r)) -> p", "target_contrapositive": "~p -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "p -> s", "noisy_prop": "(((p)) -> (s) | (s & ~s))", "target_contrapositive": "~s -> ~p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "r -> q", "noisy_prop": "r -> q", "target_contrapositive": "~q -> ~r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~p -> q", "noisy_prop": "~p -> q", "target_contrapositive": "~q -> p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((~q -> ~s) -> (q & ~r)) -> ((~r -> s) | (~s | ~r))", "noisy_prop": "(~(((~q | ~s) -> (q & ~r)) -> ((~r -> s) | (~s | ~r)) & (s | ~s)))", "target_contrapositive": "~((~r -> s) | (~s | ~r)) -> ~((~q -> ~s) -> (q & ~r))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((~t -> p) | (r | p)) -> t", "noisy_prop": "(~((~t | p) | (r | p)) -> t)", "target_contrapositive": "~t -> ~((~t -> p) | (r | p))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "q -> r", "noisy_prop": "(q) -> r", "target_contrapositive": "~r -> ~q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "s -> ~t", "noisy_prop": "s -> ~(t)", "target_contrapositive": "t -> ~s", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "q -> ((~p | ~r) | (q -> p))", "noisy_prop": "q -> ((~r | ~p ) | (q -> p))", "target_contrapositive": "~((~p | ~r) | (q -> p)) -> ~q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "s -> ((q & r) -> (q -> p))", "noisy_prop": "(~((~s | ((~(~q) & r)) | (q -> p))))", "target_contrapositive": "~((q & r) -> (q -> p)) -> ~s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "q -> ~s", "noisy_prop": "q -> ~s", "target_contrapositive": "s -> ~q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~p -> ~q", "noisy_prop": "~((p)) -> ~q", "target_contrapositive": "q -> p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "s -> ~p", "noisy_prop": "(~~(~s) | ~~~p)", "target_contrapositive": "p -> ~s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "s -> r", "noisy_prop": "~(~s) -> ~~r", "target_contrapositive": "~r -> ~s", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~r -> ((r & p) -> (r & p))", "noisy_prop": "(~(~~~~(~r) | ((r & p) -> (r & p)) | (r & ~r)))", "target_contrapositive": "~((r & p) -> (r & p)) -> r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~q -> ~r", "noisy_prop": "~q -> ~r", "target_contrapositive": "r -> q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((~r & s) | ~p) -> (s -> r)", "noisy_prop": "((s & ~r ) | ~p) -> (s -> r)", "target_contrapositive": "~(s -> r) -> ~((~r & s) | ~p)", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "q -> p", "noisy_prop": "(~q | ~~p)", "target_contrapositive": "~p -> ~q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "t -> (q -> ~q)", "noisy_prop": "(~t | (q -> ~q))", "target_contrapositive": "~(q -> ~q) -> ~t", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~q -> s", "noisy_prop": "(~~q | s)", "target_contrapositive": "~s -> q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "q -> ((q | t) & (t & q))", "noisy_prop": "(~q | ((q | t) & (t & q)))", "target_contrapositive": "~((q | t) & (t & q)) -> ~q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "p -> (p | (t -> p))", "noisy_prop": "((((p)))) -> (p | (t -> p))", "target_contrapositive": "~(p | (t -> p)) -> ~p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~s -> (r | (~t & q))", "noisy_prop": "(~~s | (r | (~t & q)))", "target_contrapositive": "~(r | (~t & q)) -> s", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((p & s) | ~s) -> ((q & ~t) | s)", "noisy_prop": "(((p & s) | ~s) -> ((q & ~t) | s) & (p | ~p))", "target_contrapositive": "~((q & ~t) | s) -> ~((p & s) | ~s)", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((r | ~s) & (~s & ~s)) -> ((p & ~t) -> ~q)", "noisy_prop": "(~(((r | ~s) & (~s & ~s))) | ((p & ~t) -> ~~~q))", "target_contrapositive": "~((p & ~t) -> ~q) -> ~((r | ~s) & (~s & ~s))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "t -> ((t & q) | (~s & t))", "noisy_prop": "t -> ((t & q) | (~s & t))", "target_contrapositive": "~((t & q) | (~s & t)) -> ~t", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((s & p) | (~q -> ~r)) -> s", "noisy_prop": "((s & p) | (~q -> ~r)) -> s", "target_contrapositive": "~s -> ~((s & p) | (~q -> ~r))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> (t -> (p | ~t))", "noisy_prop": "r -> (~~~(~t) -> (p | ~t))", "target_contrapositive": "~(t -> (p | ~t)) -> ~r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "r -> p", "noisy_prop": "r -> p", "target_contrapositive": "~p -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> ((p | t) & (~p | s))", "noisy_prop": "((~r | ((p | t) & (~p | s))) | (r & ~r))", "target_contrapositive": "~((p | t) & (~p | s)) -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> s", "noisy_prop": "(~r | s)", "target_contrapositive": "~s -> ~r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((~p -> r) & p) -> ((~r & s) & (s | p))", "noisy_prop": "((~((~p | r) & p) -> ((~r & s) & (s | p))) & (r | ~r))", "target_contrapositive": "~((~r & s) & (s | p)) -> ~((~p -> r) & p)", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((~s -> r) | (r | t)) -> ((s & s) & (p -> r))", "noisy_prop": "(~((~s | r) | (r | t)) -> ((s & s) & (p -> r)))", "target_contrapositive": "~((s & s) & (p -> r)) -> ~((~s -> r) | (r | t))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~t -> ((~r & ~q) & ~p)", "noisy_prop": "~t -> ((~q & ~~(~r) ) & ~p)", "target_contrapositive": "~((~r & ~q) & ~p) -> t", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~q -> (~t & (q | ~r))", "noisy_prop": "~~~q -> (~t & (q | ~~~r))", "target_contrapositive": "~(~t & (q | ~r)) -> q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "p -> ((s -> ~p) -> ~s)", "noisy_prop": "(~(p) | ((~(~s) -> ~p) -> ~s))", "target_contrapositive": "~((s -> ~p) -> ~s) -> ~p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((t -> ~t) -> (t -> ~q)) -> (r | (s -> r))", "noisy_prop": "((t -> ~t) -> (t -> ~(q))) -> (~~~~r | (s -> r))", "target_contrapositive": "~(r | (s -> r)) -> ~((t -> ~t) -> (t -> ~q))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~p -> ~s", "noisy_prop": "~p -> ~s", "target_contrapositive": "s -> p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~r -> q", "noisy_prop": "(~~r | q)", "target_contrapositive": "~q -> r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "q -> ((t -> p) | (~q -> t))", "noisy_prop": "q -> ((t -> p) | (~q -> t))", "target_contrapositive": "~((t -> p) | (~q -> t)) -> ~q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~q -> ~q", "noisy_prop": "(~q -> ~q | (~q & q ))", "target_contrapositive": "q -> q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "s -> p", "noisy_prop": "s -> p", "target_contrapositive": "~p -> ~s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~p -> r", "noisy_prop": "~(~(~p)) -> r", "target_contrapositive": "~r -> p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "r -> q", "noisy_prop": "~~r -> ~~q", "target_contrapositive": "~q -> ~r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "r -> s", "noisy_prop": "~~r -> ~~s", "target_contrapositive": "~s -> ~r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "q -> ((t & q) & (q -> q))", "noisy_prop": "~(~q) -> ((~~t & q) & (q -> q))", "target_contrapositive": "~((t & q) & (q -> q)) -> ~q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "(r -> (q & r)) -> (p -> (q -> ~r))", "noisy_prop": "(r -> (q & r)) -> (p -> (q -> ~r))", "target_contrapositive": "~(p -> (q -> ~r)) -> ~(r -> (q & r))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((s & ~q) & s) -> ~r", "noisy_prop": "((~q & s ) & s) -> ~r", "target_contrapositive": "r -> ~((s & ~q) & s)", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((~t & p) -> (q & t)) -> ((p & q) | (r | ~s))", "noisy_prop": "((~t & p) -> (((q)) & t)) -> ((p & q) | (~~r | ~~(~s)))", "target_contrapositive": "~((p & q) | (r | ~s)) -> ~((~t & p) -> (q & t))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "t -> ((r & ~p) | (q & r))", "noisy_prop": "t -> ((r & ~~(~p)) | (q & r))", "target_contrapositive": "~((r & ~p) | (q & r)) -> ~t", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "r -> s", "noisy_prop": "r -> s", "target_contrapositive": "~s -> ~r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "r -> (r -> (t -> ~r))", "noisy_prop": "~~r -> (r -> (t -> ~r))", "target_contrapositive": "~(r -> (t -> ~r)) -> ~r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "r -> ((r | t) -> t)", "noisy_prop": "(~r | ((r | t) -> t))", "target_contrapositive": "~((r | t) -> t) -> ~r", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((~t -> t) -> (p -> ~s)) -> ((q & s) & q)", "noisy_prop": "((~((~t | t) -> (p -> ~s)) -> ((q & s) & q)) | (q & ~q))", "target_contrapositive": "~((q & s) & q) -> ~((~t -> t) -> (p -> ~s))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "t -> ((~r | q) | (~r -> q))", "noisy_prop": "(~t | ((~~~r | ~~~~q) | (~r -> q)))", "target_contrapositive": "~((~r | q) | (~r -> q)) -> ~t", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((~t -> p) & q) -> ((q | r) -> (~t | r))", "noisy_prop": "(~((~t | p) & q) -> ((q  | r ) -> (~t | r)))", "target_contrapositive": "~((q | r) -> (~t | r)) -> ~((~t -> p) & q)", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~r -> t", "noisy_prop": "~~~r -> ~~t", "target_contrapositive": "~t -> r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "(r | (s & ~s)) -> p", "noisy_prop": "(~(r | (s & ~s)) | p)", "target_contrapositive": "~p -> ~(r | (s & ~s))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "p -> s", "noisy_prop": "p -> s", "target_contrapositive": "~s -> ~p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((r -> s) & (q & r)) -> ((~s | q) -> (t | ~t))", "noisy_prop": "((r -> s) & (r & q )) -> ((~s | q) -> (t | ~t))", "target_contrapositive": "~((~s | q) -> (t | ~t)) -> ~((r -> s) & (q & r))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "r -> q", "noisy_prop": "(r -> q & (q | ~q))", "target_contrapositive": "~q -> ~r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "(r -> (~t & q)) -> ((~q & q) & (r -> p))", "noisy_prop": "(~((~(r | (~t & q))) | ((~q & q) & (r -> p))))", "target_contrapositive": "~((~q & q) & (r -> p)) -> ~(r -> (~t & q))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~p -> q", "noisy_prop": "(~~~(~p) | q)", "target_contrapositive": "~q -> p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~s -> ~r", "noisy_prop": "~s -> ~r", "target_contrapositive": "r -> s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "t -> (q -> (p -> ~q))", "noisy_prop": "(t -> (q -> (p -> ~q)) & (~p | p ))", "target_contrapositive": "~(q -> (p -> ~q)) -> ~t", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "s -> ~p", "noisy_prop": "s -> ~p", "target_contrapositive": "p -> ~s", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((~p | p) -> r) -> p", "noisy_prop": "(~((~~(~p) | p) | r) -> p)", "target_contrapositive": "~p -> ~((~p | p) -> r)", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "(q -> s) -> p", "noisy_prop": "(~(~~q | ~(~s)) -> p)", "target_contrapositive": "~p -> ~(q -> s)", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((p & r) -> p) -> t", "noisy_prop": "(~(((p & r)) | p) -> t)", "target_contrapositive": "~t -> ~((p & r) -> p)", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "(q -> (~p -> ~q)) -> t", "noisy_prop": "(~~~~q -> (~p -> ~q)) -> t", "target_contrapositive": "~t -> ~(q -> (~p -> ~q))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((~q | ~p) | (q -> s)) -> ~p", "noisy_prop": "(~((~q | ~p) | (q | s)) -> ~p)", "target_contrapositive": "p -> ~((~q | ~p) | (q -> s))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "(~s -> (t -> s)) -> ((r -> ~q) -> (t | t))", "noisy_prop": "((~s -> (t -> s)) -> ((r -> ~q) -> (t | t)) | (s & ~s))", "target_contrapositive": "~((r -> ~q) -> (t | t)) -> ~(~s -> (t -> s))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "q -> p", "noisy_prop": "(~q | p)", "target_contrapositive": "~p -> ~q", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "p -> (p & (~q & t))", "noisy_prop": "p -> (p & (t & ~q ))", "target_contrapositive": "~(p & (~q & t)) -> ~p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((q | ~q) -> s) -> ((r & ~r) -> (~t -> s))", "noisy_prop": "(~(((q | ~q)) | ~(~s)) -> ((r & ~r) -> (~t -> s)))", "target_contrapositive": "~((r & ~r) -> (~t -> s)) -> ~((q | ~q) -> s)", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "r -> s", "noisy_prop": "~(~((r))) -> s", "target_contrapositive": "~s -> ~r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "s -> p", "noisy_prop": "s -> p", "target_contrapositive": "~p -> ~s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~s -> s", "noisy_prop": "(~~s | s)", "target_contrapositive": "~s -> s", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "(~t -> s) -> ~s", "noisy_prop": "(~(~t | s) -> ~s)", "target_contrapositive": "s -> ~(~t -> s)", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((p | ~q) | (q | p)) -> ((t -> q) -> (r -> r))", "noisy_prop": "((p | ~(q)) | (q | p)) -> ((t -> q) -> (r -> r))", "target_contrapositive": "~((t -> q) -> (r -> r)) -> ~((p | ~q) | (q | p))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((r | ~t) & (q & s)) -> (p & t)", "noisy_prop": "((~~r | ~~(~t)) & (s & q )) -> (p & t)", "target_contrapositive": "~(p & t) -> ~((r | ~t) & (q & s))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~q -> ~s", "noisy_prop": "(~~q | ~s)", "target_contrapositive": "s -> q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "((q & t) -> ~r) -> ~r", "noisy_prop": "((q & t) -> ~~(~r)) -> ~r", "target_contrapositive": "r -> ~((q & t) -> ~r)", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "(q & (~q | r)) -> ((s | ~t) | (s & r))", "noisy_prop": "(~(q & (~q | r)) | ((s | ~t) | (s & r)))", "target_contrapositive": "~((s | ~t) | (s & r)) -> ~(q & (~q | r))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "q -> ~s", "noisy_prop": "q -> ~~~s", "target_contrapositive": "s -> ~q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "((q & t) | ~q) -> (t | ~p)", "noisy_prop": "((t & ~~q ) | ~q) -> (t | ~~(~~~p))", "target_contrapositive": "~(t | ~p) -> ~((q & t) | ~q)", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "s -> q", "noisy_prop": "(~s | ~~q)", "target_contrapositive": "~q -> ~s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "p -> ~r", "noisy_prop": "(((p))) -> ~r", "target_contrapositive": "r -> ~p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "s -> ((q | s) | (~r | p))", "noisy_prop": "s -> ((q | s) | (~r | p))", "target_contrapositive": "~((q | s) | (~r | p)) -> ~s", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "q -> ~p", "noisy_prop": "q -> ~p", "target_contrapositive": "p -> ~q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "s -> ~q", "noisy_prop": "(s -> ~q & (q | ~q))", "target_contrapositive": "q -> ~s", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "q -> ~s", "noisy_prop": "~~~(~q) -> ~~(~~~s)", "target_contrapositive": "s -> ~q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~p -> r", "noisy_prop": "~((p)) -> r", "target_contrapositive": "~r -> p", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "s -> t", "noisy_prop": "(~s | t)", "target_contrapositive": "~t -> ~s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "(t & (q & p)) -> (q & (~p -> ~p))", "noisy_prop": "(t & (q & p)) -> (q & (~p -> ~p))", "target_contrapositive": "~(q & (~p -> ~p)) -> ~(t & (q & p))", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "p -> r", "noisy_prop": "p -> r", "target_contrapositive": "~r -> ~p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "s -> ~p", "noisy_prop": "(~p | ~s )", "target_contrapositive": "p -> ~s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "q -> r", "noisy_prop": "q -> r", "target_contrapositive": "~r -> ~q", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "s -> r", "noisy_prop": "s -> r", "target_contrapositive": "~r -> ~s", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "((~t -> q) -> (r | t)) -> q", "noisy_prop": "((~t -> ~~q) -> (r | t)) -> q", "target_contrapositive": "~q -> ~((~t -> q) -> (r | t))", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "~s -> ~p", "noisy_prop": "~s -> ~p", "target_contrapositive": "p -> s", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "~t -> ~s", "noisy_prop": "~t -> ~s", "target_contrapositive": "s -> t", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "r -> q", "noisy_prop": "~~~~r -> ~~q", "target_contrapositive": "~q -> ~r", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "(~r | (~t | s)) -> ~t", "noisy_prop": "(~r | (~(t) | s)) -> ~t", "target_contrapositive": "t -> ~(~r | (~t | s))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "t -> ((s & r) | ~q)", "noisy_prop": "t -> ((s & ~~r) | ~(((q))))", "target_contrapositive": "~((s & r) | ~q) -> ~t", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "r -> (q & t)", "noisy_prop": "(~r | (q & t))", "target_contrapositive": "~(q & t) -> ~r", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "(~s | (r -> ~q)) -> (~t | s)", "noisy_prop": "(~s | (r -> ~q)) -> (~t | s)", "target_contrapositive": "~(~t | s) -> ~(~s | (r -> ~q))", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "q -> r", "noisy_prop": "(~q | r)", "target_contrapositive": "~r -> ~q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "~p -> ~r", "noisy_prop": "~(p) -> ~r", "target_contrapositive": "r -> p", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "(~s -> s) -> ((~p & t) & ~p)", "noisy_prop": "(~s -> s) -> ((~p & t) & ~p)", "target_contrapositive": "~((~p & t) & ~p) -> ~(~s -> s)", "complexity_level": "medium", "noise_applications": 3}
-{"original_prop": "p -> r", "noisy_prop": "p -> r", "target_contrapositive": "~r -> ~p", "complexity_level": "medium", "noise_applications": 2}
-{"original_prop": "q -> ~s", "noisy_prop": "(~((q)) | ~(s))", "target_contrapositive": "s -> ~q", "complexity_level": "medium", "noise_applications": 4}
-{"original_prop": "q -> s", "noisy_prop": "q -> s", "target_contrapositive": "~s -> ~q", "complexity_level": "medium", "noise_applications": 4}
+[
+  {
+    "original_prop": "(~r -> (~r | ~p)) -> ((~q -> r) -> (t -> r))",
+    "noisy_prop": "(~r -> (~r | ~~~p)) -> ((~q -> r) -> (t -> r))",
+    "target_contrapositive": "~((~q -> r) -> (t -> r)) -> ~(~r -> (~r | ~p))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~r -> s",
+    "noisy_prop": "~r -> s",
+    "target_contrapositive": "~s -> r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "p -> s",
+    "noisy_prop": "(p) -> s",
+    "target_contrapositive": "~s -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "(t | (s -> t)) -> s",
+    "noisy_prop": "((t | (s -> t)) -> s & (t | ~t))",
+    "target_contrapositive": "~s -> ~(t | (s -> t))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "s -> p",
+    "noisy_prop": "s -> p",
+    "target_contrapositive": "~p -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~s -> r",
+    "noisy_prop": "~((s)) -> r",
+    "target_contrapositive": "~r -> s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "s -> ~p",
+    "noisy_prop": "(~s | ~p)",
+    "target_contrapositive": "p -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "q -> r",
+    "noisy_prop": "q -> r",
+    "target_contrapositive": "~r -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "s -> ~t",
+    "noisy_prop": "s -> ~(t)",
+    "target_contrapositive": "t -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "s -> p",
+    "noisy_prop": "~~~~s -> ~~~~p",
+    "target_contrapositive": "~p -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "r -> s",
+    "noisy_prop": "r -> ((s))",
+    "target_contrapositive": "~s -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~r -> q",
+    "noisy_prop": "~((((r)))) -> q",
+    "target_contrapositive": "~q -> r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "p -> r",
+    "noisy_prop": "(~p | r)",
+    "target_contrapositive": "~r -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "q -> p",
+    "noisy_prop": "(~q | p)",
+    "target_contrapositive": "~p -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> ((~s | r) & q)",
+    "noisy_prop": "(~r | ((~s | r) & q))",
+    "target_contrapositive": "~((~s | r) & q) -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> ((p & ~q) | (~q | r))",
+    "noisy_prop": "(~r | ((p & ~q) | (~q | r)))",
+    "target_contrapositive": "~((p & ~q) | (~q | r)) -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "s -> ~p",
+    "noisy_prop": "(s -> ~p & (s | ~s))",
+    "target_contrapositive": "p -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((r | q) | t) -> r",
+    "noisy_prop": "((~(~r) | q) | ~(~t)) -> r",
+    "target_contrapositive": "~r -> ~((r | q) | t)",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "s -> p",
+    "noisy_prop": "(~(s | p & (p | ~p)))",
+    "target_contrapositive": "~p -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "(q -> ~s) -> (t -> (p & q))",
+    "noisy_prop": "((~q  & ~~s) -> (((t)) -> (p & q)))",
+    "target_contrapositive": "~(t -> (p & q)) -> ~(q -> ~s)",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~q -> s",
+    "noisy_prop": "~~~~~q -> ~~~~s",
+    "target_contrapositive": "~s -> q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~r -> p",
+    "noisy_prop": "~((r)) -> ~(~p)",
+    "target_contrapositive": "~p -> r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~p -> q",
+    "noisy_prop": "~p -> q",
+    "target_contrapositive": "~q -> p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "p -> s",
+    "noisy_prop": "~~p -> s",
+    "target_contrapositive": "~s -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "(t | (s | r)) -> ((q | ~s) & ~q)",
+    "noisy_prop": "(t | (s | r)) -> ((q | ~s) & ~q)",
+    "target_contrapositive": "~((q | ~s) & ~q) -> ~(t | (s | r))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "(~q -> (q & t)) -> ((p & ~r) & s)",
+    "noisy_prop": "(~(~(~q | (q & t)) | (((p) & ~r) & s)))",
+    "target_contrapositive": "~((p & ~r) & s) -> ~(~q -> (q & t))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~q -> p",
+    "noisy_prop": "~~~q -> ((~~~~p))",
+    "target_contrapositive": "~p -> q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "p -> q",
+    "noisy_prop": "(~p | q)",
+    "target_contrapositive": "~q -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> ~q",
+    "noisy_prop": "(r) -> ~q",
+    "target_contrapositive": "q -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~p -> s",
+    "noisy_prop": "(~~(~~(~p)) -> s & (p | ~p))",
+    "target_contrapositive": "~s -> p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "p -> ~q",
+    "noisy_prop": "(p) -> ~q",
+    "target_contrapositive": "q -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((s | s) -> (~t | s)) -> ((p & ~s) & (s & ~r))",
+    "noisy_prop": "((~(~~(~s)) | s) -> (~t | s)) -> ((~s & p ) & (s & ~r))",
+    "target_contrapositive": "~((p & ~s) & (s & ~r)) -> ~((s | s) -> (~t | s))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((p & ~r) -> p) -> ((r | ~p) | (~p & q))",
+    "noisy_prop": "(~((p & ~r) | p) -> ((r | ~p) | (~p & ~~q)))",
+    "target_contrapositive": "~((r | ~p) | (~p & q)) -> ~((p & ~r) -> p)",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "q -> r",
+    "noisy_prop": "(~q | r)",
+    "target_contrapositive": "~r -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "(~r & q) -> (p -> (s | ~p))",
+    "noisy_prop": "(q & ~r ) -> (~~p -> (s | ~p))",
+    "target_contrapositive": "~(p -> (s | ~p)) -> ~(~r & q)",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((q -> ~p) & (r | ~r)) -> ((t | t) & q)",
+    "noisy_prop": "(~((q | ~p) & (r | ~r)) -> ((t | t) & q))",
+    "target_contrapositive": "~((t | t) & q) -> ~((q -> ~p) & (r | ~r))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((r | t) -> (q | s)) -> ((s & ~s) -> s)",
+    "noisy_prop": "((r | ((t))) -> (q | s)) -> ((s & ~s) -> s)",
+    "target_contrapositive": "~((s & ~s) -> s) -> ~((r | t) -> (q | s))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~q -> r",
+    "noisy_prop": "~~~q -> (r)",
+    "target_contrapositive": "~r -> q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "r -> q",
+    "noisy_prop": "(~~(~r) | ~~q)",
+    "target_contrapositive": "~q -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~q -> p",
+    "noisy_prop": "~q -> ((p))",
+    "target_contrapositive": "~p -> q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "q -> p",
+    "noisy_prop": "(~q | p)",
+    "target_contrapositive": "~p -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "r -> s",
+    "noisy_prop": "(~r | s)",
+    "target_contrapositive": "~s -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~s -> p",
+    "noisy_prop": "~~~s -> ~(~p)",
+    "target_contrapositive": "~p -> s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~p -> t",
+    "noisy_prop": "~~(~p) -> ~~t",
+    "target_contrapositive": "~t -> p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "p -> s",
+    "noisy_prop": "(~p | s)",
+    "target_contrapositive": "~s -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~s -> ~r",
+    "noisy_prop": "~s -> ~r",
+    "target_contrapositive": "r -> s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((r -> s) | (s & ~r)) -> r",
+    "noisy_prop": "((~~(r) -> s) | (~r & s )) -> r",
+    "target_contrapositive": "~r -> ~((r -> s) | (s & ~r))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> ~p",
+    "noisy_prop": "r -> ~p",
+    "target_contrapositive": "p -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((q | p) -> (~q & ~t)) -> ((p -> r) | (~r | ~p))",
+    "noisy_prop": "((q | p) -> (~q & ~t)) -> ((p -> r) | (~r | ~p))",
+    "target_contrapositive": "~((p -> r) | (~r | ~p)) -> ~((q | p) -> (~q & ~t))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "s -> q",
+    "noisy_prop": "s -> (q)",
+    "target_contrapositive": "~q -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~r -> q",
+    "noisy_prop": "(~r -> q | (r & ~r))",
+    "target_contrapositive": "~q -> r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "(q -> t) -> ((r -> p) & (t -> t))",
+    "noisy_prop": "(q -> t) -> ((r -> p) & (t -> t))",
+    "target_contrapositive": "~((r -> p) & (t -> t)) -> ~(q -> t)",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "p -> q",
+    "noisy_prop": "((p)) -> q",
+    "target_contrapositive": "~q -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "s -> p",
+    "noisy_prop": "(~~s -> ~(~p) | (p & ~p))",
+    "target_contrapositive": "~p -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> s",
+    "noisy_prop": "~(~r) -> ~~s",
+    "target_contrapositive": "~s -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((q | ~r) & (~q | p)) -> ((p -> p) & (t & s))",
+    "noisy_prop": "((q | ~r) & (~q | p)) -> ((p -> p) & (t & ((s))))",
+    "target_contrapositive": "~((p -> p) & (t & s)) -> ~((q | ~r) & (~q | p))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "q -> r",
+    "noisy_prop": "q -> r",
+    "target_contrapositive": "~r -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((q | s) | r) -> t",
+    "noisy_prop": "((q | s) | r) -> t",
+    "target_contrapositive": "~t -> ~((q | s) | r)",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "p -> r",
+    "noisy_prop": "p -> r",
+    "target_contrapositive": "~r -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~r -> p",
+    "noisy_prop": "(~~~r -> ~(~p) | (p & ~p))",
+    "target_contrapositive": "~p -> r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((q & ~s) -> q) -> ((r & s) & (p | ~s))",
+    "noisy_prop": "(~(~(((q & ~s)) | q) | ((r & s) & (p | ~s))))",
+    "target_contrapositive": "~((r & s) & (p | ~s)) -> ~((q & ~s) -> q)",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "(s | (s & p)) -> ~r",
+    "noisy_prop": "((s | (p & s )) -> ~~(~r) | (r & ~r))",
+    "target_contrapositive": "r -> ~(s | (s & p))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((q -> s) -> (r & ~t)) -> s",
+    "noisy_prop": "((q -> s) -> ((r) & ~t)) -> s",
+    "target_contrapositive": "~s -> ~((q -> s) -> (r & ~t))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "p -> ~s",
+    "noisy_prop": "p -> ~s",
+    "target_contrapositive": "s -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~p -> ~r",
+    "noisy_prop": "~p -> ~r",
+    "target_contrapositive": "r -> p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((r | ~q) -> r) -> ((p | s) & s)",
+    "noisy_prop": "(~((((r | ~q)) | r) -> ((p | (s)) & s) | (s & ~s)))",
+    "target_contrapositive": "~((p | s) & s) -> ~((r | ~q) -> r)",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~q -> ((r & p) -> ~p)",
+    "noisy_prop": "(~~q | ((r & p) -> ~p))",
+    "target_contrapositive": "~((r & p) -> ~p) -> q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "q -> s",
+    "noisy_prop": "(~~(~q) | s)",
+    "target_contrapositive": "~s -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~p -> ~r",
+    "noisy_prop": "(~~~(~p) | ~~(~~(~~~r)))",
+    "target_contrapositive": "r -> p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((s | t) & (p -> ~q)) -> ((~q & r) & s)",
+    "noisy_prop": "((s | ~~t) & (p -> ~q)) -> ((r & ~q ) & s)",
+    "target_contrapositive": "~((~q & r) & s) -> ~((s | t) & (p -> ~q))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~p -> ~r",
+    "noisy_prop": "~p -> ~r",
+    "target_contrapositive": "r -> p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> p",
+    "noisy_prop": "(r -> p & (r | ~r))",
+    "target_contrapositive": "~p -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~p -> ~s",
+    "noisy_prop": "~p -> ~(s)",
+    "target_contrapositive": "s -> p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~p -> s",
+    "noisy_prop": "~p -> s",
+    "target_contrapositive": "~s -> p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((p -> p) -> (~s -> q)) -> ((p -> q) & (s -> q))",
+    "noisy_prop": "(((~(~p) -> p) -> (~s -> q)) -> ((p -> q) & (s -> q)) & (s | ~s))",
+    "target_contrapositive": "~((p -> q) & (s -> q)) -> ~((p -> p) -> (~s -> q))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "(t -> ~p) -> q",
+    "noisy_prop": "(t -> ~~~p) -> q",
+    "target_contrapositive": "~q -> ~(t -> ~p)",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~q -> r",
+    "noisy_prop": "~q -> ((r))",
+    "target_contrapositive": "~r -> q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "p -> q",
+    "noisy_prop": "p -> q",
+    "target_contrapositive": "~q -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "q -> ((s | ~p) -> (~p | r))",
+    "noisy_prop": "q -> ((~p | s ) -> (~p | r))",
+    "target_contrapositive": "~((s | ~p) -> (~p | r)) -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((t & r) | (q -> p)) -> (t -> (p -> p))",
+    "noisy_prop": "((t & r) | (q -> ~~~~p)) -> (t -> (p -> p))",
+    "target_contrapositive": "~(t -> (p -> p)) -> ~((t & r) | (q -> p))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "p -> ~q",
+    "noisy_prop": "(p -> ~q | (p & ~p))",
+    "target_contrapositive": "q -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "q -> r",
+    "noisy_prop": "(~(~~(~q)) -> r & (q | ~q))",
+    "target_contrapositive": "~r -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~q -> s",
+    "noisy_prop": "~q -> s",
+    "target_contrapositive": "~s -> q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "(~r & (q & p)) -> ((q -> q) | (t | t))",
+    "noisy_prop": "(~r & (q & ((p)))) -> ((q -> q) | (t | t))",
+    "target_contrapositive": "~((q -> q) | (t | t)) -> ~(~r & (q & p))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((p -> p) & (t -> q)) -> ((~t & p) -> ~t)",
+    "noisy_prop": "((p -> p) & (t -> q)) -> ((~t & p) -> ~t)",
+    "target_contrapositive": "~((~t & p) -> ~t) -> ~((p -> p) & (t -> q))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "p -> ((s | s) & (s -> s))",
+    "noisy_prop": "(~~(~p) | ((s | s ) & (s -> s)))",
+    "target_contrapositive": "~((s | s) & (s -> s)) -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "s -> p",
+    "noisy_prop": "(~~~s | ~~p)",
+    "target_contrapositive": "~p -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "(q -> (r | ~p)) -> t",
+    "noisy_prop": "((q -> (~p | r )) -> ((t)) & (t | ~t))",
+    "target_contrapositive": "~t -> ~(q -> (r | ~p))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "r -> ~q",
+    "noisy_prop": "(~r | ~(q))",
+    "target_contrapositive": "q -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "q -> ~s",
+    "noisy_prop": "((q -> ~(s) & (s | ~s)) & (s | ~s))",
+    "target_contrapositive": "s -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((~p & r) | (p -> ~r)) -> (p | p)",
+    "noisy_prop": "((r & ~~~p ) | (p -> ~r)) -> (p | p)",
+    "target_contrapositive": "~(p | p) -> ~((~p & r) | (p -> ~r))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((s | r) -> (q -> ~s)) -> ((q -> q) & (q -> ~r))",
+    "noisy_prop": "(((s | r) -> (q -> ~s)) -> ((q -> q) & (q -> ~r)) | (q  & ~q ))",
+    "target_contrapositive": "~((q -> q) & (q -> ~r)) -> ~((s | r) -> (q -> ~s))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((t & ~r) | p) -> ((~s -> q) & r)",
+    "noisy_prop": "((t & ~r) | p) -> ((~s -> q) & r)",
+    "target_contrapositive": "~((~s -> q) & r) -> ~((t & ~r) | p)",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "q -> ~r",
+    "noisy_prop": "q -> ~r",
+    "target_contrapositive": "r -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "(r & (~s -> ~q)) -> ((~s -> t) & (q & ~r))",
+    "noisy_prop": "(r & (~s -> ~q)) -> ((~s -> t) & (q & ~r))",
+    "target_contrapositive": "~((~s -> t) & (q & ~r)) -> ~(r & (~s -> ~q))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "q -> p",
+    "noisy_prop": "(~(q | p | (q & ~q)))",
+    "target_contrapositive": "~p -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((~t -> ~p) & t) -> ((~t & ~p) & (r & s))",
+    "noisy_prop": "(~((~t | ~p) & t) -> ((~t & ~p) & (r & s)))",
+    "target_contrapositive": "~((~t & ~p) & (r & s)) -> ~((~t -> ~p) & t)",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> s",
+    "noisy_prop": "(s | ~r )",
+    "target_contrapositive": "~s -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "s -> r",
+    "noisy_prop": "(~s | ((r)))",
+    "target_contrapositive": "~r -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "r -> p",
+    "noisy_prop": "r -> p",
+    "target_contrapositive": "~p -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "t -> ((q | s) | (~r & ~s))",
+    "noisy_prop": "t -> ((q | s) | (~r & ~s))",
+    "target_contrapositive": "~((q | s) | (~r & ~s)) -> ~t",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "p -> q",
+    "noisy_prop": "(~p | q)",
+    "target_contrapositive": "~q -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "(r | (~s | s)) -> ((p & q) | (r & ~p))",
+    "noisy_prop": "((r | (~s | s)) -> ((~(~p) & ~(~q)) | (r & ~p)) & (r | ~r))",
+    "target_contrapositive": "~((p & q) | (r & ~p)) -> ~(r | (~s | s))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~p -> ~s",
+    "noisy_prop": "(~p -> ~s | (~s & s ))",
+    "target_contrapositive": "s -> p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((s -> ~r) | (t & ~r)) -> ((p & p) | (s -> s))",
+    "noisy_prop": "(((s) -> ~r) | (t & ~r)) -> ((p & p) | (s -> s))",
+    "target_contrapositive": "~((p & p) | (s -> s)) -> ~((s -> ~r) | (t & ~r))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "s -> ~t",
+    "noisy_prop": "(~((s)) | ~t)",
+    "target_contrapositive": "t -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((q & t) | (s | s)) -> p",
+    "noisy_prop": "(~(((q & t) | (~~s | s))) | p)",
+    "target_contrapositive": "~p -> ~((q & t) | (s | s))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((~s | ~s) | (~p -> t)) -> ~t",
+    "noisy_prop": "((~~~~~s | ~s) | (~p -> (t))) -> ~t",
+    "target_contrapositive": "t -> ~((~s | ~s) | (~p -> t))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((~s | t) | (q | p)) -> (p -> (t | p))",
+    "noisy_prop": "((~s | ~(~t)) | (q | p)) -> (p -> (t | p))",
+    "target_contrapositive": "~(p -> (t | p)) -> ~((~s | t) | (q | p))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "t -> ((t & ~r) | (~r -> s))",
+    "noisy_prop": "t -> ((t  & ~r ) | (~r -> s))",
+    "target_contrapositive": "~((t & ~r) | (~r -> s)) -> ~t",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((~t -> ~s) & (~p | t)) -> (p & (s & ~t))",
+    "noisy_prop": "((~t -> ~s) & (~p | t)) -> (p & (~t & s ))",
+    "target_contrapositive": "~(p & (s & ~t)) -> ~((~t -> ~s) & (~p | t))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "p -> ~q",
+    "noisy_prop": "p -> ~~(~q)",
+    "target_contrapositive": "q -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~q -> ~s",
+    "noisy_prop": "(~~q | ~s)",
+    "target_contrapositive": "s -> q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "(q | (r & r)) -> ((p | q) & (s -> q))",
+    "noisy_prop": "(q | (((r)) & r)) -> ((p | q) & (s -> q))",
+    "target_contrapositive": "~((p | q) & (s -> q)) -> ~(q | (r & r))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~s -> (~q | p)",
+    "noisy_prop": "~s -> (~(q) | p)",
+    "target_contrapositive": "~(~q | p) -> s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((t & r) | (p | t)) -> (s | (~p -> t))",
+    "noisy_prop": "((t & r) | (p | t)) -> (s | (~p -> t))",
+    "target_contrapositive": "~(s | (~p -> t)) -> ~((t & r) | (p | t))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "p -> q",
+    "noisy_prop": "~~p -> ~(~q)",
+    "target_contrapositive": "~q -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~p -> (p | (~p | t))",
+    "noisy_prop": "~p -> (p | (~p | t))",
+    "target_contrapositive": "~(p | (~p | t)) -> p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "p -> s",
+    "noisy_prop": "~~p -> ~(~s)",
+    "target_contrapositive": "~s -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((p & s) | (~p & ~q)) -> ((r -> ~q) -> (~s & q))",
+    "noisy_prop": "(~(~((p & s) | (~p & ~q)) | ((r | ~q) -> (~s & q))))",
+    "target_contrapositive": "~((r -> ~q) -> (~s & q)) -> ~((p & s) | (~p & ~q))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "(t & (q | r)) -> t",
+    "noisy_prop": "(~(~(~t) & (q | ~~r)) | t)",
+    "target_contrapositive": "~t -> ~(t & (q | r))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "q -> (r & (s | r))",
+    "noisy_prop": "q -> (r & (((s)) | r))",
+    "target_contrapositive": "~(r & (s | r)) -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((s | ~q) & (r | ~q)) -> ((~r | q) & (s -> q))",
+    "noisy_prop": "((s | ~q) & (r | ~q)) -> ((~r | q) & (s -> q))",
+    "target_contrapositive": "~((~r | q) & (s -> q)) -> ~((s | ~q) & (r | ~q))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "s -> ~r",
+    "noisy_prop": "(~s | ~r)",
+    "target_contrapositive": "r -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "s -> s",
+    "noisy_prop": "(~((s)) | s)",
+    "target_contrapositive": "~s -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((~p | s) & r) -> ((q -> t) | (r -> p))",
+    "noisy_prop": "((~p | s) & ((r))) -> ((q -> t) | (r -> p))",
+    "target_contrapositive": "~((q -> t) | (r -> p)) -> ~((~p | s) & r)",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "s -> r",
+    "noisy_prop": "(s -> r | (s & ~s))",
+    "target_contrapositive": "~r -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~s -> p",
+    "noisy_prop": "(~~~~s | ~(~p))",
+    "target_contrapositive": "~p -> s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "p -> s",
+    "noisy_prop": "p -> (s)",
+    "target_contrapositive": "~s -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "p -> q",
+    "noisy_prop": "(~p | q)",
+    "target_contrapositive": "~q -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~q -> s",
+    "noisy_prop": "~q -> s",
+    "target_contrapositive": "~s -> q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "q -> s",
+    "noisy_prop": "q -> s",
+    "target_contrapositive": "~s -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~s -> q",
+    "noisy_prop": "~~(~s) -> q",
+    "target_contrapositive": "~q -> s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "s -> s",
+    "noisy_prop": "(~((s)) | s)",
+    "target_contrapositive": "~s -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((s | r) & (t & r)) -> ~p",
+    "noisy_prop": "(~(((s | r) & (t & r))) | ~p)",
+    "target_contrapositive": "p -> ~((s | r) & (t & r))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "(p & ~p) -> (r | (~q & s))",
+    "noisy_prop": "(~p & p ) -> (r | (~q & s))",
+    "target_contrapositive": "~(r | (~q & s)) -> ~(p & ~p)",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "s -> q",
+    "noisy_prop": "(~s | q)",
+    "target_contrapositive": "~q -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "r -> ~q",
+    "noisy_prop": "~~~(~~(~r)) -> ~~~~(~q)",
+    "target_contrapositive": "q -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((~q & p) | (~t -> r)) -> ~q",
+    "noisy_prop": "(~((((~q & p) | (~t) | r)) -> ~q & (t | ~t)))",
+    "target_contrapositive": "q -> ~((~q & p) | (~t -> r))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((t | r) -> t) -> ((s -> r) & t)",
+    "noisy_prop": "((~(~t) | ~~r) -> t) -> ((s -> r) & t)",
+    "target_contrapositive": "~((s -> r) & t) -> ~((t | r) -> t)",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "q -> p",
+    "noisy_prop": "q -> p",
+    "target_contrapositive": "~p -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((t -> q) & s) -> s",
+    "noisy_prop": "(~(((t) | q) & s) -> s)",
+    "target_contrapositive": "~s -> ~((t -> q) & s)",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "q -> p",
+    "noisy_prop": "(~q | ~(~p))",
+    "target_contrapositive": "~p -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~q -> ~s",
+    "noisy_prop": "(~q -> ~~(~s) | (s & ~s))",
+    "target_contrapositive": "s -> q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "(r & (~t -> ~r)) -> (~s & (s & p))",
+    "noisy_prop": "(r & (~t -> ~r)) -> (~~(~s) & (s & ((p))))",
+    "target_contrapositive": "~(~s & (s & p)) -> ~(r & (~t -> ~r))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "r -> p",
+    "noisy_prop": "~~r -> ~~p",
+    "target_contrapositive": "~p -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "(s & (~r | s)) -> q",
+    "noisy_prop": "(~(~~(~s)) & (~r | s)) -> q",
+    "target_contrapositive": "~q -> ~(s & (~r | s))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "s -> ~q",
+    "noisy_prop": "(s -> ~q & (s | ~s))",
+    "target_contrapositive": "q -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((t | p) & (p | t)) -> (q & (s | t))",
+    "noisy_prop": "(~((t | p) & (p | t)) | (q & (s | t)))",
+    "target_contrapositive": "~(q & (s | t)) -> ~((t | p) & (p | t))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "p -> ~s",
+    "noisy_prop": "(~(p | ~s & (s | ~s)))",
+    "target_contrapositive": "s -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "(q | (p | q)) -> ((q -> t) -> (~t | ~t))",
+    "noisy_prop": "(~(((~~q)) | (p | q)) | ((q -> ~(~t)) -> (~t | ~t)))",
+    "target_contrapositive": "~((q -> t) -> (~t | ~t)) -> ~(q | (p | q))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "(p | (~t & r)) -> ~p",
+    "noisy_prop": "(~((p | (~t & r))) | ~p)",
+    "target_contrapositive": "p -> ~(p | (~t & r))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "p -> r",
+    "noisy_prop": "(~p | r)",
+    "target_contrapositive": "~r -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> s",
+    "noisy_prop": "(~r | s)",
+    "target_contrapositive": "~s -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "p -> ~q",
+    "noisy_prop": "(p -> ~q | (~q & q ))",
+    "target_contrapositive": "q -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~p -> r",
+    "noisy_prop": "~~~p -> ~~r",
+    "target_contrapositive": "~r -> p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~r -> ~q",
+    "noisy_prop": "~~(~r) -> ~q",
+    "target_contrapositive": "q -> r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((t & q) | ~t) -> ((~q | r) & (r -> r))",
+    "noisy_prop": "((q & t ) | ~t) -> ((~q | ~(~r)) & (r -> r))",
+    "target_contrapositive": "~((~q | r) & (r -> r)) -> ~((t & q) | ~t)",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "s -> q",
+    "noisy_prop": "s -> q",
+    "target_contrapositive": "~q -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((~r & r) & (~s -> s)) -> ~r",
+    "noisy_prop": "((~r & r) & (~s -> s)) -> ~r",
+    "target_contrapositive": "r -> ~((~r & r) & (~s -> s))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "r -> q",
+    "noisy_prop": "(r) -> ~(~q)",
+    "target_contrapositive": "~q -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~p -> r",
+    "noisy_prop": "~((p)) -> r",
+    "target_contrapositive": "~r -> p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~r -> p",
+    "noisy_prop": "~r -> p",
+    "target_contrapositive": "~p -> r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> ((q & q) & ~s)",
+    "noisy_prop": "(~~(~r) | ((~(~~~q) & q) & ~~(~s)))",
+    "target_contrapositive": "~((q & q) & ~s) -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> ~q",
+    "noisy_prop": "((r)) -> ~(q)",
+    "target_contrapositive": "q -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~s -> ~q",
+    "noisy_prop": "(~s -> ~q & (q | ~q))",
+    "target_contrapositive": "q -> s",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((s & ~s) | q) -> t",
+    "noisy_prop": "(~(((s & ~s) | q)) | t)",
+    "target_contrapositive": "~t -> ~((s & ~s) | q)",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "(~q | (~q | t)) -> (t | (r -> ~q))",
+    "noisy_prop": "(~~~q | (~q | t)) -> (t | (~~((r)) -> ~q))",
+    "target_contrapositive": "~(t | (r -> ~q)) -> ~(~q | (~q | t))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "q -> s",
+    "noisy_prop": "q -> s",
+    "target_contrapositive": "~s -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "q -> p",
+    "noisy_prop": "q -> ~~p",
+    "target_contrapositive": "~p -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((p | ~p) & (r & q)) -> ((~r & q) -> (p | ~t))",
+    "noisy_prop": "((~~~~~(~p) | ~p) & (r & q)) -> ((~r & q) -> (p | ~t))",
+    "target_contrapositive": "~((~r & q) -> (p | ~t)) -> ~((p | ~p) & (r & q))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "r -> s",
+    "noisy_prop": "~(~r) -> s",
+    "target_contrapositive": "~s -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "s -> r",
+    "noisy_prop": "((s)) -> r",
+    "target_contrapositive": "~r -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "(q -> (~p | t)) -> q",
+    "noisy_prop": "(~(q | (~p | t)) -> q)",
+    "target_contrapositive": "~q -> ~(q -> (~p | t))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "q -> p",
+    "noisy_prop": "((q)) -> p",
+    "target_contrapositive": "~p -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((~p & s) & (p -> q)) -> ((p -> t) -> s)",
+    "noisy_prop": "((~~~p & ~~s) & (p -> q)) -> ((p -> t) -> s)",
+    "target_contrapositive": "~((p -> t) -> s) -> ~((~p & s) & (p -> q))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "(p | (s | s)) -> ((q & t) & q)",
+    "noisy_prop": "(p | (s | s)) -> ((t & q ) & q)",
+    "target_contrapositive": "~((q & t) & q) -> ~(p | (s | s))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((q & t) & (p & r)) -> ((p & t) | ~q)",
+    "noisy_prop": "((q & t) & (((p)) & r)) -> ((p & t) | ~q)",
+    "target_contrapositive": "~((p & t) | ~q) -> ~((q & t) & (p & r))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "(~s | (p -> ~p)) -> r",
+    "noisy_prop": "(~((~s | ((p)) | ~p)) -> r)",
+    "target_contrapositive": "~r -> ~(~s | (p -> ~p))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "p -> q",
+    "noisy_prop": "(~~p -> q & (p | ~p))",
+    "target_contrapositive": "~q -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((s -> p) -> p) -> ((t & ~r) -> (r & t))",
+    "noisy_prop": "((s -> p) -> p) -> ((~r & t ) -> (r & t))",
+    "target_contrapositive": "~((t & ~r) -> (r & t)) -> ~((s -> p) -> p)",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((r -> p) | (s -> s)) -> ((q | p) & (~q | r))",
+    "noisy_prop": "((((r) -> p) | (s -> s)) -> ((((q)) | p) & (~q | r)) | (q & ~q))",
+    "target_contrapositive": "~((q | p) & (~q | r)) -> ~((r -> p) | (s -> s))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((s | ~t) & (s -> ~s)) -> (t | (t | ~t))",
+    "noisy_prop": "((s | ~~~t) & (s -> ~s)) -> (t | (t | ~t))",
+    "target_contrapositive": "~(t | (t | ~t)) -> ~((s | ~t) & (s -> ~s))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "q -> ~s",
+    "noisy_prop": "q -> ~s",
+    "target_contrapositive": "s -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((r & ~t) -> ~p) -> ((~t | p) | t)",
+    "noisy_prop": "((r & ~t) -> ~p) -> ((~t | p) | t)",
+    "target_contrapositive": "~((~t | p) | t) -> ~((r & ~t) -> ~p)",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((s & p) -> (q -> ~p)) -> t",
+    "noisy_prop": "((s & ~(~p)) -> (q -> ~p)) -> ~~t",
+    "target_contrapositive": "~t -> ~((s & p) -> (q -> ~p))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((~s -> s) -> ~t) -> ~t",
+    "noisy_prop": "(~((~s | s) -> ~t) -> ~t)",
+    "target_contrapositive": "t -> ~((~s -> s) -> ~t)",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "t -> ((~r | q) & (r & q))",
+    "noisy_prop": "t -> ((~r | q) & (r & q))",
+    "target_contrapositive": "~((~r | q) & (r & q)) -> ~t",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~r -> s",
+    "noisy_prop": "(~(~(r) | s | (s & ~s)))",
+    "target_contrapositive": "~s -> r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((p | q) & ~s) -> ~r",
+    "noisy_prop": "((p | q) & ~s) -> ~r",
+    "target_contrapositive": "r -> ~((p | q) & ~s)",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "r -> s",
+    "noisy_prop": "r -> s",
+    "target_contrapositive": "~s -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> ~s",
+    "noisy_prop": "((r -> ~(s) & (s | ~s)) & (r | ~r))",
+    "target_contrapositive": "s -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((q & p) | (s | q)) -> ((~t | r) | (r & r))",
+    "noisy_prop": "((q & p) | (((s)) | q)) -> ((~t | ~~r) | (r & r))",
+    "target_contrapositive": "~((~t | r) | (r & r)) -> ~((q & p) | (s | q))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> ((s & q) -> (s -> r))",
+    "noisy_prop": "r -> ((q & s ) -> (s -> r))",
+    "target_contrapositive": "~((s & q) -> (s -> r)) -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((p -> q) | (r & r)) -> ((q & s) -> (t & ~s))",
+    "noisy_prop": "((p -> q) | (r & r)) -> ((q & s) -> (t & ~s))",
+    "target_contrapositive": "~((q & s) -> (t & ~s)) -> ~((p -> q) | (r & r))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "p -> r",
+    "noisy_prop": "(~p | r)",
+    "target_contrapositive": "~r -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((~q | s) -> ~q) -> t",
+    "noisy_prop": "((s | ~q ) -> ~q) -> t",
+    "target_contrapositive": "~t -> ~((~q | s) -> ~q)",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "p -> r",
+    "noisy_prop": "p -> r",
+    "target_contrapositive": "~r -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "s -> ((q -> p) & ~r)",
+    "noisy_prop": "s -> ((q -> p) & ~r)",
+    "target_contrapositive": "~((q -> p) & ~r) -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((p | ~q) -> (~p -> q)) -> ((~q | ~r) -> (~s | p))",
+    "noisy_prop": "(~(((p | ~~~q)) | (~p -> q)) -> ((~q | ~~(~r)) -> (~s | p)))",
+    "target_contrapositive": "~((~q | ~r) -> (~s | p)) -> ~((p | ~q) -> (~p -> q))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "s -> q",
+    "noisy_prop": "s -> ((q))",
+    "target_contrapositive": "~q -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((p | ~r) | (~t | p)) -> ((t & ~r) -> (~r -> ~t))",
+    "noisy_prop": "(~(((p | ~r) | (~~(~t) | p))) | ((t & ~r) -> (~r -> ~t)))",
+    "target_contrapositive": "~((t & ~r) -> (~r -> ~t)) -> ~((p | ~r) | (~t | p))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((~q -> q) -> (~q -> q)) -> ((~s -> p) | (t & ~r))",
+    "noisy_prop": "((~~~q -> q) -> (~q -> q)) -> ((~~(~s) -> p) | (t & ~r))",
+    "target_contrapositive": "~((~s -> p) | (t & ~r)) -> ~((~q -> q) -> (~q -> q))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((~s -> q) -> (q | r)) -> ((~t | q) -> (q | r))",
+    "noisy_prop": "((((~s -> ~(~~~((q)))) -> (q | r)) -> ((~t | q) -> (q | r)) | (q & ~q)) | (s & ~s))",
+    "target_contrapositive": "~((~t | q) -> (q | r)) -> ~((~s -> q) -> (q | r))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((r | q) | (p -> t)) -> (q -> (r | q))",
+    "noisy_prop": "((r | q) | (p -> t)) -> (q -> (r | q))",
+    "target_contrapositive": "~(q -> (r | q)) -> ~((r | q) | (p -> t))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "(t | (t | ~s)) -> ((~q & ~t) & ~q)",
+    "noisy_prop": "(((t)) | (t | ~s)) -> ((~q & ~t) & ~q)",
+    "target_contrapositive": "~((~q & ~t) & ~q) -> ~(t | (t | ~s))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~s -> r",
+    "noisy_prop": "(~s -> r | (s & ~s))",
+    "target_contrapositive": "~r -> s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "r -> ((~r -> p) | (r & s))",
+    "noisy_prop": "~~r -> ((~r -> p) | (r & ~(~s)))",
+    "target_contrapositive": "~((~r -> p) | (r & s)) -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~q -> ~s",
+    "noisy_prop": "~q -> ~s",
+    "target_contrapositive": "s -> q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((~t -> ~p) | (s & p)) -> q",
+    "noisy_prop": "(~((~t | ~p) | (s & p)) -> q)",
+    "target_contrapositive": "~q -> ~((~t -> ~p) | (s & p))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((q | ~t) | (p | r)) -> (~p | (r -> p))",
+    "noisy_prop": "((q | ~((t))) | (p | r)) -> (~p | (r -> p))",
+    "target_contrapositive": "~(~p | (r -> p)) -> ~((q | ~t) | (p | r))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((r & ~p) -> ~s) -> ((s | s) & (~p -> q))",
+    "noisy_prop": "(~((~((r & ~p) | ~s)) | ((s | s) & (~p -> q))))",
+    "target_contrapositive": "~((s | s) & (~p -> q)) -> ~((r & ~p) -> ~s)",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "r -> q",
+    "noisy_prop": "r -> q",
+    "target_contrapositive": "~q -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~r -> ~s",
+    "noisy_prop": "(~r -> ~s & (r | ~r))",
+    "target_contrapositive": "s -> r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "r -> (r | (~t | ~r))",
+    "noisy_prop": "(~~(~r) | (r | (~~~t | ~r)))",
+    "target_contrapositive": "~(r | (~t | ~r)) -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~r -> ~q",
+    "noisy_prop": "~r -> ~q",
+    "target_contrapositive": "q -> r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "t -> (~t -> q)",
+    "noisy_prop": "t -> (~t -> q)",
+    "target_contrapositive": "~(~t -> q) -> ~t",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "p -> r",
+    "noisy_prop": "p -> r",
+    "target_contrapositive": "~r -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> ~s",
+    "noisy_prop": "r -> ~s",
+    "target_contrapositive": "s -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "s -> q",
+    "noisy_prop": "s -> (q)",
+    "target_contrapositive": "~q -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "r -> (t | r)",
+    "noisy_prop": "~~r -> (t | r)",
+    "target_contrapositive": "~(t | r) -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "q -> p",
+    "noisy_prop": "q -> p",
+    "target_contrapositive": "~p -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "s -> q",
+    "noisy_prop": "(~~(~s) | ~(~q))",
+    "target_contrapositive": "~q -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "(~r & (s & p)) -> ((t -> t) & r)",
+    "noisy_prop": "(~~~r & (s & p)) -> ((t -> t) & r)",
+    "target_contrapositive": "~((t -> t) & r) -> ~(~r & (s & p))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~t -> ~q",
+    "noisy_prop": "~t -> ~q",
+    "target_contrapositive": "q -> t",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((p -> q) & (p | r)) -> ((~q -> s) & q)",
+    "noisy_prop": "((p -> ((q))) & (p | r)) -> ((~q -> s) & q)",
+    "target_contrapositive": "~((~q -> s) & q) -> ~((p -> q) & (p | r))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((~p & ~r) -> (q | ~p)) -> ~t",
+    "noisy_prop": "((~r & ~p ) -> (((q)) | ~p)) -> ~t",
+    "target_contrapositive": "t -> ~((~p & ~r) -> (q | ~p))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((p & q) | (r -> ~r)) -> (t -> (q -> q))",
+    "noisy_prop": "((p & ~~q) | (r -> ~r)) -> (t -> (q -> q))",
+    "target_contrapositive": "~(t -> (q -> q)) -> ~((p & q) | (r -> ~r))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "(t | (q -> ~t)) -> ((p | ~s) | (p -> t))",
+    "noisy_prop": "(~((t) | (q | ~t)) -> ((p | ~s) | (p -> t)))",
+    "target_contrapositive": "~((p | ~s) | (p -> t)) -> ~(t | (q -> ~t))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "q -> ((p -> t) -> (~t | ~q))",
+    "noisy_prop": "q -> ((p -> (((t)))) -> (~t | ~q))",
+    "target_contrapositive": "~((p -> t) -> (~t | ~q)) -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((r -> r) | (~q -> ~s)) -> (~p -> (t | r))",
+    "noisy_prop": "((r -> r) | (~q -> ~s)) -> (~p -> (r | t ))",
+    "target_contrapositive": "~(~p -> (t | r)) -> ~((r -> r) | (~q -> ~s))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "s -> q",
+    "noisy_prop": "s -> q",
+    "target_contrapositive": "~q -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~s -> q",
+    "noisy_prop": "~s -> ((q))",
+    "target_contrapositive": "~q -> s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~q -> p",
+    "noisy_prop": "~q -> p",
+    "target_contrapositive": "~p -> q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((~p & t) | s) -> ((q | t) & (~s & p))",
+    "noisy_prop": "(((~p & t) | s) -> ((q | t) & (~s & p)) | (s & ~s))",
+    "target_contrapositive": "~((q | t) & (~s & p)) -> ~((~p & t) | s)",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> ((t | q) | r)",
+    "noisy_prop": "r -> ((q | t ) | r)",
+    "target_contrapositive": "~((t | q) | r) -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((t & s) & (q -> ~r)) -> ((~p | p) & ~q)",
+    "noisy_prop": "(~((s & t ) & (q | ~r)) -> ((~p | p) & ~q))",
+    "target_contrapositive": "~((~p | p) & ~q) -> ~((t & s) & (q -> ~r))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "(~p -> (~s & q)) -> ((t -> p) -> r)",
+    "noisy_prop": "((~p -> (~(s) & q)) -> ((t -> p) -> r) | (s & ~s))",
+    "target_contrapositive": "~((t -> p) -> r) -> ~(~p -> (~s & q))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "p -> ((~t | ~s) | (~q & ~p))",
+    "noisy_prop": "p -> ((~~(~t) | ~~~s) | (~q & ~p))",
+    "target_contrapositive": "~((~t | ~s) | (~q & ~p)) -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "p -> ~r",
+    "noisy_prop": "p -> ~(r)",
+    "target_contrapositive": "r -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "(~t | (~t -> q)) -> (~s -> ~q)",
+    "noisy_prop": "(~t | (~t -> q)) -> (~s -> ~q)",
+    "target_contrapositive": "~(~s -> ~q) -> ~(~t | (~t -> q))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~s -> ~q",
+    "noisy_prop": "~s -> ~q",
+    "target_contrapositive": "q -> s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "q -> ((~r & t) | (~t -> t))",
+    "noisy_prop": "q -> ((~r & t) | (~t -> t))",
+    "target_contrapositive": "~((~r & t) | (~t -> t)) -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> q",
+    "noisy_prop": "r -> q",
+    "target_contrapositive": "~q -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((s | t) & (~t | s)) -> ((s | q) | (q & s))",
+    "noisy_prop": "(~(((s | t) & (~t | s))) | ((s | q) | (q & s)))",
+    "target_contrapositive": "~((s | q) | (q & s)) -> ~((s | t) & (~t | s))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~p -> (s | ~q)",
+    "noisy_prop": "(~p -> (s | ~q) | (q & ~q))",
+    "target_contrapositive": "~(s | ~q) -> p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "p -> r",
+    "noisy_prop": "(~p | r)",
+    "target_contrapositive": "~r -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "(~p & (r & s)) -> (~s -> (s | ~t))",
+    "noisy_prop": "(~p & (r & (s))) -> (~s -> (s | ~(t)))",
+    "target_contrapositive": "~(~s -> (s | ~t)) -> ~(~p & (r & s))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "q -> (t -> q)",
+    "noisy_prop": "q -> (t -> q)",
+    "target_contrapositive": "~(t -> q) -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "p -> q",
+    "noisy_prop": "((p -> q | (q & ~q)) & (q | ~q))",
+    "target_contrapositive": "~q -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((s -> ~s) & (s -> ~p)) -> r",
+    "noisy_prop": "(((~~~(~s) -> ~s) & (s -> ~~(~p))) -> r & (s | ~s))",
+    "target_contrapositive": "~r -> ~((s -> ~s) & (s -> ~p))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "q -> r",
+    "noisy_prop": "q -> ((r))",
+    "target_contrapositive": "~r -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~s -> (s | (~s -> q))",
+    "noisy_prop": "~s -> (s | (~s -> q))",
+    "target_contrapositive": "~(s | (~s -> q)) -> s",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((~t | t) | (q & ~p)) -> (~s -> (t | t))",
+    "noisy_prop": "((~t | t) | (q & ~(p))) -> (~s -> (t | t))",
+    "target_contrapositive": "~(~s -> (t | t)) -> ~((~t | t) | (q & ~p))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "(r -> (~r & ~r)) -> ((t -> p) | (r -> ~s))",
+    "noisy_prop": "(r -> (~r & ~r)) -> ((t -> p) | (r -> ~s))",
+    "target_contrapositive": "~((t -> p) | (r -> ~s)) -> ~(r -> (~r & ~r))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((~q -> s) -> (r | ~t)) -> (s | (~p & p))",
+    "noisy_prop": "(~((~q | s) -> (r | ~t)) -> (s | (~p & p)))",
+    "target_contrapositive": "~(s | (~p & p)) -> ~((~q -> s) -> (r | ~t))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((~r | ~p) & ~r) -> t",
+    "noisy_prop": "(~((~r | ~p) & ~r) | t)",
+    "target_contrapositive": "~t -> ~((~r | ~p) & ~r)",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~q -> r",
+    "noisy_prop": "~~(~q) -> ~~r",
+    "target_contrapositive": "~r -> q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~p -> q",
+    "noisy_prop": "(~~(p) | q)",
+    "target_contrapositive": "~q -> p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "r -> ~q",
+    "noisy_prop": "r -> ~q",
+    "target_contrapositive": "q -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "s -> s",
+    "noisy_prop": "s -> s",
+    "target_contrapositive": "~s -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~p -> ~s",
+    "noisy_prop": "(~~((p)) | ~s)",
+    "target_contrapositive": "s -> p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "p -> s",
+    "noisy_prop": "(p) -> s",
+    "target_contrapositive": "~s -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "r -> (p | ~r)",
+    "noisy_prop": "(~~~~~r | (p | ~r))",
+    "target_contrapositive": "~(p | ~r) -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "r -> ~p",
+    "noisy_prop": "(~r | ~p)",
+    "target_contrapositive": "p -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((s -> r) & (t & q)) -> (r & (p | ~r))",
+    "noisy_prop": "(((s -> r) & (t & q)) -> (r & (p | ~r)) & (t | ~t))",
+    "target_contrapositive": "~(r & (p | ~r)) -> ~((s -> r) & (t & q))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "r -> (r | (~r | ~t))",
+    "noisy_prop": "r -> (r | (~r | ~t))",
+    "target_contrapositive": "~(r | (~r | ~t)) -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "q -> ~p",
+    "noisy_prop": "(~q | ~p)",
+    "target_contrapositive": "p -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "s -> ((t -> r) | r)",
+    "noisy_prop": "s -> ((t -> (r)) | r)",
+    "target_contrapositive": "~((t -> r) | r) -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "(r & (q | ~s)) -> ((p & r) | (t -> r))",
+    "noisy_prop": "(~(~(r & (~~q | ~s)) | ((p & r) | (~~t | r))))",
+    "target_contrapositive": "~((p & r) | (t -> r)) -> ~(r & (q | ~s))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((~s & s) | s) -> ~s",
+    "noisy_prop": "(~((s & ~s ) | s) | ~s)",
+    "target_contrapositive": "s -> ~((~s & s) | s)",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "(p & (s & q)) -> q",
+    "noisy_prop": "(~((p) & (s & q)) | q)",
+    "target_contrapositive": "~q -> ~(p & (s & q))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "(~r -> (p & q)) -> (p | (~s -> ~s))",
+    "noisy_prop": "(~(~r | (p & q)) -> (p | (~s -> ~s)))",
+    "target_contrapositive": "~(p | (~s -> ~s)) -> ~(~r -> (p & q))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "r -> ((s & s) -> (p -> q))",
+    "noisy_prop": "(~r | ((~~s & s) -> (~(~p) -> q)))",
+    "target_contrapositive": "~((s & s) -> (p -> q)) -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "(q -> (p | t)) -> ((p | ~q) | (~p -> p))",
+    "noisy_prop": "(~(q | (t | p )) -> ((p | ~q) | (~p -> p)))",
+    "target_contrapositive": "~((p | ~q) | (~p -> p)) -> ~(q -> (p | t))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((~s | ~q) | s) -> ((~s | r) | t)",
+    "noisy_prop": "((~s | ~q) | s) -> ((~s | ~~r) | ((t)))",
+    "target_contrapositive": "~((~s | r) | t) -> ~((~s | ~q) | s)",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~p -> ~r",
+    "noisy_prop": "((~~p | ~~~r) | (r & ~r))",
+    "target_contrapositive": "r -> p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((s | q) -> (t | s)) -> ~r",
+    "noisy_prop": "((s | q) -> (t | s)) -> ~r",
+    "target_contrapositive": "r -> ~((s | q) -> (t | s))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "p -> ~q",
+    "noisy_prop": "p -> ~((q))",
+    "target_contrapositive": "q -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> s",
+    "noisy_prop": "(~~~r | ~~s)",
+    "target_contrapositive": "~s -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "(t -> (p | p)) -> p",
+    "noisy_prop": "(((t)) -> (p | p)) -> p",
+    "target_contrapositive": "~p -> ~(t -> (p | p))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((t | r) -> p) -> p",
+    "noisy_prop": "((t | r) -> p) -> p",
+    "target_contrapositive": "~p -> ~((t | r) -> p)",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "t -> ((~r -> s) -> (q & q))",
+    "noisy_prop": "t -> ((~r -> s) -> (q & q))",
+    "target_contrapositive": "~((~r -> s) -> (q & q)) -> ~t",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "t -> ((q -> t) & (s -> q))",
+    "noisy_prop": "t -> ((q -> t) & (s -> q))",
+    "target_contrapositive": "~((q -> t) & (s -> q)) -> ~t",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "q -> p",
+    "noisy_prop": "q -> p",
+    "target_contrapositive": "~p -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "q -> s",
+    "noisy_prop": "(~~(~q) | ((~(~s))))",
+    "target_contrapositive": "~s -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> q",
+    "noisy_prop": "r -> q",
+    "target_contrapositive": "~q -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> p",
+    "noisy_prop": "((r)) -> p",
+    "target_contrapositive": "~p -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "p -> s",
+    "noisy_prop": "(((p)) -> (s) | (s & ~s))",
+    "target_contrapositive": "~s -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "r -> q",
+    "noisy_prop": "r -> q",
+    "target_contrapositive": "~q -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~p -> q",
+    "noisy_prop": "~p -> q",
+    "target_contrapositive": "~q -> p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((~q -> ~s) -> (q & ~r)) -> ((~r -> s) | (~s | ~r))",
+    "noisy_prop": "(~(((~q | ~s) -> (q & ~r)) -> ((~r -> s) | (~s | ~r)) & (s | ~s)))",
+    "target_contrapositive": "~((~r -> s) | (~s | ~r)) -> ~((~q -> ~s) -> (q & ~r))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((~t -> p) | (r | p)) -> t",
+    "noisy_prop": "(~((~t | p) | (r | p)) -> t)",
+    "target_contrapositive": "~t -> ~((~t -> p) | (r | p))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "q -> r",
+    "noisy_prop": "(q) -> r",
+    "target_contrapositive": "~r -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "s -> ~t",
+    "noisy_prop": "s -> ~(t)",
+    "target_contrapositive": "t -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "q -> ((~p | ~r) | (q -> p))",
+    "noisy_prop": "q -> ((~r | ~p ) | (q -> p))",
+    "target_contrapositive": "~((~p | ~r) | (q -> p)) -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "s -> ((q & r) -> (q -> p))",
+    "noisy_prop": "(~((~s | ((~(~q) & r)) | (q -> p))))",
+    "target_contrapositive": "~((q & r) -> (q -> p)) -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "q -> ~s",
+    "noisy_prop": "q -> ~s",
+    "target_contrapositive": "s -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~p -> ~q",
+    "noisy_prop": "~((p)) -> ~q",
+    "target_contrapositive": "q -> p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "s -> ~p",
+    "noisy_prop": "(~~(~s) | ~~~p)",
+    "target_contrapositive": "p -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "s -> r",
+    "noisy_prop": "~(~s) -> ~~r",
+    "target_contrapositive": "~r -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~r -> ((r & p) -> (r & p))",
+    "noisy_prop": "(~(~~~~(~r) | ((r & p) -> (r & p)) | (r & ~r)))",
+    "target_contrapositive": "~((r & p) -> (r & p)) -> r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~q -> ~r",
+    "noisy_prop": "~q -> ~r",
+    "target_contrapositive": "r -> q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((~r & s) | ~p) -> (s -> r)",
+    "noisy_prop": "((s & ~r ) | ~p) -> (s -> r)",
+    "target_contrapositive": "~(s -> r) -> ~((~r & s) | ~p)",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "q -> p",
+    "noisy_prop": "(~q | ~~p)",
+    "target_contrapositive": "~p -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "t -> (q -> ~q)",
+    "noisy_prop": "(~t | (q -> ~q))",
+    "target_contrapositive": "~(q -> ~q) -> ~t",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~q -> s",
+    "noisy_prop": "(~~q | s)",
+    "target_contrapositive": "~s -> q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "q -> ((q | t) & (t & q))",
+    "noisy_prop": "(~q | ((q | t) & (t & q)))",
+    "target_contrapositive": "~((q | t) & (t & q)) -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "p -> (p | (t -> p))",
+    "noisy_prop": "((((p)))) -> (p | (t -> p))",
+    "target_contrapositive": "~(p | (t -> p)) -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~s -> (r | (~t & q))",
+    "noisy_prop": "(~~s | (r | (~t & q)))",
+    "target_contrapositive": "~(r | (~t & q)) -> s",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((p & s) | ~s) -> ((q & ~t) | s)",
+    "noisy_prop": "(((p & s) | ~s) -> ((q & ~t) | s) & (p | ~p))",
+    "target_contrapositive": "~((q & ~t) | s) -> ~((p & s) | ~s)",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((r | ~s) & (~s & ~s)) -> ((p & ~t) -> ~q)",
+    "noisy_prop": "(~(((r | ~s) & (~s & ~s))) | ((p & ~t) -> ~~~q))",
+    "target_contrapositive": "~((p & ~t) -> ~q) -> ~((r | ~s) & (~s & ~s))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "t -> ((t & q) | (~s & t))",
+    "noisy_prop": "t -> ((t & q) | (~s & t))",
+    "target_contrapositive": "~((t & q) | (~s & t)) -> ~t",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((s & p) | (~q -> ~r)) -> s",
+    "noisy_prop": "((s & p) | (~q -> ~r)) -> s",
+    "target_contrapositive": "~s -> ~((s & p) | (~q -> ~r))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> (t -> (p | ~t))",
+    "noisy_prop": "r -> (~~~(~t) -> (p | ~t))",
+    "target_contrapositive": "~(t -> (p | ~t)) -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "r -> p",
+    "noisy_prop": "r -> p",
+    "target_contrapositive": "~p -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> ((p | t) & (~p | s))",
+    "noisy_prop": "((~r | ((p | t) & (~p | s))) | (r & ~r))",
+    "target_contrapositive": "~((p | t) & (~p | s)) -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> s",
+    "noisy_prop": "(~r | s)",
+    "target_contrapositive": "~s -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((~p -> r) & p) -> ((~r & s) & (s | p))",
+    "noisy_prop": "((~((~p | r) & p) -> ((~r & s) & (s | p))) & (r | ~r))",
+    "target_contrapositive": "~((~r & s) & (s | p)) -> ~((~p -> r) & p)",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((~s -> r) | (r | t)) -> ((s & s) & (p -> r))",
+    "noisy_prop": "(~((~s | r) | (r | t)) -> ((s & s) & (p -> r)))",
+    "target_contrapositive": "~((s & s) & (p -> r)) -> ~((~s -> r) | (r | t))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~t -> ((~r & ~q) & ~p)",
+    "noisy_prop": "~t -> ((~q & ~~(~r) ) & ~p)",
+    "target_contrapositive": "~((~r & ~q) & ~p) -> t",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~q -> (~t & (q | ~r))",
+    "noisy_prop": "~~~q -> (~t & (q | ~~~r))",
+    "target_contrapositive": "~(~t & (q | ~r)) -> q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "p -> ((s -> ~p) -> ~s)",
+    "noisy_prop": "(~(p) | ((~(~s) -> ~p) -> ~s))",
+    "target_contrapositive": "~((s -> ~p) -> ~s) -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((t -> ~t) -> (t -> ~q)) -> (r | (s -> r))",
+    "noisy_prop": "((t -> ~t) -> (t -> ~(q))) -> (~~~~r | (s -> r))",
+    "target_contrapositive": "~(r | (s -> r)) -> ~((t -> ~t) -> (t -> ~q))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~p -> ~s",
+    "noisy_prop": "~p -> ~s",
+    "target_contrapositive": "s -> p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~r -> q",
+    "noisy_prop": "(~~r | q)",
+    "target_contrapositive": "~q -> r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "q -> ((t -> p) | (~q -> t))",
+    "noisy_prop": "q -> ((t -> p) | (~q -> t))",
+    "target_contrapositive": "~((t -> p) | (~q -> t)) -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~q -> ~q",
+    "noisy_prop": "(~q -> ~q | (~q & q ))",
+    "target_contrapositive": "q -> q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "s -> p",
+    "noisy_prop": "s -> p",
+    "target_contrapositive": "~p -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~p -> r",
+    "noisy_prop": "~(~(~p)) -> r",
+    "target_contrapositive": "~r -> p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "r -> q",
+    "noisy_prop": "~~r -> ~~q",
+    "target_contrapositive": "~q -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "r -> s",
+    "noisy_prop": "~~r -> ~~s",
+    "target_contrapositive": "~s -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "q -> ((t & q) & (q -> q))",
+    "noisy_prop": "~(~q) -> ((~~t & q) & (q -> q))",
+    "target_contrapositive": "~((t & q) & (q -> q)) -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "(r -> (q & r)) -> (p -> (q -> ~r))",
+    "noisy_prop": "(r -> (q & r)) -> (p -> (q -> ~r))",
+    "target_contrapositive": "~(p -> (q -> ~r)) -> ~(r -> (q & r))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((s & ~q) & s) -> ~r",
+    "noisy_prop": "((~q & s ) & s) -> ~r",
+    "target_contrapositive": "r -> ~((s & ~q) & s)",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((~t & p) -> (q & t)) -> ((p & q) | (r | ~s))",
+    "noisy_prop": "((~t & p) -> (((q)) & t)) -> ((p & q) | (~~r | ~~(~s)))",
+    "target_contrapositive": "~((p & q) | (r | ~s)) -> ~((~t & p) -> (q & t))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "t -> ((r & ~p) | (q & r))",
+    "noisy_prop": "t -> ((r & ~~(~p)) | (q & r))",
+    "target_contrapositive": "~((r & ~p) | (q & r)) -> ~t",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "r -> s",
+    "noisy_prop": "r -> s",
+    "target_contrapositive": "~s -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "r -> (r -> (t -> ~r))",
+    "noisy_prop": "~~r -> (r -> (t -> ~r))",
+    "target_contrapositive": "~(r -> (t -> ~r)) -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "r -> ((r | t) -> t)",
+    "noisy_prop": "(~r | ((r | t) -> t))",
+    "target_contrapositive": "~((r | t) -> t) -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((~t -> t) -> (p -> ~s)) -> ((q & s) & q)",
+    "noisy_prop": "((~((~t | t) -> (p -> ~s)) -> ((q & s) & q)) | (q & ~q))",
+    "target_contrapositive": "~((q & s) & q) -> ~((~t -> t) -> (p -> ~s))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "t -> ((~r | q) | (~r -> q))",
+    "noisy_prop": "(~t | ((~~~r | ~~~~q) | (~r -> q)))",
+    "target_contrapositive": "~((~r | q) | (~r -> q)) -> ~t",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((~t -> p) & q) -> ((q | r) -> (~t | r))",
+    "noisy_prop": "(~((~t | p) & q) -> ((q  | r ) -> (~t | r)))",
+    "target_contrapositive": "~((q | r) -> (~t | r)) -> ~((~t -> p) & q)",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~r -> t",
+    "noisy_prop": "~~~r -> ~~t",
+    "target_contrapositive": "~t -> r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "(r | (s & ~s)) -> p",
+    "noisy_prop": "(~(r | (s & ~s)) | p)",
+    "target_contrapositive": "~p -> ~(r | (s & ~s))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "p -> s",
+    "noisy_prop": "p -> s",
+    "target_contrapositive": "~s -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((r -> s) & (q & r)) -> ((~s | q) -> (t | ~t))",
+    "noisy_prop": "((r -> s) & (r & q )) -> ((~s | q) -> (t | ~t))",
+    "target_contrapositive": "~((~s | q) -> (t | ~t)) -> ~((r -> s) & (q & r))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "r -> q",
+    "noisy_prop": "(r -> q & (q | ~q))",
+    "target_contrapositive": "~q -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "(r -> (~t & q)) -> ((~q & q) & (r -> p))",
+    "noisy_prop": "(~((~(r | (~t & q))) | ((~q & q) & (r -> p))))",
+    "target_contrapositive": "~((~q & q) & (r -> p)) -> ~(r -> (~t & q))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~p -> q",
+    "noisy_prop": "(~~~(~p) | q)",
+    "target_contrapositive": "~q -> p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~s -> ~r",
+    "noisy_prop": "~s -> ~r",
+    "target_contrapositive": "r -> s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "t -> (q -> (p -> ~q))",
+    "noisy_prop": "(t -> (q -> (p -> ~q)) & (~p | p ))",
+    "target_contrapositive": "~(q -> (p -> ~q)) -> ~t",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "s -> ~p",
+    "noisy_prop": "s -> ~p",
+    "target_contrapositive": "p -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((~p | p) -> r) -> p",
+    "noisy_prop": "(~((~~(~p) | p) | r) -> p)",
+    "target_contrapositive": "~p -> ~((~p | p) -> r)",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "(q -> s) -> p",
+    "noisy_prop": "(~(~~q | ~(~s)) -> p)",
+    "target_contrapositive": "~p -> ~(q -> s)",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((p & r) -> p) -> t",
+    "noisy_prop": "(~(((p & r)) | p) -> t)",
+    "target_contrapositive": "~t -> ~((p & r) -> p)",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "(q -> (~p -> ~q)) -> t",
+    "noisy_prop": "(~~~~q -> (~p -> ~q)) -> t",
+    "target_contrapositive": "~t -> ~(q -> (~p -> ~q))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((~q | ~p) | (q -> s)) -> ~p",
+    "noisy_prop": "(~((~q | ~p) | (q | s)) -> ~p)",
+    "target_contrapositive": "p -> ~((~q | ~p) | (q -> s))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "(~s -> (t -> s)) -> ((r -> ~q) -> (t | t))",
+    "noisy_prop": "((~s -> (t -> s)) -> ((r -> ~q) -> (t | t)) | (s & ~s))",
+    "target_contrapositive": "~((r -> ~q) -> (t | t)) -> ~(~s -> (t -> s))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "q -> p",
+    "noisy_prop": "(~q | p)",
+    "target_contrapositive": "~p -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "p -> (p & (~q & t))",
+    "noisy_prop": "p -> (p & (t & ~q ))",
+    "target_contrapositive": "~(p & (~q & t)) -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((q | ~q) -> s) -> ((r & ~r) -> (~t -> s))",
+    "noisy_prop": "(~(((q | ~q)) | ~(~s)) -> ((r & ~r) -> (~t -> s)))",
+    "target_contrapositive": "~((r & ~r) -> (~t -> s)) -> ~((q | ~q) -> s)",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "r -> s",
+    "noisy_prop": "~(~((r))) -> s",
+    "target_contrapositive": "~s -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "s -> p",
+    "noisy_prop": "s -> p",
+    "target_contrapositive": "~p -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~s -> s",
+    "noisy_prop": "(~~s | s)",
+    "target_contrapositive": "~s -> s",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "(~t -> s) -> ~s",
+    "noisy_prop": "(~(~t | s) -> ~s)",
+    "target_contrapositive": "s -> ~(~t -> s)",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((p | ~q) | (q | p)) -> ((t -> q) -> (r -> r))",
+    "noisy_prop": "((p | ~(q)) | (q | p)) -> ((t -> q) -> (r -> r))",
+    "target_contrapositive": "~((t -> q) -> (r -> r)) -> ~((p | ~q) | (q | p))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((r | ~t) & (q & s)) -> (p & t)",
+    "noisy_prop": "((~~r | ~~(~t)) & (s & q )) -> (p & t)",
+    "target_contrapositive": "~(p & t) -> ~((r | ~t) & (q & s))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~q -> ~s",
+    "noisy_prop": "(~~q | ~s)",
+    "target_contrapositive": "s -> q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "((q & t) -> ~r) -> ~r",
+    "noisy_prop": "((q & t) -> ~~(~r)) -> ~r",
+    "target_contrapositive": "r -> ~((q & t) -> ~r)",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "(q & (~q | r)) -> ((s | ~t) | (s & r))",
+    "noisy_prop": "(~(q & (~q | r)) | ((s | ~t) | (s & r)))",
+    "target_contrapositive": "~((s | ~t) | (s & r)) -> ~(q & (~q | r))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "q -> ~s",
+    "noisy_prop": "q -> ~~~s",
+    "target_contrapositive": "s -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "((q & t) | ~q) -> (t | ~p)",
+    "noisy_prop": "((t & ~~q ) | ~q) -> (t | ~~(~~~p))",
+    "target_contrapositive": "~(t | ~p) -> ~((q & t) | ~q)",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "s -> q",
+    "noisy_prop": "(~s | ~~q)",
+    "target_contrapositive": "~q -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "p -> ~r",
+    "noisy_prop": "(((p))) -> ~r",
+    "target_contrapositive": "r -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "s -> ((q | s) | (~r | p))",
+    "noisy_prop": "s -> ((q | s) | (~r | p))",
+    "target_contrapositive": "~((q | s) | (~r | p)) -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "q -> ~p",
+    "noisy_prop": "q -> ~p",
+    "target_contrapositive": "p -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "s -> ~q",
+    "noisy_prop": "(s -> ~q & (q | ~q))",
+    "target_contrapositive": "q -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "q -> ~s",
+    "noisy_prop": "~~~(~q) -> ~~(~~~s)",
+    "target_contrapositive": "s -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~p -> r",
+    "noisy_prop": "~((p)) -> r",
+    "target_contrapositive": "~r -> p",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "s -> t",
+    "noisy_prop": "(~s | t)",
+    "target_contrapositive": "~t -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "(t & (q & p)) -> (q & (~p -> ~p))",
+    "noisy_prop": "(t & (q & p)) -> (q & (~p -> ~p))",
+    "target_contrapositive": "~(q & (~p -> ~p)) -> ~(t & (q & p))",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "p -> r",
+    "noisy_prop": "p -> r",
+    "target_contrapositive": "~r -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "s -> ~p",
+    "noisy_prop": "(~p | ~s )",
+    "target_contrapositive": "p -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "q -> r",
+    "noisy_prop": "q -> r",
+    "target_contrapositive": "~r -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "s -> r",
+    "noisy_prop": "s -> r",
+    "target_contrapositive": "~r -> ~s",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "((~t -> q) -> (r | t)) -> q",
+    "noisy_prop": "((~t -> ~~q) -> (r | t)) -> q",
+    "target_contrapositive": "~q -> ~((~t -> q) -> (r | t))",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "~s -> ~p",
+    "noisy_prop": "~s -> ~p",
+    "target_contrapositive": "p -> s",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "~t -> ~s",
+    "noisy_prop": "~t -> ~s",
+    "target_contrapositive": "s -> t",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "r -> q",
+    "noisy_prop": "~~~~r -> ~~q",
+    "target_contrapositive": "~q -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "(~r | (~t | s)) -> ~t",
+    "noisy_prop": "(~r | (~(t) | s)) -> ~t",
+    "target_contrapositive": "t -> ~(~r | (~t | s))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "t -> ((s & r) | ~q)",
+    "noisy_prop": "t -> ((s & ~~r) | ~(((q))))",
+    "target_contrapositive": "~((s & r) | ~q) -> ~t",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "r -> (q & t)",
+    "noisy_prop": "(~r | (q & t))",
+    "target_contrapositive": "~(q & t) -> ~r",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "(~s | (r -> ~q)) -> (~t | s)",
+    "noisy_prop": "(~s | (r -> ~q)) -> (~t | s)",
+    "target_contrapositive": "~(~t | s) -> ~(~s | (r -> ~q))",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "q -> r",
+    "noisy_prop": "(~q | r)",
+    "target_contrapositive": "~r -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "~p -> ~r",
+    "noisy_prop": "~(p) -> ~r",
+    "target_contrapositive": "r -> p",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "(~s -> s) -> ((~p & t) & ~p)",
+    "noisy_prop": "(~s -> s) -> ((~p & t) & ~p)",
+    "target_contrapositive": "~((~p & t) & ~p) -> ~(~s -> s)",
+    "complexity_level": "medium",
+    "noise_applications": 3
+  },
+  {
+    "original_prop": "p -> r",
+    "noisy_prop": "p -> r",
+    "target_contrapositive": "~r -> ~p",
+    "complexity_level": "medium",
+    "noise_applications": 2
+  },
+  {
+    "original_prop": "q -> ~s",
+    "noisy_prop": "(~((q)) | ~(s))",
+    "target_contrapositive": "s -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  },
+  {
+    "original_prop": "q -> s",
+    "noisy_prop": "q -> s",
+    "target_contrapositive": "~s -> ~q",
+    "complexity_level": "medium",
+    "noise_applications": 4
+  }
+]
