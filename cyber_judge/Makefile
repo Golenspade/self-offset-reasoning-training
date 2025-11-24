@@ -56,6 +56,14 @@ crawl-pw:
 	@echo "🎭 启动 Playwright 爬虫..."
 	$(PYTHON) harvester/crawler_playwright.py
 
+crawl-interactive:
+	@echo "🎭 启动交互式爬虫（需要手动完成验证）..."
+	$(PYTHON) harvester/interactive_crawler.py
+
+crawl-bandori:
+	@echo "🎯 深度爬取邦多利怀孕吧（包含回复）..."
+	$(PYTHON) harvester/crawl_bandori_deep.py
+
 install-browser:
 	@echo "📦 安装 Playwright 浏览器..."
 	$(VENV)/bin/playwright install chromium

@@ -34,7 +34,7 @@ class TiebaCrawler:
                 '--disable-blink-features=AutomationControlled',  # 隐藏自动化特征
             ]
         )
-        
+
         # 创建上下文，设置真实的浏览器指纹
         context = await self.browser.new_context(
             viewport={'width': 1920, 'height': 1080},
@@ -42,14 +42,25 @@ class TiebaCrawler:
             locale='zh-CN',
             timezone_id='Asia/Shanghai',
         )
-        
+
+        # 加载保存的 Cookie（如果存在）
+        import os
+        import json
+        cookie_file = 'baidu_cookies.json'
+        if os.path.exists(cookie_file):
+            print("🍪 加载已保存的 Cookie...")
+            with open(cookie_file, 'r') as f:
+                cookies = json.load(f)
+                await context.add_cookies(cookies)
+                print(f"✅ 已加载 {len(cookies)} 个 Cookie")
+
         # 注入反检测脚本
         await context.add_init_script("""
             Object.defineProperty(navigator, 'webdriver', {
                 get: () => undefined
             });
         """)
-        
+
         return context
     
     async def crawl_tieba_page(self, page: Page, tieba_name: str, page_num: int = 0) -> List[Dict]:
@@ -63,25 +74,36 @@ class TiebaCrawler:
             await page.goto(url, wait_until='networkidle', timeout=30000)
             await self.random_delay(0.5, 1.5)
             
-            # 等待内容加载
-            await page.wait_for_selector('.threadlist_title', timeout=10000)
-            
-            # 提取帖子列表
-            threads = await page.query_selector_all('.j_thread_list')
+            # 检查是否需要验证码
+            page_title = await page.title()
+            if "安全验证" in page_title or "验证" in page_title:
+                print(f"  ⚠️  遇到验证码！请先运行 handle_captcha.py 获取 Cookie")
+                return []
+
+            # 等待内容加载（使用正确的选择器）
+            await page.wait_for_selector('li[class*="thread"]', timeout=10000)
+
+            # 提取帖子列表（使用正确的选择器）
+            threads = await page.query_selector_all('li[class*="thread"]')
             
             judgments = []
             for thread in threads[:10]:  # 每页只取前10个
                 try:
-                    # 提取标题
-                    title_elem = await thread.query_selector('.threadlist_title a')
+                    # 提取标题（使用正确的选择器）
+                    title_elem = await thread.query_selector('a.j_th_tit')
                     if not title_elem:
                         continue
                     title = await title_elem.inner_text()
-                    
-                    # 提取作者
+                    title = title.strip()
+
+                    # 跳过空标题
+                    if not title:
+                        continue
+
+                    # 提取作者（使用正确的选择器）
                     author_elem = await thread.query_selector('.tb_icon_author')
-                    author = await author_elem.get_attribute('title') if author_elem else 'unknown'
-                    author = author.replace('主题作者: ', '')
+                    author = await author_elem.inner_text() if author_elem else 'unknown'
+                    author = author.strip()
                     
                     # 提取回复数（作为热度指标）
                     reply_elem = await thread.query_selector('.threadlist_rep_num')
