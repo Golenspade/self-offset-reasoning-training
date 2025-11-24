@@ -1,0 +1,33 @@
+# 赛博裁判长 - Python 依赖
+
+# NoneBot2 核心
+nonebot2>=2.2.0
+nonebot-adapter-onebot>=2.4.0
+
+# HTTP 客户端
+aiohttp>=3.9.0
+httpx>=0.25.0
+
+# 数据处理
+pandas>=2.0.0
+numpy>=1.24.0
+
+# 数据库
+sqlite3  # Python 内置
+
+# 配置管理
+pyyaml>=6.0
+python-dotenv>=1.0.0
+
+# 日志
+loguru>=0.7.0
+
+# 类型检查
+pydantic>=2.0.0
+
+# 开发工具
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+black>=23.0.0
+flake8>=6.0.0
+

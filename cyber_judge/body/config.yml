@@ -1,0 +1,21 @@
+# NoneBot2 配置文件
+
+# 基础配置
+HOST: 127.0.0.1
+PORT: 8080
+LOG_LEVEL: INFO
+SUPERUSERS: []  # 超级用户 QQ 号列表
+
+# OneBot 配置
+ONEBOT_ACCESS_TOKEN: ""  # 访问令牌（可选）
+
+# 命令配置
+COMMAND_START: ["/", ""]  # 命令起始符
+COMMAND_SEP: ["."]  # 命令分隔符
+
+# 昵称配置
+NICKNAME: ["裁判长", "赛博裁判长"]
+
+# 会话配置
+SESSION_EXPIRE_TIMEOUT: 120  # 会话过期时间（秒）
+
