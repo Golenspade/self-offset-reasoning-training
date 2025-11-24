@@ -1,10 +1,16 @@
 # 赛博裁判长 - Makefile
 
-.PHONY: help install crawl clean distill run-bot test
+.PHONY: help install crawl clean distill run-bot test venv
+
+# 虚拟环境路径
+VENV := .venv
+PYTHON := $(VENV)/bin/python
+PIP := $(VENV)/bin/pip
 
 help:
 	@echo "赛博裁判长 - 可用命令:"
-	@echo "  make install    - 安装所有依赖"
+	@echo "  make venv       - 创建虚拟环境"
+	@echo "  make install    - 安装所有依赖（自动创建虚拟环境）"
 	@echo "  make crawl      - 运行爬虫抓取数据"
 	@echo "  make clean      - 清洗数据"
 	@echo "  make distill    - LLM 蒸馏数据"
@@ -12,12 +18,33 @@ help:
 	@echo "  make test       - 运行测试"
 	@echo "  make all        - 完整流程（爬虫->清洗->蒸馏）"
 
-install:
+venv:
+	@echo "🔧 创建虚拟环境..."
+	@if command -v uv >/dev/null 2>&1; then \
+		echo "✨ 使用 uv 创建虚拟环境..."; \
+		uv venv $(VENV); \
+	else \
+		echo "📦 使用 python3 -m venv 创建虚拟环境..."; \
+		python3 -m venv $(VENV); \
+	fi
+	@echo "✅ 虚拟环境创建完成: $(VENV)"
+
+install: venv
 	@echo "📦 安装 Python 依赖..."
-	pip install -r requirements.txt
+	@if command -v uv >/dev/null 2>&1; then \
+		echo "✨ 使用 uv 安装依赖（极速）..."; \
+		uv pip install -r requirements.txt; \
+	else \
+		echo "📦 使用 pip 安装依赖..."; \
+		$(PIP) install --upgrade pip; \
+		$(PIP) install -r requirements.txt; \
+	fi
 	@echo "📦 安装 Go 依赖..."
 	cd harvester && go mod download
 	@echo "✅ 依赖安装完成"
+	@echo ""
+	@echo "💡 提示: 使用以下命令激活虚拟环境:"
+	@echo "   source $(VENV)/bin/activate"
 
 crawl:
 	@echo "🕷️  启动爬虫..."
@@ -25,19 +52,19 @@ crawl:
 
 clean:
 	@echo "🧹 清洗数据..."
-	python refinery/cleaner.py
+	$(PYTHON) refinery/cleaner.py
 
 distill:
 	@echo "🧪 蒸馏数据..."
-	python refinery/distiller.py
+	$(PYTHON) refinery/distiller.py
 
 run-bot:
 	@echo "🤖 启动赛博裁判长..."
-	cd body && python bot.py
+	cd body && $(PYTHON) bot.py
 
 test:
 	@echo "🧪 运行测试..."
-	pytest tests/ -v
+	$(VENV)/bin/pytest tests/ -v
 
 all: crawl clean distill
 	@echo "✅ 数据准备完成！现在可以运行 make run-bot 启动 Bot"
@@ -45,12 +72,12 @@ all: crawl clean distill
 # 开发相关
 format:
 	@echo "🎨 格式化代码..."
-	black .
+	$(VENV)/bin/black .
 	cd harvester && go fmt ./...
 
 lint:
 	@echo "🔍 代码检查..."
-	flake8 .
+	$(VENV)/bin/flake8 .
 	cd harvester && go vet ./...
 
 # 清理
@@ -59,7 +86,11 @@ clean-data:
 	rm -rf data/raw/*
 	rm -rf data/processed/*
 
-clean-all: clean-data
+clean-venv:
+	@echo "🗑️  清理虚拟环境..."
+	rm -rf $(VENV)
+
+clean-all: clean-data clean-venv
 	@echo "🗑️  清理所有生成文件..."
 	rm -rf data/memory.db
 	find . -type d -name "__pycache__" -exec rm -rf {} +
