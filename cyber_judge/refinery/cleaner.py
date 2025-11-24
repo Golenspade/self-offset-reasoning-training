@@ -89,14 +89,21 @@ class DataCleaner:
     
     def clean_judgment(self, raw_judgment: Dict) -> Optional[CleanedJudgment]:
         """清洗单条判例"""
-        case = self.clean_text(raw_judgment.get('case', ''))
-        verdict = self.clean_text(raw_judgment.get('verdict', ''))
-        
+        # 兼容不同的数据格式
+        case = self.clean_text(raw_judgment.get('case') or raw_judgment.get('title', ''))
+        verdict = self.clean_text(raw_judgment.get('verdict') or raw_judgment.get('content', ''))
+
         # 验证有效性
         if not case or not self.is_valid_verdict(verdict):
             return None
-        
-        quality_score = self.calculate_quality_score(raw_judgment)
+
+        # 为质量分数计算准备数据
+        judgment_for_score = {
+            'upvotes': raw_judgment.get('upvotes', 0),
+            'keywords': [],  # 暂时为空，后续可以添加关键词提取
+            'verdict': verdict
+        }
+        quality_score = self.calculate_quality_score(judgment_for_score)
         
         # 质量分数太低则丢弃
         if quality_score < 0.3:
@@ -145,8 +152,18 @@ class DataCleaner:
     
     def generate_report(self, data: List[CleanedJudgment], report_file: Path):
         """生成清洗报告"""
+        if not data:
+            report = """
+=== 数据清洗报告 ===
+
+总数据量: 0
+警告: 没有数据通过质量检查！
+"""
+            report_file.write_text(report, encoding='utf-8')
+            return
+
         df = pd.DataFrame([asdict(j) for j in data])
-        
+
         report = f"""
 === 数据清洗报告 ===
 
@@ -176,7 +193,7 @@ def main():
     input_file = Path(__file__).parent.parent / 'data' / 'raw' / 'raw_judgments.json'
     output_file = Path(__file__).parent.parent / 'data' / 'processed' / 'cleaned_judgments.json'
     
-    cleaner.clean_dataset(input_file, output_file, min_quality=0.5)
+    cleaner.clean_dataset(input_file, output_file, min_quality=0.1)  # 降低阈值以接受更多数据
 
 
 if __name__ == '__main__':

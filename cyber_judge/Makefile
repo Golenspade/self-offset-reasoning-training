@@ -9,14 +9,16 @@ PIP := $(VENV)/bin/pip
 
 help:
 	@echo "赛博裁判长 - 可用命令:"
-	@echo "  make venv       - 创建虚拟环境"
-	@echo "  make install    - 安装所有依赖（自动创建虚拟环境）"
-	@echo "  make crawl      - 运行爬虫抓取数据"
-	@echo "  make clean      - 清洗数据"
-	@echo "  make distill    - LLM 蒸馏数据"
-	@echo "  make run-bot    - 启动 Bot"
-	@echo "  make test       - 运行测试"
-	@echo "  make all        - 完整流程（爬虫->清洗->蒸馏）"
+	@echo "  make venv           - 创建虚拟环境"
+	@echo "  make install        - 安装所有依赖（自动创建虚拟环境）"
+	@echo "  make install-browser - 安装 Playwright 浏览器"
+	@echo "  make crawl          - 运行爬虫抓取数据 (Go 版本)"
+	@echo "  make crawl-pw       - 运行 Playwright 爬虫 (推荐)"
+	@echo "  make clean          - 清洗数据"
+	@echo "  make distill        - LLM 蒸馏数据"
+	@echo "  make run-bot        - 启动 Bot"
+	@echo "  make test           - 运行测试"
+	@echo "  make all            - 完整流程（爬虫->清洗->蒸馏）"
 
 venv:
 	@echo "🔧 创建虚拟环境..."
@@ -47,8 +49,16 @@ install: venv
 	@echo "   source $(VENV)/bin/activate"
 
 crawl:
-	@echo "🕷️  启动爬虫..."
+	@echo "🕷️  启动爬虫 (Go 版本)..."
 	cd harvester && go run main.go
+
+crawl-pw:
+	@echo "🎭 启动 Playwright 爬虫..."
+	$(PYTHON) harvester/crawler_playwright.py
+
+install-browser:
+	@echo "📦 安装 Playwright 浏览器..."
+	$(VENV)/bin/playwright install chromium
 
 clean:
 	@echo "🧹 清洗数据..."
