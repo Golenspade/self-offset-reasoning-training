@@ -9,10 +9,10 @@
 ### 🏗️ 核心架构文件
 
 #### 主要训练系统
-- `breakthrough_training_system.py` - **突破性三阶段训练系统**（最新核心）
+- `breakthrough_training_system.py` - **突破性三阶段训练系统**（历史版本，现推荐使用 `scripts/breakthrough_training_system_refactored.py`）
 - `formal_training_50_epochs.py` - 正式50轮训练实现
 - `train.py` - 基础训练脚本
-- `simple_model.py` - 简化神经网络模型实现
+- `scripts/simple_model.py` - 简化神经网络模型实现
 
 #### 核心模型文件
 - `model.py` - Transformer Seq2Seq模型定义
@@ -20,17 +20,17 @@
 - `src/logic_transformer/models/hybrid_model.py` - 混合模型实现
 
 #### 数据处理系统
-- `generate_robust_dataset.py` - **鲁棒数据集生成器**（推荐使用）
+- `scripts/generate_robust_dataset.py` - **鲁棒数据集生成器**（推荐使用）
 - `generate_dataset.py` - 基础数据集生成
 - `logic_utils.py` - 逻辑工具函数模块
 - `src/logic_transformer/data_utils.py` - 数据工具模块
 
 #### 评估系统
-- `clean_evaluation_system.py` - **清理后的评估系统**（推荐使用）
+- `scripts/clean_evaluation_system.py` - **清理后的评估系统**（推荐使用）
 - `evaluate.py` - 基础评估脚本（部分功能已清理）
 
 #### 解决方案系统
-- `hybrid_solution.py` - 混合解决方案（规则+神经网络）
+- `scripts/hybrid_solution.py` - 混合解决方案（规则+神经网络）
 - `rule_based_solution.py` - 纯规则基础解决方案
 
 ### 🔬 分析和可视化文件
@@ -131,8 +131,8 @@
 ### 建议的目录结构
 ```
 自偏移训练/
-├── 📁 core/                          # 核心系统
-│   ├── breakthrough_training_system.py
+├── 📁 scripts/                       # 主要入口脚本（训练 / 评估 / 数据生成）
+│   ├── breakthrough_training_system_refactored.py
 │   ├── clean_evaluation_system.py
 │   ├── generate_robust_dataset.py
 │   └── hybrid_solution.py
@@ -160,15 +160,15 @@
 ## 🚀 核心价值文件（保留在根目录）
 
 ### 最高价值文件
-1. `breakthrough_training_system.py` - **突破性训练系统**
-2. `clean_evaluation_system.py` - **清理后的评估系统**
-3. `generate_robust_dataset.py` - **鲁棒数据集生成**
+1. `scripts/breakthrough_training_system_refactored.py` - **突破性训练系统（重构版，推荐）**
+2. `scripts/clean_evaluation_system.py` - **清理后的评估系统**
+3. `scripts/generate_robust_dataset.py` - **鲁棒数据集生成**
 4. `investigate_l3_patterns_improved.py` - **改进版模式分析**
 
 ### 重要支持文件
-- `simple_model.py` - 核心模型实现
+- `scripts/simple_model.py` - 核心模型实现
 - `logic_utils.py` - 逻辑工具函数
-- `hybrid_solution.py` - 混合解决方案
+- `scripts/hybrid_solution.py` - 混合解决方案
 - `rule_based_solution.py` - 规则解决方案
 
 ## 📋 整理行动计划

@@ -18,9 +18,10 @@ from typing import Dict, List, Tuple, Optional
 from collections import deque
 import random
 
-# 添加项目路径
-project_root = Path(__file__).parent
-sys.path.insert(0, str(project_root / 'src'))
+# 添加项目路径（脚本位于 scripts/ 目录，下一级是项目根目录）
+project_root = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(project_root))
+sys.path.insert(0, str(project_root / "src"))
 
 from cuda_utils import CUDAManager
 from logic_transformer.data_utils import Tokenizer

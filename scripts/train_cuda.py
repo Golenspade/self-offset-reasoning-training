@@ -12,10 +12,10 @@ import argparse
 from pathlib import Path
 from typing import Dict, List
 
-# 添加项目路径
-project_root = Path(__file__).parent
+# 添加项目路径（脚本位于 scripts/ 目录，下一级是项目根目录）
+project_root = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(project_root))
-sys.path.insert(0, str(project_root / 'src'))
+sys.path.insert(0, str(project_root / "src"))
 
 from cuda_training_system import CUDABreakthroughTraining
 from cuda_utils import CUDAManager, print_cuda_summary

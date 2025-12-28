@@ -1,0 +1,37 @@
+{
+  "data": {
+    "train_path": "data/train_simple.json",
+    "val_path": "data/val_simple.json",
+    "max_train_samples": 5000,
+    "max_val_samples": 1000
+  },
+  "model": {
+    "vocab_size": 16,
+    "hidden_size": 128,
+    "max_length": 50,
+    "learning_rate": 0.005,
+    "momentum": 0.9
+  },
+  "training": {
+    "epochs": 20,
+    "batch_size": 16,
+    "validation_frequency": 2,
+    "early_stopping_patience": 5
+  },
+  "evaluation": {
+    "max_samples": 200,
+    "temperature": 0.8,
+    "beam_size": 1
+  },
+  "paths": {
+    "model_save_path": "outputs/trained_models/best_simple_clean_model.npz",
+    "training_history_path": "outputs/reports/training_history_simple_clean.json",
+    "evaluation_report_path": "outputs/reports/evaluation_report_simple_clean.json",
+    "training_curves_path": "outputs/figures/training_curves_simple_clean.png"
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  }
+}
+

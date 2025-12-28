@@ -249,29 +249,25 @@ class DataSyncManager:
     def _generate_training_data(self):
         """生成训练数据"""
         try:
-            # 导入数据生成模块
-            from generate_robust_dataset import RobustDatasetGenerator
-            
-            # 创建数据生成器
-            generator = RobustDatasetGenerator()
-            
-            # 生成数据
-            train_data, val_data = generator.generate_complete_dataset(
-                train_size=10000,
-                val_size=2000,
-                complexity_levels=['L3_complex']
-            )
-            
+            # 导入当前推荐的数据生成函数（位于 scripts/ 目录）
+            from scripts.generate_robust_dataset import generate_robust_dataset
+
+            # 直接生成复杂度为 "complex" 的鲁棒数据集，对应原来的 L3 级别
+            train_data = generate_robust_dataset(size=10000, complexity_level="complex")
+            val_data = generate_robust_dataset(size=2000, complexity_level="complex")
+
             # 保存数据
-            os.makedirs('data', exist_ok=True)
-            
-            with open('data/train_level_3_鲁棒版.json', 'w', encoding='utf-8') as f:
+            os.makedirs("data", exist_ok=True)
+
+            with open("data/train_level_3_鲁棒版.json", "w", encoding="utf-8") as f:
                 json.dump(train_data, f, ensure_ascii=False, indent=2)
-            
-            with open('data/val_level_3_鲁棒版.json', 'w', encoding='utf-8') as f:
+
+            with open("data/val_level_3_鲁棒版.json", "w", encoding="utf-8") as f:
                 json.dump(val_data, f, ensure_ascii=False, indent=2)
-            
-            self.logger.info(f"✅ 生成训练数据: {len(train_data)} 训练样本, {len(val_data)} 验证样本")
+
+            self.logger.info(
+                f"✅ 生成训练数据: {len(train_data)} 训练样本, {len(val_data)} 验证样本"
+            )
             
         except Exception as e:
             self.logger.error(f"❌ 数据生成失败: {e}")

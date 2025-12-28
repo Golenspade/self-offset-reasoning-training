@@ -30,13 +30,13 @@ python check_dependencies.py
 ### 3. 运行项目
 ```bash
 # 生成数据集
-python generate_robust_dataset.py
+python scripts/generate_robust_dataset.py
 
 # 训练模型（推荐使用重构版）
-python breakthrough_training_system_refactored.py
+python scripts/breakthrough_training_system_refactored.py
 
 # 评估模型
-python clean_evaluation_system.py
+python scripts/clean_evaluation_system.py
 ```
 
 ## 📦 已安装的主要依赖
@@ -95,9 +95,9 @@ chmod +x activate_env.sh
 
 ## 📚 项目结构提醒
 
-- **推荐使用重构版脚本**: `breakthrough_training_system_refactored.py`
-- **数据生成**: `generate_robust_dataset.py`
-- **评估系统**: `clean_evaluation_system.py`
+- **推荐使用重构版脚本**: `scripts/breakthrough_training_system_refactored.py`
+- **数据生成**: `scripts/generate_robust_dataset.py`
+- **评估系统**: `scripts/clean_evaluation_system.py`
 - **核心模块**: `src/logic_transformer/`
 
 ## 🎉 成功标志

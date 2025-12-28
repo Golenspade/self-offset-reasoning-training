@@ -23,9 +23,9 @@ from typing import Dict, List, Tuple, Optional
 from collections import deque
 import random
 
-# 添加src目录到Python路径
-project_root = Path(__file__).parent
-sys.path.insert(0, str(project_root / 'src'))
+# 添加src目录到Python路径（脚本已移动到 scripts/ 下，因此这里取上一级作为项目根目录）
+project_root = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(project_root / "src"))
 
 from logic_transformer.data_utils import Tokenizer, load_dataset
 from logic_transformer.models.base_model import ImprovedSimpleModel

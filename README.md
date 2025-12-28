@@ -139,21 +139,21 @@ python quick_fix.py             # 常见问题一键修复
 
 2) 生成数据（鲁棒版，多层级复杂度）
 ```bash
-python generate_robust_dataset.py
+python scripts/generate_robust_dataset.py
 ```
 
 3) 执行训练（CPU/GPU 二选一）
 ```bash
 # CPU（默认）
-python breakthrough_training_system_refactored.py --epochs 20
+python scripts/breakthrough_training_system_refactored.py --epochs 20
 
 # GPU（建议开启自动批大小与混合精度）
-python train_cuda.py --auto-batch-size --use-mixed-precision
+python scripts/train_cuda.py --auto-batch-size --use-mixed-precision
 ```
 
 4) 评估与报告
 ```bash
-python clean_evaluation_system.py
+python scripts/clean_evaluation_system.py
 ```
 
 5) 结果分析与可视化

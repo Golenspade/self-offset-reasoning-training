@@ -145,8 +145,15 @@ def main():
     """主训练函数"""
     print("=== 自偏移推理训练 - 重构版训练流程 ===\n")
     
+    # 解析可选的配置文件路径（命令行第一个参数）
+    if len(sys.argv) > 1:
+        config_path = sys.argv[1]
+        print(f"使用自定义配置文件: {config_path}")
+    else:
+        config_path = 'configs/default_config.json'
+    
     # 加载配置
-    config = load_config()
+    config = load_config(config_path)
     if config is None:
         print("❌ 无法加载配置文件，退出训练")
         return

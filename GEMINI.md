@@ -16,8 +16,8 @@ The project is written in Python and utilizes `numpy` for a simplified baseline 
 
 **Architecture:**
 - `src/logic_transformer`: Contains the core logic, including a character-level `Tokenizer`, data loading utilities (`data_utils.py`), and logical transformation rules (`logic_rules.py`).
-- `simple_model.py`: A baseline sequence-to-sequence model implemented purely in NumPy for initial validation.
-- `breakthrough_training_system_refactored.py`: An advanced and refactored training script that implements modern ML concepts like an Experience Replay Buffer, Adaptive Learning Rate Scheduler, and Curriculum Learning. This appears to be the main training driver.
+- `scripts/simple_model.py`: A baseline sequence-to-sequence model implemented purely in NumPy for initial validation.
+- `scripts/breakthrough_training_system_refactored.py`: An advanced and refactored training script that implements modern ML concepts like an Experience Replay Buffer, Adaptive Learning Rate Scheduler, and Curriculum Learning. This appears to be the main training driver.
 - `configs/`: JSON files for configuring model hyperparameters, training parameters, and data paths.
 - `data/`: Contains JSON/JSONL training and validation datasets with different complexity levels.
 - `scripts/`: Contains various scripts for training, evaluation, and data generation.
@@ -43,29 +43,29 @@ pip install -r requirements_cuda.txt
 
 The repository contains pre-generated datasets. If you need to regenerate them, use the provided scripts. The "robust" version is recommended.
 ```bash
-python generate_robust_dataset.py
+python scripts/generate_robust_dataset.py
 ```
 
 ### 3. Training
 
-The main, recommended training script is `breakthrough_training_system_refactored.py`. It uses a comprehensive configuration and advanced training techniques.
+The main, recommended training script is `scripts/breakthrough_training_system_refactored.py`. It uses a comprehensive configuration and advanced training techniques.
 
 **To run the main training system (on CPU):**
 ```bash
-python breakthrough_training_system_refactored.py
+python scripts/breakthrough_training_system_refactored.py
 ```
 *Outputs are saved to `outputs/breakthrough_refactored/`.*
 
 **To run CUDA-accelerated training:**
 ```bash
-python train_cuda.py --auto-batch-size --use-mixed-precision
+python scripts/train_cuda.py --auto-batch-size --use-mixed-precision
 ```
 
 ### 4. Evaluation
 
-Use the `clean_evaluation_system.py` script to evaluate a trained model.
+Use the `scripts/clean_evaluation_system.py` script to evaluate a trained model.
 ```bash
-python clean_evaluation_system.py
+python scripts/clean_evaluation_system.py
 ```
 
 ### 5. Running Tests
@@ -81,7 +81,7 @@ python test_rules.py
 - **Configuration:** The project uses a centralized, nested dictionary structure for configuration, as seen in `create_breakthrough_config()` in the main training script. This is preferred over scattered parameters.
 - **Code Style:** The code is generally well-structured with type hints and clear function/class separation. It follows standard Python conventions.
 - **Modularity:** Core logic (tokenizer, models, data utilities) is separated into the `src/logic_transformer` package, promoting reusability.
-- **Training Strategy:** The `breakthrough_training_system_refactored.py` script indicates a sophisticated training strategy:
+- **Training Strategy:** The `scripts/breakthrough_training_system_refactored.py` script indicates a sophisticated training strategy:
     - **Curriculum Learning:** The model is trained on progressively more complex data based on the epoch number.
     - **Experience Replay:** A buffer stores past experiences, which are sampled alongside new data to improve stability and data efficiency.
     - **Target Network:** A separate, slow-updating target model is used to stabilize training, a common technique in reinforcement learning.
