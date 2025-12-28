@@ -66,9 +66,9 @@
 - `clean_evaluation_system.py` - 清理后的评估系统
 
 #### 远程训练支持
-- `remote_training_config.py` - 远程训练配置
-- `remote_training_main.py` - 远程训练主程序
-- `sync_data_to_remote.py` - 数据同步工具
+- `remote/remote_training_config.py` - 远程训练配置
+- `remote/remote_training_main.py` - 远程训练主程序
+- `remote/sync_data_to_remote.py` - 数据同步工具
 
 #### 工具和配置
 - `cuda_utils.py` - CUDA工具函数

@@ -13,12 +13,15 @@ from pathlib import Path
 from datetime import datetime
 from typing import Optional
 
-# 添加项目路径
-sys.path.append('/app/src')
-sys.path.append('/app')
+# 计算项目根目录（remote/ 的上一级）并添加到 Python 路径
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+if str(PROJECT_ROOT / "src") not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
-from remote_training_config import RemoteTrainingConfig
-from breakthrough_training_system import BreakthroughTrainingSystem
+from remote.remote_training_config import RemoteTrainingConfig
+from scripts.breakthrough_training_system_refactored import BreakthroughTrainingSystem
 
 
 class RemoteTrainingManager:

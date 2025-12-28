@@ -11,6 +11,17 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 from datetime import datetime
 
+import sys
+
+# 计算项目根目录（remote/ 的上一级），确保可以导入 src/ 和 scripts/
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+if str(PROJECT_ROOT / "src") not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT / "src"))
+if str(PROJECT_ROOT / "scripts") not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
+
 # 云存储客户端导入
 try:
     import boto3  # AWS S3
@@ -37,7 +48,7 @@ try:
 except ImportError:
     ALIYUN_AVAILABLE = False
 
-from remote_training_config import RemoteTrainingConfig
+from remote.remote_training_config import RemoteTrainingConfig
 
 
 class CloudStorageManager:

@@ -34,11 +34,8 @@ COPY src/ ./src/
 COPY analysis/ ./analysis/
 COPY configs/ ./configs/
 COPY *.py ./
-
-# 复制远程训练脚本
-COPY remote_training_main.py .
-COPY remote_training_config.py .
-COPY sync_data_to_remote.py .
+COPY scripts/ ./scripts/
+COPY remote/ ./remote/
 
 # 创建必要目录
 RUN mkdir -p /data /models /outputs /checkpoints /logs
@@ -53,5 +50,5 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
 # 暴露端口（用于分布式训练通信）
 EXPOSE 12355
 
-# 默认命令
-CMD ["python", "remote_training_main.py"]
+# 默认命令：以模块形式启动远程训练主程序
+CMD ["python", "-m", "remote.remote_training_main"]
