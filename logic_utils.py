@@ -374,6 +374,111 @@ def evaluate_formula(formula: str, assignment: Dict[str, bool]) -> bool:
         raise ValueError(f"无法评估公式: {formula} -> {py_formula} | 错误: {e}")
 
 
+def check_balance(expr: str) -> bool:
+    """
+    检查括号是否平衡且扫描过程中不出现非法关闭。
+    - 仅考虑 () 括号
+    - 保证任意前缀的右括号数量不超过左括号
+    """
+    balance = 0
+    for ch in expr:
+        if ch == '(':
+            balance += 1
+        elif ch == ')':
+            balance -= 1
+            if balance < 0:
+                return False
+    return balance == 0
+
+
+def _dedup_spaces(s: str) -> str:
+    """将连续空格压缩为单一空格，并去除首尾空格。"""
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def normalize_expression(expr: str) -> str:
+    """
+    表达式规范化：
+    1) 去除所有空白后再为二元运算符添加标准空格
+    2) 保持一元运算符 ~ 紧贴其操作数
+    3) 括号内外不额外插入空格
+    使得形如："~ ( p&q) ->r" 规范为 "~(p & q) -> r"
+    """
+    if expr is None:
+        return ""
+
+    s = re.sub(r"\s+", "", str(expr))  # 全部移除空白
+
+    # 先处理蕴含，避免与 '-' 的歧义
+    s = s.replace("->", "→")  # 临时替换占位，防止与后续替换冲突
+
+    # 为 & 和 | 两侧插入空格
+    s = re.sub(r"&", " & ", s)
+    s = re.sub(r"\|", " | ", s)
+
+    # 恢复蕴含并添加空格
+    s = s.replace("→", " -> ")
+
+    # 去除括号外侧多余空格："( p & q )" -> "(p & q)"
+    s = re.sub(r"\(\s+", "(", s)
+    s = re.sub(r"\s+\)", ")", s)
+
+    # 去重空格
+    s = _dedup_spaces(s)
+    return s
+
+
+def auto_fix(expr: str) -> str:
+    """
+    尝试自动修复常见的括号不平衡问题：
+    - 多余的右括号：在扫描时跳过超出的右括号
+    - 缺失的右括号：在末尾补齐
+    同时对结果进行规范化与空格压缩。
+    """
+    if expr is None:
+        return ""
+
+    s = normalize_expression(expr)
+
+    # 先移除多余的右括号（前缀合法）
+    out = []
+    bal = 0
+    for ch in s:
+        if ch == '(':
+            bal += 1
+            out.append(ch)
+        elif ch == ')':
+            if bal > 0:
+                bal -= 1
+                out.append(ch)
+            else:
+                # 跳过多余的右括号
+                continue
+        else:
+            out.append(ch)
+
+    s2 = "".join(out)
+
+    # 如果还有未闭合的左括号，在末尾补齐
+    if bal > 0:
+        s2 = s2 + ")" * bal
+
+    return normalize_expression(s2)
+
+
+def postprocess(expr: str) -> str:
+    """
+    统一后处理流水线：normalize -> balance -> dedup
+    - 先标准化表达式与空格
+    - 若括号不平衡则尝试 auto_fix
+    - 最后做一次空格压缩
+    """
+    s = normalize_expression(expr)
+    if not check_balance(s):
+        s = auto_fix(s)
+    return _dedup_spaces(s)
+
+
 if __name__ == "__main__":
     # 测试代码
     tokenizer = Tokenizer()

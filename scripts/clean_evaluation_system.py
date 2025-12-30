@@ -11,53 +11,18 @@ from typing import Dict, List, Tuple, Optional
 import sys
 from pathlib import Path
 
-# 添加src目录到Python路径（脚本位于 scripts/ 目录，下一级是项目根目录）
+# 添加项目根与 src 目录到 Python 路径（脚本位于 scripts/ 下）
 project_root = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(project_root / "src"))
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+if str(project_root / "src") not in sys.path:
+    sys.path.insert(0, str(project_root / "src"))
 
 from logic_transformer.data_utils import Tokenizer, load_dataset
 from logic_transformer.models.base_model import ImprovedSimpleModel
 
-# 直接导入逻辑工具函数
-def verify_equivalence(pred, target):
-    """简化的逻辑等价性检查"""
-    # 标准化处理
-    pred = pred.strip().replace(' ', '')
-    target = target.strip().replace(' ', '')
-
-    # 直接比较
-    if pred == target:
-        return True
-
-    # 简单的等价性检查
-    equivalences = [
-        ('p->q', '~q->~p'),
-        ('~p->q', '~q->p'),
-        ('p->~q', 'q->~p'),
-        ('~p->~q', 'q->p')
-    ]
-
-    for eq1, eq2 in equivalences:
-        if (pred == eq1 and target == eq2) or (pred == eq2 and target == eq1):
-            return True
-
-    return False
-
-def to_contrapositive(prop):
-    """简化的逆否命题转换"""
-    prop = prop.strip().replace(' ', '')
-
-    # 基本的逆否命题转换规则
-    if prop == 'p->q':
-        return '~q->~p'
-    elif prop == '~p->q':
-        return '~q->p'
-    elif prop == 'p->~q':
-        return 'q->~p'
-    elif prop == '~p->~q':
-        return 'q->p'
-    else:
-        return prop  # 无法转换时返回原命题
+# 使用项目根下更健壮的逻辑工具函数
+from logic_utils import postprocess, verify_equivalence, to_contrapositive
 
 
 class CleanEvaluationSystem:
@@ -102,24 +67,31 @@ class CleanEvaluationSystem:
                 prediction = self.model.predict(sample['input'], self.tokenizer)
                 pred_text = self.tokenizer.decode(prediction).strip()
                 target_text = sample['target_text'].strip()
+
+                # 统一后处理：normalize -> balance -> dedup
+                pred_text_pp = postprocess(pred_text)
+                target_text_pp = postprocess(target_text)
                 
                 # 精确匹配
-                exact_match = pred_text == target_text
+                exact_match = pred_text_pp == target_text_pp
                 if exact_match:
                     exact_correct += 1
                 
                 # 逻辑等价性检查
-                logical_match = verify_equivalence(pred_text, target_text)
+                logical_match = verify_equivalence(pred_text_pp, target_text_pp)
                 if logical_match:
                     logical_correct += 1
                 
                 # 记录详细结果
                 detailed_results.append({
                     'input': sample.get('input_text', ''),
-                    'target': target_text,
-                    'prediction': pred_text,
+                    'target': target_text_pp,
+                    'prediction': pred_text_pp,
+                    'raw_prediction': pred_text,
+                    'raw_target': target_text,
                     'exact_match': exact_match,
-                    'logical_match': logical_match
+                    'logical_match': logical_match,
+                    'postprocess_applied': True
                 })
                 
                 # 进度显示
@@ -140,7 +112,11 @@ class CleanEvaluationSystem:
             'exact_correct': exact_correct,
             'logical_correct': logical_correct,
             'total_samples': total_samples,
-            'detailed_results': detailed_results
+            'detailed_results': detailed_results,
+            'postprocessing': {
+                'pipeline': ['normalize', 'balance(auto_fix_if_needed)', 'dedup_spaces'],
+                'applied': True
+            }
         }
         
         print(f"\n📊 评估结果:")

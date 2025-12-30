@@ -1,5 +1,7 @@
 # 自偏移推理训练 Demo
 
+[![CI](https://github.com/Golenspade/self-offset-reasoning-training/actions/workflows/ci.yml/badge.svg)](https://github.com/Golenspade/self-offset-reasoning-training/actions/workflows/ci.yml)
+
 ## 项目概述
 
 > ToDoList：详见根目录 TODO_LIST.md（按路线图拆解为可执行最小任务单元）
