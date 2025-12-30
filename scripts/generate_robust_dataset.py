@@ -61,7 +61,9 @@ def add_noise_type1_robust(prop_str: str) -> str:
 
                 # 随机选择否定方式
                 if random.random() < 0.5:
-                    neg_antecedent = f"~({antecedent})" if " " in antecedent else f"~{antecedent}"
+                    neg_antecedent = (
+                        f"~({antecedent})" if " " in antecedent else f"~{antecedent}"
+                    )
                 else:
                     neg_antecedent = f"~{antecedent}"
 
@@ -85,7 +87,7 @@ def add_noise_type2_robust(prop_str: str) -> str:
             else:
                 replacement = f"~(~{var})"
 
-            prop_str = re.sub(fr"\b{var}\b", replacement, prop_str, count=1)
+            prop_str = re.sub(rf"\b{var}\b", replacement, prop_str, count=1)
 
     return prop_str
 
@@ -101,7 +103,7 @@ def add_noise_type3_robust(prop_str: str) -> str:
         else:
             replacement = f"(({var}))"
 
-        prop_str = re.sub(fr"\b{var}\b", replacement, prop_str, count=1)
+        prop_str = re.sub(rf"\b{var}\b", replacement, prop_str, count=1)
 
     return prop_str
 
@@ -290,9 +292,24 @@ def main():
 
     # 生成三个级别的鲁棒数据集
     datasets_config = [
-        {"name": "Level 1 鲁棒版", "complexity": "simple", "train_size": 3000, "val_size": 500},
-        {"name": "Level 2 鲁棒版", "complexity": "medium", "train_size": 2500, "val_size": 400},
-        {"name": "Level 3 鲁棒版", "complexity": "complex", "train_size": 2000, "val_size": 300},
+        {
+            "name": "Level 1 鲁棒版",
+            "complexity": "simple",
+            "train_size": 3000,
+            "val_size": 500,
+        },
+        {
+            "name": "Level 2 鲁棒版",
+            "complexity": "medium",
+            "train_size": 2500,
+            "val_size": 400,
+        },
+        {
+            "name": "Level 3 鲁棒版",
+            "complexity": "complex",
+            "train_size": 2000,
+            "val_size": 300,
+        },
     ]
 
     for config in datasets_config:
@@ -300,7 +317,9 @@ def main():
         print("-" * 40)
 
         # 生成训练集
-        train_dataset = generate_robust_dataset(config["train_size"], config["complexity"])
+        train_dataset = generate_robust_dataset(
+            config["train_size"], config["complexity"]
+        )
         train_filename = f"data/train_{config['name'].replace(' ', '_').lower()}.json"
         save_robust_dataset(train_dataset, train_filename)
         analyze_robust_dataset(train_dataset, f"{config['name']} 训练集")
@@ -322,4 +341,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

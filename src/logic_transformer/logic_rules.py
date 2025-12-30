@@ -12,17 +12,17 @@ def parse_disjunction(input_str):
     """
     # 移除外层括号
     content = input_str.strip()
-    if content.startswith('(') and content.endswith(')'):
+    if content.startswith("(") and content.endswith(")"):
         content = content[1:-1]
-    
+
     # 按 | 分割
-    parts = content.split('|')
+    parts = content.split("|")
     if len(parts) != 2:
         return None, None
-    
+
     left = parts[0].strip()
     right = parts[1].strip()
-    
+
     return left, right
 
 
@@ -31,7 +31,7 @@ def negate_term(term):
     对一个项进行否定
     """
     term = term.strip()
-    if term.startswith('~'):
+    if term.startswith("~"):
         # 去掉否定
         return term[1:].strip()
     else:
@@ -42,33 +42,33 @@ def negate_term(term):
 def corrected_disjunction_to_contrapositive(input_str):
     """
     修正后的析取到逆否命题转换
-    
+
     核心逻辑：
     - (A | B) 等价于 (~A -> B)
     - (~A | B) 等价于 (~~A -> B) = (A -> B)，逆否命题是 (~B -> ~A)
     - (A | B) 等价于 (~A -> B)，逆否命题是 (~B -> ~~A) = (~B -> A)
     """
     left, right = parse_disjunction(input_str)
-    
+
     if left is None or right is None:
         return None
-    
-    if left.startswith('~'):
+
+    if left.startswith("~"):
         # 左边是 ~X，原命题是 X -> right，逆否是 ~right -> ~X
         antecedent = left[1:].strip()  # X
-        consequent = right.strip()     # right
-        
+        consequent = right.strip()  # right
+
         neg_consequent = negate_term(consequent)  # ~right
-        neg_antecedent = f"~{antecedent}"         # ~X
-        
+        neg_antecedent = f"~{antecedent}"  # ~X
+
     else:
         # 左边是 X，原命题是 ~X -> right，逆否是 ~right -> ~~X = ~right -> X
-        antecedent = left.strip()      # X
-        consequent = right.strip()     # right
-        
+        antecedent = left.strip()  # X
+        consequent = right.strip()  # right
+
         neg_consequent = negate_term(consequent)  # ~right
-        neg_antecedent = antecedent               # X (因为~~X = X)
-    
+        neg_antecedent = antecedent  # X (因为~~X = X)
+
     contrapositive = f"{neg_consequent} -> {neg_antecedent}"
     return contrapositive
 
@@ -97,32 +97,35 @@ def validate_rule_logic():
         ("(q | r)", "~r -> q", "~q -> r 的逆否"),
         ("(~p | ~s)", "s -> ~p", "p -> ~s 的逆否"),
     ]
-    
+
     print("=== 验证修正后的规则逻辑 ===")
-    
+
     correct = 0
     total = len(test_cases)
-    
+
     for input_str, expected, description in test_cases:
         predicted = rule_based_predict_corrected(input_str)
         is_correct = predicted == expected
-        
+
         if is_correct:
             correct += 1
-        
-        print(f"✓ {input_str} -> {predicted} ({description})" if is_correct 
-              else f"✗ {input_str} -> {predicted} (期望: {expected}, {description})")
-    
+
+        print(
+            f"✓ {input_str} -> {predicted} ({description})"
+            if is_correct
+            else f"✗ {input_str} -> {predicted} (期望: {expected}, {description})"
+        )
+
     accuracy = correct / total
     print(f"\n验证结果: {accuracy:.2%} ({correct}/{total})")
-    
+
     return accuracy == 1.0
 
 
 if __name__ == "__main__":
     # 运行验证
     success = validate_rule_logic()
-    
+
     if success:
         print("\n🎉 所有测试通过！规则逻辑完全正确。")
     else:

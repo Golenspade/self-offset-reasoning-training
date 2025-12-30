@@ -12,8 +12,4 @@ from .data_utils import Tokenizer
 from .logic_rules import rule_based_predict_corrected
 from .models.hybrid_model import HybridModel
 
-__all__ = [
-    "Tokenizer",
-    "rule_based_predict_corrected", 
-    "HybridModel"
-]
+__all__ = ["Tokenizer", "rule_based_predict_corrected", "HybridModel"]

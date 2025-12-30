@@ -38,7 +38,9 @@ def load_config(config_path: str):
         return None
 
 
-def inspect_predictions(config_path: str = "configs/simple_clean_config.json", num_samples: int = 10):
+def inspect_predictions(
+    config_path: str = "configs/simple_clean_config.json", num_samples: int = 10
+):
     config = load_config(config_path)
     if config is None:
         return
@@ -122,4 +124,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

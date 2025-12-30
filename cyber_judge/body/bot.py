@@ -13,18 +13,17 @@ def init_bot():
     """初始化 Bot"""
     # 初始化 NoneBot
     nonebot.init()
-    
+
     # 注册适配器
     driver = nonebot.get_driver()
     driver.register_adapter(OneBotV11Adapter)
-    
+
     # 加载插件
     nonebot.load_plugins(str(Path(__file__).parent / "plugins"))
-    
+
     return nonebot.get_asgi()
 
 
 if __name__ == "__main__":
     app = init_bot()
     nonebot.run()
-

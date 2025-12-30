@@ -69,7 +69,9 @@ class SimpleSeq2SeqModel:
         avg_embedding = np.mean(embeddings, axis=0)
 
         # 通过编码器层
-        encoded = self.tanh(np.dot(avg_embedding, self.encoder_weights) + self.encoder_bias)
+        encoded = self.tanh(
+            np.dot(avg_embedding, self.encoder_weights) + self.encoder_bias
+        )
 
         return encoded
 
@@ -85,7 +87,9 @@ class SimpleSeq2SeqModel:
         combined = hidden_state + token_embedding
 
         # 通过解码器层
-        new_hidden = self.tanh(np.dot(combined, self.decoder_weights) + self.decoder_bias)
+        new_hidden = self.tanh(
+            np.dot(combined, self.decoder_weights) + self.decoder_bias
+        )
 
         # 生成输出概率
         output_logits = np.dot(new_hidden, self.output_weights) + self.output_bias
@@ -118,7 +122,9 @@ class SimpleSeq2SeqModel:
 
         return output_sequence
 
-    def train_step(self, input_sequence, target_sequence, tokenizer, learning_rate=0.01):
+    def train_step(
+        self, input_sequence, target_sequence, tokenizer, learning_rate=0.01
+    ):
         """简化的训练步骤（仅用于概念验证）"""
         # 前向传播
         encoded = self.encode(input_sequence)
@@ -258,4 +264,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

@@ -91,7 +91,9 @@ def generate_simple_sample(complexity: str = "simple_clean") -> Dict[str, str]:
     }
 
 
-def generate_dataset(n_samples: int, complexity: str = "simple_clean") -> List[Dict[str, str]]:
+def generate_dataset(
+    n_samples: int, complexity: str = "simple_clean"
+) -> List[Dict[str, str]]:
     """批量生成數據集。"""
     return [generate_simple_sample(complexity) for _ in range(n_samples)]
 

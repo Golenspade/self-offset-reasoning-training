@@ -47,13 +47,13 @@ class TestMemoryStore:
                 user_id="user_123",
                 case="4060能跑AI吗？",
                 verdict="鉴定为赛博乞丐",
-                personality="暴躁老哥"
+                personality="暴躁老哥",
             )
 
             judgments = await store.get_user_judgments("user_123")
 
             assert len(judgments) == 1
-            assert judgments[0]['verdict'] == "鉴定为赛博乞丐"
+            assert judgments[0]["verdict"] == "鉴定为赛博乞丐"
 
         try:
             asyncio.run(_run())
@@ -74,7 +74,7 @@ class TestMemoryStore:
             stats = await store.get_user_stats("user_123")
 
             assert stats is not None
-            assert stats['total_messages'] == 5
+            assert stats["total_messages"] == 5
 
         try:
             asyncio.run(_run())
@@ -84,33 +84,33 @@ class TestMemoryStore:
 
 class TestDataCleaner:
     """测试数据清洗"""
-    
+
     def test_clean_text(self):
         """测试文本清洗"""
         from refinery.cleaner import DataCleaner
-        
+
         cleaner = DataCleaner()
-        
+
         # 测试去除HTML标签
         text = "<p>测试文本</p>"
         cleaned = cleaner.clean_text(text)
         assert cleaned == "测试文本"
-        
+
         # 测试去除表情包
         text = "测试[表情]文本"
         cleaned = cleaner.clean_text(text)
         assert cleaned == "测试文本"
-    
+
     def test_is_valid_verdict(self):
         """测试判决有效性检查"""
         from refinery.cleaner import DataCleaner
-        
+
         cleaner = DataCleaner()
-        
+
         # 有效判决
         assert cleaner.is_valid_verdict("鉴定为纯纯的赛博乞丐")
         assert cleaner.is_valid_verdict("有一说一，这个不行")
-        
+
         # 无效判决
         assert not cleaner.is_valid_verdict("插眼")
         assert not cleaner.is_valid_verdict("顶")
@@ -119,11 +119,11 @@ class TestDataCleaner:
 
 class TestPersonalityManager:
     """测试人格管理器"""
-    
+
     def test_score_response(self):
         """测试回复评分"""
         from brain.cerebras_client import PersonalityManager, CerebrasClient
-        
+
         # 注意：这里不会实际调用 API
         try:
             client = CerebrasClient()
@@ -132,39 +132,39 @@ class TestPersonalityManager:
             # 如果没有 API Key，跳过测试
             pytest.skip("CEREBRAS_API_KEY not set")
             return
-        
+
         # 测试评分
         score1 = manager._score_response("鉴定为纯纯的赛博乞丐。")
         score2 = manager._score_response("好")
-        
+
         # 长度适中且有关键词的回复应该得分更高
         assert score1 > score2
 
 
 class TestReActAgent:
     """测试 ReAct 智能体"""
-    
+
     def test_parse_thought(self):
         """测试思考解析"""
         from brain.react_loop import ReActAgent, ActionType
         from memory.sqlite_store import MemoryStore
-        
+
         store = MemoryStore(db_path=":memory:")
-        
+
         # 创建一个模拟的 LLM 客户端
         class MockLLM:
             async def chat_with_system_prompt(self, **kwargs):
                 return "Thought: 需要查询历史\nAction: search_history\nAction Input: AI"
-        
+
         agent = ReActAgent(MockLLM(), store)
-        
+
         llm_output = "Thought: 需要查询历史\nAction: search_history\nAction Input: AI"
         thought = agent._parse_thought(llm_output)
-        
+
         assert thought.content == "需要查询历史"
         assert thought.action == ActionType.SEARCH_HISTORY
         assert thought.action_input == "AI"
-        
+
         store.close()
 
 
@@ -189,7 +189,7 @@ class TestEndToEnd:
                 user_id="user_123",
                 case="4060能跑AI吗？",
                 verdict=verdict,
-                personality="暴躁老哥"
+                personality="暴躁老哥",
             )
 
             # 4. 验证数据
@@ -199,7 +199,7 @@ class TestEndToEnd:
 
             assert len(history) == 1
             assert len(judgments) == 1
-            assert stats['total_messages'] == 1
+            assert stats["total_messages"] == 1
 
         try:
             asyncio.run(_run())
@@ -207,6 +207,5 @@ class TestEndToEnd:
             store.close()
 
 
-if __name__ == '__main__':
-    pytest.main([__file__, '-v'])
-
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])
