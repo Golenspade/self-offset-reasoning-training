@@ -14,63 +14,72 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 class TestMemoryStore:
     """测试记忆存储"""
-    
-    @pytest.mark.asyncio
-    async def test_save_and_retrieve_message(self):
-        """测试保存和检索消息"""
+
+    def test_save_and_retrieve_message(self):
+        """测试保存和检索消息（同步封装 async 接口，避免依赖 pytest-asyncio）"""
         from memory.sqlite_store import MemoryStore
-        
+
         store = MemoryStore(db_path=":memory:")  # 使用内存数据库
-        
-        # 保存消息
-        await store.save_message("user_123", "测试消息", group_id="group_456")
-        
-        # 检索消息
-        history = await store.get_user_history("user_123")
-        
-        assert len(history) == 1
-        assert history[0] == "测试消息"
-        
-        store.close()
-    
-    @pytest.mark.asyncio
-    async def test_save_judgment(self):
+
+        async def _run():
+            # 保存消息
+            await store.save_message("user_123", "测试消息", group_id="group_456")
+
+            # 检索消息
+            history = await store.get_user_history("user_123")
+
+            assert len(history) == 1
+            assert history[0] == "测试消息"
+
+        try:
+            asyncio.run(_run())
+        finally:
+            store.close()
+
+    def test_save_judgment(self):
         """测试保存判决"""
         from memory.sqlite_store import MemoryStore
-        
+
         store = MemoryStore(db_path=":memory:")
-        
-        await store.save_judgment(
-            user_id="user_123",
-            case="4060能跑AI吗？",
-            verdict="鉴定为赛博乞丐",
-            personality="暴躁老哥"
-        )
-        
-        judgments = await store.get_user_judgments("user_123")
-        
-        assert len(judgments) == 1
-        assert judgments[0]['verdict'] == "鉴定为赛博乞丐"
-        
-        store.close()
-    
-    @pytest.mark.asyncio
-    async def test_user_stats(self):
+
+        async def _run():
+            await store.save_judgment(
+                user_id="user_123",
+                case="4060能跑AI吗？",
+                verdict="鉴定为赛博乞丐",
+                personality="暴躁老哥"
+            )
+
+            judgments = await store.get_user_judgments("user_123")
+
+            assert len(judgments) == 1
+            assert judgments[0]['verdict'] == "鉴定为赛博乞丐"
+
+        try:
+            asyncio.run(_run())
+        finally:
+            store.close()
+
+    def test_user_stats(self):
         """测试用户统计"""
         from memory.sqlite_store import MemoryStore
-        
+
         store = MemoryStore(db_path=":memory:")
-        
-        # 保存多条消息
-        for i in range(5):
-            await store.save_message("user_123", f"消息{i}")
-        
-        stats = await store.get_user_stats("user_123")
-        
-        assert stats is not None
-        assert stats['total_messages'] == 5
-        
-        store.close()
+
+        async def _run():
+            # 保存多条消息
+            for i in range(5):
+                await store.save_message("user_123", f"消息{i}")
+
+            stats = await store.get_user_stats("user_123")
+
+            assert stats is not None
+            assert stats['total_messages'] == 5
+
+        try:
+            asyncio.run(_run())
+        finally:
+            store.close()
 
 
 class TestDataCleaner:
@@ -161,38 +170,41 @@ class TestReActAgent:
 
 class TestEndToEnd:
     """端到端测试"""
-    
-    @pytest.mark.asyncio
-    async def test_full_pipeline(self):
+
+    def test_full_pipeline(self):
         """测试完整流程（不调用实际 API）"""
         from memory.sqlite_store import MemoryStore
-        
+
         store = MemoryStore(db_path=":memory:")
-        
-        # 1. 保存用户消息
-        await store.save_message("user_123", "4060能跑AI吗？")
-        
-        # 2. 模拟判决
-        verdict = "鉴定为赛博乞丐。能跑是能跑，但建议自备灭火器。"
-        
-        # 3. 保存判决
-        await store.save_judgment(
-            user_id="user_123",
-            case="4060能跑AI吗？",
-            verdict=verdict,
-            personality="暴躁老哥"
-        )
-        
-        # 4. 验证数据
-        history = await store.get_user_history("user_123")
-        judgments = await store.get_user_judgments("user_123")
-        stats = await store.get_user_stats("user_123")
-        
-        assert len(history) == 1
-        assert len(judgments) == 1
-        assert stats['total_messages'] == 1
-        
-        store.close()
+
+        async def _run():
+            # 1. 保存用户消息
+            await store.save_message("user_123", "4060能跑AI吗？")
+
+            # 2. 模拟判决
+            verdict = "鉴定为赛博乞丐。能跑是能跑，但建议自备灭火器。"
+
+            # 3. 保存判决
+            await store.save_judgment(
+                user_id="user_123",
+                case="4060能跑AI吗？",
+                verdict=verdict,
+                personality="暴躁老哥"
+            )
+
+            # 4. 验证数据
+            history = await store.get_user_history("user_123")
+            judgments = await store.get_user_judgments("user_123")
+            stats = await store.get_user_stats("user_123")
+
+            assert len(history) == 1
+            assert len(judgments) == 1
+            assert stats['total_messages'] == 1
+
+        try:
+            asyncio.run(_run())
+        finally:
+            store.close()
 
 
 if __name__ == '__main__':

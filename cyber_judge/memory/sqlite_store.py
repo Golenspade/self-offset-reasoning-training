@@ -64,10 +64,17 @@ class MemoryStore:
                 message TEXT NOT NULL,
                 timestamp DATETIME NOT NULL,
                 group_id TEXT,
-                metadata TEXT,
-                INDEX idx_user_id (user_id),
-                INDEX idx_timestamp (timestamp)
+                metadata TEXT
             )
+        ''')
+        # 为常用查询字段创建索引（SQLite 需使用独立的 CREATE INDEX 语句）
+        cursor.execute('''
+            CREATE INDEX IF NOT EXISTS idx_user_messages_user_id
+            ON user_messages(user_id)
+        ''')
+        cursor.execute('''
+            CREATE INDEX IF NOT EXISTS idx_user_messages_timestamp
+            ON user_messages(timestamp)
         ''')
         
         # 判决记录表
@@ -79,10 +86,16 @@ class MemoryStore:
                 verdict TEXT NOT NULL,
                 personality TEXT NOT NULL,
                 timestamp DATETIME NOT NULL,
-                group_id TEXT,
-                INDEX idx_user_id (user_id),
-                INDEX idx_timestamp (timestamp)
+                group_id TEXT
             )
+        ''')
+        cursor.execute('''
+            CREATE INDEX IF NOT EXISTS idx_judgment_records_user_id
+            ON judgment_records(user_id)
+        ''')
+        cursor.execute('''
+            CREATE INDEX IF NOT EXISTS idx_judgment_records_timestamp
+            ON judgment_records(timestamp)
         ''')
         
         # 用户统计表

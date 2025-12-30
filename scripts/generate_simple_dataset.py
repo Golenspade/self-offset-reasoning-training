@@ -24,7 +24,7 @@ import sys
 from pathlib import Path
 from typing import Dict, List
 
-# 确保可以从 scripts/ 目录正确导入项目包
+# 確保可以從 scripts/ 目錄正確導入項目包
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
@@ -105,13 +105,14 @@ def save_dataset(samples: List[Dict[str, str]], path: str) -> None:
 
 
 def self_check(num_checks: int = 32) -> bool:
-    """"""
-    用現有的 symbolic 規則檢查模板是否與 rule-based 邏輯一致。
+    """用現有的 symbolic 規則檢查模板是否與 rule-based 邏輯一致。
+
     對若干條隨機樣本，驗證：
         corrected_disjunction_to_contrapositive(noisy_prop)
         == target_contrapositive
     若有不一致，返回 False 並打印示例。
-    """"""
+    """
+
     for _ in range(num_checks):
         sample = generate_simple_sample()
         predicted = corrected_disjunction_to_contrapositive(sample["noisy_prop"])
@@ -153,4 +154,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

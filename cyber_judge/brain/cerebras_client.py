@@ -7,8 +7,13 @@
 import os
 import asyncio
 from typing import List, Dict, Optional
-import aiohttp
 from dataclasses import dataclass
+
+try:
+    # aiohttp 是可选依赖：仅在实际调用 Cerebras API 时才需要
+    import aiohttp  # type: ignore
+except ImportError:  # pragma: no cover - 在未安装 aiohttp 的环境下走降级路径
+    aiohttp = None
 
 
 @dataclass
@@ -53,6 +58,11 @@ class CerebrasClient:
         Returns:
             模型回复
         """
+        if aiohttp is None:
+            raise RuntimeError(
+                "aiohttp 未安装，无法调用 Cerebras API。请先执行 `pip install aiohttp`。"
+            )
+
         url = f"{self.base_url}/chat/completions"
         
         headers = {
