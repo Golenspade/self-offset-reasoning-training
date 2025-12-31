@@ -98,3 +98,18 @@ checkpoint/
 checkpoints/
 models/
 *.ckpt
+
+# 敏感文件 - API Keys, Cookies, Secrets
+*_cookies.json
+*cookies*.json
+*.cookies
+.env.local
+.env.*.local
+**/secrets/
+**/credentials/
+
+# 调试文件
+debug_*.html
+debug_*.png
+after_captcha.png
+page_analysis.json

@@ -91,7 +91,7 @@ async def analyze_tieba_page():
                                 text = text.strip()[:80]
                                 if text:
                                     samples.append(text)
-                            except:
+                            except Exception:
                                 pass
 
                         if samples:

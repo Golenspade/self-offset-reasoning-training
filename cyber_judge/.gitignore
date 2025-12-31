@@ -63,3 +63,15 @@ htmlcov/
 *.tmp
 *.bak
 
+# 敏感文件 - Cookies, API Keys
+*_cookies.json
+*cookies*.json
+baidu_cookies.json
+.env.local
+.env.*.local
+
+# 调试文件
+debug_*.html
+debug_*.png
+after_captcha.png
+page_analysis.json

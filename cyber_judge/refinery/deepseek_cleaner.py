@@ -11,9 +11,9 @@ from openai import OpenAI
 from typing import List, Dict
 import time
 
-# DeepSeek API 配置
-API_KEY = "sk-d7061f4e11fa4a60905f9a9791cf83bc"
-BASE_URL = "https://api.deepseek.com"
+# DeepSeek API 配置 - 从环境变量读取，避免硬编码
+API_KEY = os.getenv("DEEPSEEK_API_KEY")
+BASE_URL = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
 
 # 清洗 Prompt
 CLEANING_PROMPT = """你是一个数据清洗助手。我们正在提取网络论坛的"群体潜意识"——即一群人真实的说话方式和表达范式。
@@ -39,6 +39,11 @@ CLEANING_PROMPT = """你是一个数据清洗助手。我们正在提取网络�
 
 def init_client():
     """初始化 DeepSeek 客户端"""
+    if not API_KEY:
+        raise ValueError(
+            "DEEPSEEK_API_KEY 环境变量未设置。"
+            "请在 .env 文件或环境变量中设置 DEEPSEEK_API_KEY。"
+        )
     return OpenAI(api_key=API_KEY, base_url=BASE_URL)
 
 

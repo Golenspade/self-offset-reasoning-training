@@ -131,7 +131,7 @@ async def handle_baidu_captcha():
                             if "安全验证" not in new_title:
                                 print(f"\n✅ 验证通过！")
                                 break
-                        except:
+                        except Exception:
                             pass
 
                         if i % 10 == 0 and i > 0:

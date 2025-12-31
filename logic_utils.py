@@ -6,41 +6,53 @@
 
 import random
 import re
+import sys
+from pathlib import Path
 from typing import List, Dict, Tuple
 
+# 确保 src 目录在路径中，以便导入 Tokenizer
+_src_path = Path(__file__).resolve().parent / "src"
+if str(_src_path) not in sys.path:
+    sys.path.insert(0, str(_src_path))
 
-class Tokenizer:
-    """简单的字符级tokenizer，用于命题逻辑符号"""
+# 从 data_utils 导入 Tokenizer，避免重复定义
+# 注意：如果作为独立模块使用且没有 src 目录，会回退到本地定义
+try:
+    from logic_transformer.data_utils import Tokenizer
+except ImportError:
+    # 回退：本地定义 Tokenizer（兼容独立使用场景）
+    class Tokenizer:
+        """简单的字符级tokenizer，用于命题逻辑符号"""
 
-    def __init__(self):
-        # 定义所有可能的符号
-        self.symbols = ["p", "q", "r", "s", "t", "~", "&", "|", "-", ">", "(", ")", " "]
-        self.char_to_int = {char: i for i, char in enumerate(self.symbols)}
-        self.int_to_char = {i: char for i, char in enumerate(self.symbols)}
-        self.vocab_size = len(self.symbols)
+        def __init__(self):
+            self.symbols = [
+                "p", "q", "r", "s", "t", "~", "&", "|", "-", ">", "(", ")", " "
+            ]
+            self.char_to_int = {char: i for i, char in enumerate(self.symbols)}
+            self.int_to_char = {i: char for i, char in enumerate(self.symbols)}
+            self.vocab_size = len(self.symbols)
 
-        # 特殊token
-        self.PAD_TOKEN = len(self.symbols)
-        self.START_TOKEN = len(self.symbols) + 1
-        self.END_TOKEN = len(self.symbols) + 2
+            self.PAD_TOKEN = len(self.symbols)
+            self.START_TOKEN = len(self.symbols) + 1
+            self.END_TOKEN = len(self.symbols) + 2
 
-        self.char_to_int["<PAD>"] = self.PAD_TOKEN
-        self.char_to_int["<START>"] = self.START_TOKEN
-        self.char_to_int["<END>"] = self.END_TOKEN
+            self.char_to_int["<PAD>"] = self.PAD_TOKEN
+            self.char_to_int["<START>"] = self.START_TOKEN
+            self.char_to_int["<END>"] = self.END_TOKEN
 
-        self.int_to_char[self.PAD_TOKEN] = "<PAD>"
-        self.int_to_char[self.START_TOKEN] = "<START>"
-        self.int_to_char[self.END_TOKEN] = "<END>"
+            self.int_to_char[self.PAD_TOKEN] = "<PAD>"
+            self.int_to_char[self.START_TOKEN] = "<START>"
+            self.int_to_char[self.END_TOKEN] = "<END>"
 
-        self.vocab_size += 3
+            self.vocab_size += 3
 
-    def encode(self, text: str) -> List[int]:
-        """将文本编码为整数序列"""
-        return [self.char_to_int.get(char, self.PAD_TOKEN) for char in text]
+        def encode(self, text: str) -> List[int]:
+            """将文本编码为整数序列"""
+            return [self.char_to_int.get(char, self.PAD_TOKEN) for char in text]
 
-    def decode(self, tokens: List[int]) -> str:
-        """将整数序列解码为文本"""
-        return "".join([self.int_to_char.get(token, "") for token in tokens])
+        def decode(self, tokens: List[int]) -> str:
+            """将整数序列解码为文本"""
+            return "".join([self.int_to_char.get(token, "") for token in tokens])
 
 
 def generate_simple_proposition(variables: List[str] = None) -> str:
@@ -331,8 +343,9 @@ def verify_equivalence(formula1: str, formula2: str) -> bool:
 
             if val1 != val2:
                 return False
-        except:
+        except (ValueError, SyntaxError, TypeError, KeyError) as e:
             # 如果评估失败，认为不等价
+            # 常见错误：无效公式语法、未知变量、类型错误
             return False
 
     return True

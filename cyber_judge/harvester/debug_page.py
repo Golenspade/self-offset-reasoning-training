@@ -92,7 +92,7 @@ async def debug_tieba():
                                 text = await elem.inner_text()
                                 text = text.strip()[:50]  # 只显示前50个字符
                                 print(f"    [{i}] {text}")
-                            except:
+                            except Exception:
                                 pass
                 except Exception as e:
                     print(f"  {selector}: 错误 - {e}")
