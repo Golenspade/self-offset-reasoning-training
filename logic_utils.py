@@ -26,7 +26,19 @@ except ImportError:
 
         def __init__(self):
             self.symbols = [
-                "p", "q", "r", "s", "t", "~", "&", "|", "-", ">", "(", ")", " "
+                "p",
+                "q",
+                "r",
+                "s",
+                "t",
+                "~",
+                "&",
+                "|",
+                "-",
+                ">",
+                "(",
+                ")",
+                " ",
             ]
             self.char_to_int = {char: i for i, char in enumerate(self.symbols)}
             self.int_to_char = {i: char for i, char in enumerate(self.symbols)}
