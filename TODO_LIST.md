@@ -10,7 +10,7 @@
 ## P0｜近期（1–2周）
 
 ### A. 提升精确匹配率（后处理与约束解码）
-- [ ] A1 创建括号/符号平衡校验器（logic_utils）
+- [x] A1 创建括号/符号平衡校验器（logic_utils）
   - 目标：提供 `check_balance(expr:str)->bool` 与 `auto_fix(expr)->str`
   - 验收：新增 tests 通过，非法表达式能被检测，常见缺失可被修复
   - 依赖：无
@@ -20,7 +20,7 @@
   - 验收：单元测试覆盖 5+ 典型约束；推断时非法序列比例明显下降
   - 依赖：A1
   - 产出：simple_model.py or src/.../models/base_model.py
-- [ ] A3 统一后处理流水线（normalize -> balance -> dedup spaces）
+- [x] A3 统一后处理流水线（normalize -> balance -> dedup spaces）
   - 目标：实现 `postprocess(expr)->expr` 管道，训练/评估共用
   - 验收：clean_evaluation_system 调用后处理并写入报告
   - 依赖：A1
@@ -42,6 +42,7 @@
   - 验收：早停生效；best.ckpt 与最后权重区分
   - 依赖：无
   - 产出：breakthrough_training_system_refactored.py, outputs/trained_models/
+  - 备注：当前已在训练脚本中保存 best_model.npz（区分于最终权重），但尚未实现基于验证损失的早停逻辑
 - [ ] B4 训练曲线可视化（loss/acc）
   - 目标：保存 outputs/figures/training_curves.png
   - 验收：曲线包含 train/val；随日志一起生成
@@ -54,6 +55,7 @@
   - 验收：生成样本中出现新变换；统计报告包含占比
   - 依赖：无
   - 产出：generate_robust_dataset.py
+  - 备注：双重否定与蕴含消除规则已通过 add_noise_type1_robust / add_noise_type2_robust 集成进鲁棒数据生成，但尚未在分析报告中统计各规则的占比
 - [ ] C2 结合/分配律等价变换（受控概率注入）
   - 目标：实现 (A&(B&C))↔((A&B)&C) 等规则；可配置注入比例
   - 验收：数据质量检查通过；不引入不合法表达式
@@ -74,6 +76,7 @@
   - 目标：clean_evaluation_system 输出统一 Schema v2
   - 验收：outputs/reports/eval_v2.json 含三类指标与版本号
   - 依赖：D1
+  - 备注：clean_evaluation_system 已能输出 JSON 报告，并复用统一的逻辑工具，但尚未对齐 Schema v2（文件命名与字段结构仍待规范）
 - [ ] D3 分析面板增强（complete_experiment_summary_refactored）
   - 目标：新增多指标对比、趋势图、效率指标
   - 验收：图表/报告落盘，脚本无交互即可生成
@@ -84,7 +87,8 @@
   - 目标：覆盖 logic_utils, data 生成、评估核心入口
   - 验收：pytest 全绿；覆盖率>40%
   - 依赖：A/C/D
-- [ ] E2 GitHub Actions 基础 CI
+  - 备注：已编写 logic_utils 相关基础测试用例，但尚未系统覆盖数据生成与评估入口，也未启用覆盖率阈值
+- [x] E2 GitHub Actions 基础 CI
   - 目标：lint+type+test 三步流水
   - 验收：PR 自动运行；状态徽章加入 README
   - 依赖：E1

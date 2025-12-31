@@ -291,24 +291,25 @@ def main():
     random.seed(42)
 
     # 生成三个级别的鲁棒数据集
+    # Scale up 数据规模：为大模型和租卡训练准备 40w+ 样本
     datasets_config = [
         {
             "name": "Level 1 鲁棒版",
             "complexity": "simple",
-            "train_size": 3000,
-            "val_size": 500,
+            "train_size": 100_000,  # 原 3000 -> 10 万
+            "val_size": 5_000,
         },
         {
             "name": "Level 2 鲁棒版",
             "complexity": "medium",
-            "train_size": 2500,
-            "val_size": 400,
+            "train_size": 100_000,  # 原 2500 -> 10 万
+            "val_size": 5_000,
         },
         {
             "name": "Level 3 鲁棒版",
             "complexity": "complex",
-            "train_size": 2000,
-            "val_size": 300,
+            "train_size": 200_000,  # 复杂样本最有价值，提升到 20 万
+            "val_size": 5_000,
         },
     ]
 

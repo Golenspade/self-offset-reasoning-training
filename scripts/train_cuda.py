@@ -37,9 +37,40 @@ def setup_logging(log_level: str = "INFO", log_file: str = None):
     )
 
 
-def load_training_data(data_dir: str = "data") -> tuple:
+def _load_json_or_jsonl(path: str):
+    """同时兼容 JSON list 与 JSONL 格式的数据加载器.
+
+    - 如果文件以 '[' 开头，使用 json.load 读取为列表
+    - 否则按行解析 JSON（JSON Lines / JSONL）
     """
-    加载训练数据
+
+    with open(path, "r", encoding="utf-8") as f:
+        # 探测首字符以区分 JSON vs JSONL
+        first_char = f.read(1)
+        f.seek(0)
+
+        if first_char == "[":
+            return json.load(f)
+
+        # JSONL：每行一个 JSON 对象
+        data = []
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                data.append(json.loads(line))
+            except json.JSONDecodeError:
+                continue
+        return data
+
+
+def load_training_data(data_dir: str = "data") -> tuple:
+    """加载训练数据
+
+    支持两种格式：
+    - 旧版 JSON list：`[ {...}, {...}, ... ]`
+    - 新版 JSONL：每行一个 JSON 对象（鲁棒数据生成脚本使用的格式）
 
     Args:
         data_dir: 数据目录
@@ -47,7 +78,8 @@ def load_training_data(data_dir: str = "data") -> tuple:
     Returns:
         (train_data, val_data): 训练和验证数据
     """
-    # 尝试加载不同级别的数据
+
+    # 尝试加载不同级别的数据（按优先级从复杂到简单）
     data_files = [
         ("train_level_3_鲁棒版.json", "val_level_3_鲁棒版.json"),
         ("train_level_2_鲁棒版.json", "val_level_2_鲁棒版.json"),
@@ -62,11 +94,11 @@ def load_training_data(data_dir: str = "data") -> tuple:
         if os.path.exists(train_path) and os.path.exists(val_path):
             print(f"📊 加载数据文件: {train_file}, {val_file}")
 
-            with open(train_path, "r", encoding="utf-8") as f:
-                train_data = json.load(f)
+            train_data = _load_json_or_jsonl(train_path)
+            val_data = _load_json_or_jsonl(val_path)
 
-            with open(val_path, "r", encoding="utf-8") as f:
-                val_data = json.load(f)
+            if not isinstance(train_data, list) or not isinstance(val_data, list):
+                raise ValueError(f"数据文件格式错误: {train_file}, {val_file}")
 
             return train_data, val_data
 
